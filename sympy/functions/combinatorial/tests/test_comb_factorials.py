@@ -549,10 +549,9 @@ def test_binomial_rewrite():
     assert binomial(n, x).rewrite(ff) == binomial(n, x)
 
 def test_q_binomial():
-    n = Symbol('n')
-    k = Symbol('k')
-    assert q_binomial(n, n).equals(1)
-    assert q_binomial(n, k) == q_binomial(n, n - k)
+    n = Symbol('n', integer=True)
+    k = Symbol('k', integer=True)
+    assert unchanged(q_binomial, n, n)
     assert q_binomial(3, 3) == 1
     assert q_binomial(3, 5) == 0
     assert q_binomial(5, 3) == 10
