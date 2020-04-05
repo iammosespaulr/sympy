@@ -1057,3 +1057,25 @@ class binomial(CombinatorialFunction):
                 return True
             elif k.is_even is False:
                 return  False
+
+class q_binomial(CombinatorialFunction):
+    @classmethod
+    def eval(cls, n, k, q_present=False):
+        n, k = sympify((n, k))
+        from sympy import limit, Limit, symbols, Product, binomial
+        def pochhammer(a, q, n):
+            j = symbols('j')
+            return Product((1 - a*(q**j)),(j, 0, n - 1))
+        a, q = symbols('a q')
+        if n.is_number and k.is_number:
+            if not q_present:
+                if k.is_integer and k.is_negative:
+                    return limit((pochhammer(a, q, n)/(pochhammer(a, q, k)*pochhammer(a, q, n - k))).doit(), a, q).subs(q, 1)
+                else:
+                    return binomial(n, k)
+            else:
+                return limit((pochhammer(a, q, n)/(pochhammer(a, q, k)*pochhammer(a, q, n - k))).doit(), a, q)
+        elif n.is_positive and k.is_positive:
+            return (pochhammer(q, q, n)/(pochhammer(q, q, k)*pochhammer(q, q, n - k)))
+        else:
+            return Limit((pochhammer(a, q, n)/(pochhammer(a, q, k)*pochhammer(a, q, n - k))).doit(), a, q)

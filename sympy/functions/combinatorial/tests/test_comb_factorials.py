@@ -1,4 +1,4 @@
-from sympy import (S, Symbol, symbols, factorial, factorial2, Float, binomial,
+from sympy import (S, Symbol, symbols, factorial, factorial2, Float, binomial, q_binomial,
                    rf, ff, gamma, polygamma, EulerGamma, O, pi, nan,
                    oo, zoo, simplify, expand_func, Product, Mul, Piecewise,
                    Mod, Eq, sqrt, Poly, Dummy, I, Rational)
@@ -548,6 +548,17 @@ def test_binomial_rewrite():
     assert binomial(n, k).rewrite(ff) == ff(n, k) / factorial(k)
     assert binomial(n, x).rewrite(ff) == binomial(n, x)
 
+def test_q_binomial():
+    n = Symbol('n')
+    k = Symbol('k')
+    assert q_binomial(n, n).equals(1)
+    assert q_binomial(n, k) == q_binomial(n, n - k)
+    assert q_binomial(3, 3) == 1
+    assert q_binomial(3, 5) == 0
+    assert q_binomial(5, 3) == 10
+    assert q_binomial(-3, -5) == 6
+    assert q_binomial(-5, -3) == 0
+    assert q_binomial(-5, -5) == 1
 
 @XFAIL
 def test_factorial_simplify_fail():

@@ -1748,6 +1748,10 @@ def test_sympy__functions__combinatorial__factorials__binomial():
     assert _test_args(binomial(2, x))
 
 
+def test_sympy__functions__combinatorial__factorials__q_binomial():
+    from sympy.functions.combinatorial.factorials import q_binomial
+    assert _test_args(q_binomial(2, x))
+
 def test_sympy__functions__combinatorial__factorials__subfactorial():
     from sympy.functions.combinatorial.factorials import subfactorial
     assert _test_args(subfactorial(1))
