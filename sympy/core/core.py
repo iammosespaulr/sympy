@@ -26,7 +26,7 @@ ordering_of_classes = [
     'Sin', 'Cos', 'Tan', 'Cot', 'ASin', 'ACos', 'ATan', 'ACot',
     'Sinh', 'Cosh', 'Tanh', 'Coth', 'ASinh', 'ACosh', 'ATanh', 'ACoth',
     'RisingFactorial', 'FallingFactorial',
-    'factorial', 'binomial', 'q_binomial',
+    'factorial', 'binomial', 'q_binomial', 'multinomial',
     'Gamma', 'LowerGamma', 'UpperGamma', 'PolyGamma',
     'Erf',
     # special polynomials

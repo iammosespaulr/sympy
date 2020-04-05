@@ -4,8 +4,8 @@ from typing import List
 
 from sympy.core import S, sympify, Dummy, Mod
 from sympy.core.cache import cacheit
-from sympy.core.compatibility import reduce, HAS_GMPY
-from sympy.core.function import Function, ArgumentIndexError
+from sympy.core.compatibility import reduce, HAS_GMPY, ordered
+from sympy.core.function import Function, ArgumentIndexError, _mexpand
 from sympy.core.logic import fuzzy_and
 from sympy.core.numbers import Integer, pi
 from sympy.core.relational import Eq
@@ -13,7 +13,7 @@ from sympy.ntheory import sieve
 from sympy.polys.polytools import Poly
 
 from math import sqrt as _sqrt
-
+from sympy import Mul
 
 class CombinatorialFunction(Function):
     """Base class for combinatorial functions. """
@@ -336,7 +336,7 @@ class subfactorial(CombinatorialFunction):
 
     @classmethod
     @cacheit
-    def _eval(self, n):
+    def _eval(cls, n):
         if not n:
             return S.One
         elif n == 1:
@@ -868,7 +868,7 @@ class binomial(CombinatorialFunction):
             raise ArgumentIndexError(self, argindex)
 
     @classmethod
-    def _eval(self, n, k):
+    def _eval(cls, n, k):
         # n.is_Number and k.is_Integer and k != 1 and n != k
 
         if k.is_Integer:
@@ -1071,3 +1071,138 @@ class q_binomial(CombinatorialFunction):
         q_1 = symbols('q_1', integer=True)
         return (RisingFactorial(q_1, n)/(RisingFactorial(
                 q_1, k)*RisingFactorial(q_1, n - k))).subs(q_1, q)
+
+class multinomial(CombinatorialFunction):
+    r"""Implementation of the multinomial coefficient, a
+    generalization of binomial coefficients. They can be expressed in terms
+    of binomials, factorials or the gamma function:
+
+    .. math:: \frac{(k_1+k_2+\cdots+k_m)!}{k_1!\, k_2! \cdots k_m!} = {k_1\choose k_1}{k_1+k_2\choose k_2}\cdots{k_1+k_2+\cdots+k_m\choose k_m}
+
+    The multinomial coefficients have a direct combinatorial interpretation,
+    as the number of ways of depositing ``n`` distinct objects into ``m`` bins,
+    with ``k_i`` objects in a given bin.
+
+    For non-integral values of ``k`` which sum to ``n``, the multinomial gives the
+    coefficient of the terms in the series expansion of ``(a_1 + a_2 + ... + a_m) ^ n`` where
+    ``k_i`` is the exponents of ``a_i`` in a term of the expansion.
+
+    Examples
+    ========
+
+    >>> from sympy import Symbol, Rational, multinomial, expand_func, symbols, gamma
+
+    Consider the following polynomial in three variables:
+
+    >>> a, b, c = symbols('a b c')
+    >>> ((a + b + c)**3).expand()
+    a**3 + 3*a**2*b + 3*a**2*c + 3*a*b**2 + 6*a*b*c + 3*a*c**2 + b**3 + 3*b**2*c + 3*b*c**2 + c**3
+
+    The coefficient for any term with variables having exponents of 0, 1 and 2 is 3:
+
+    >>> multinomial(0, 1, 2)  # order does not matter
+    3
+
+    The series expansion of `(1 + x)^(2/3)` yields the following leading terms when it
+    is expanded:
+    ``1 + (2/3) x^1 - (1/9) x^2 + (4/81) x^3 - (7/243) x^4 + ...``. The coeffient of
+    ``x^2`` is given by ``multinomial(2, a)`` where (since the arguments must sum to 2/3)
+    ``a = -4/3``.
+
+    >>> multinomial(2, Rational(-4, 3))
+    -1/9
+
+    If assumptions allow, the symbolic multinomial can be rewritten in terms of
+    factorial, gamma or binomial:
+
+    >>> n = Symbol('n', integer=True, positive=True)
+    >>> multinomial(n, 3).rewrite(gamma)
+    gamma(n + 4)/(6*gamma(n + 1))
+
+    It is also possible to see the corresponding polynomial in expanded or unexpanded form:
+
+    >>> multinomial(n, 3).expand(func=True)
+    n**3/6 + n**2 + 11*n/6 + 1
+
+    >>> expand_func(multinomial(n, 3))
+    (n + 1)*(n + 2)*(n + 3)/6
+
+    References
+    ==========
+
+    .. [1] https://en.wikipedia.org/wiki/Multinomial_theorem#Multinomial_coefficients
+
+    .. [2] http://functions.wolfram.com/GammaBetaErf/Multinomial/02/0001/
+
+    """
+    def __new__(cls, *args):
+        if not args:
+            raise ValueError("A miniumum of 1 arg required")
+        args = [i for i in ordered(map(sympify, args)) if not i.is_zero]
+        if len(args) < 2:
+            # all args might have been zero or there might be only
+            # one arg; in either case the simple result is returned
+            return S.One
+        return super(multinomial, cls).__new__(
+            cls, *args)
+
+    @classmethod
+    def eval(cls, *args):
+        rv = cls._binomial(*args)
+        if rv is not None and (len(args) == 2 or not rv.has(binomial)):
+            return rv
+
+    def _eval_evalf(self, prec):
+        rv = self._binomial(*self.args)
+        if rv is not None:
+            return rv._evalf(prec)
+
+    @classmethod
+    def _binomial(cls, *args, symbolic=True):
+        from sympy import binomial, q_binomial
+        def runsum(a):
+            t = 0
+            for i in a:
+                t += i
+                yield t
+        if (all(i.is_number for i in args) or symbolic) and any(x.is_negative and x.is_integer for x in args):
+            return Mul(*[
+                q_binomial(j, k) for j, k in zip(runsum(args), args)])
+        if len(args) == 2:
+            return binomial(sum(args), next(ordered(args)))
+        if all(i.is_number for i in args) or symbolic and not any(
+                x.is_integer is None or x.is_negative is None
+                for x in args):
+            rv = Mul(*[
+                binomial(j, k) for j, k in zip(runsum(args), args)])
+            if any(x.is_Float for x in args):
+                rv = _mexpand(rv)
+            return rv
+
+    def _eval_rewrite_as_binomial(self, *args, **kwargs):
+        rv = self._binomial(*args, symbolic=True)
+        if rv is not None:
+            return rv
+
+    def _eval_rewrite_as_factorial(self, *args, **kwargs):
+        rv = self._binomial(*args)
+        if rv is not None:
+            return rv.rewrite(factorial)
+
+    def _eval_rewrite_as_gamma(self, *args, **kwargs):
+        from sympy import gamma
+        rv = self._binomial(*args)
+        if rv is not None:
+            return rv.rewrite(gamma)
+
+    def _eval_expand_func(self, **hints):
+        from sympy import expand_func
+        rv = self._binomial(*self.args)
+        if rv is not None:
+            return expand_func(rv)
+
+    def _eval_is_integer(self):
+        from sympy.core.logic import fuzzy_or, fuzzy_and
+        return fuzzy_or([
+            fuzzy_and(x.is_integer for x in self.args),
+            any(fuzzy_and((x.is_integer, x.is_negative)) for x in self.args)])

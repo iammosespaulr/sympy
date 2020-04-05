@@ -6,7 +6,7 @@ Special - gamma, zeta,spherical harmonics...
 """
 
 from sympy.functions.combinatorial.factorials import (factorial, factorial2,
-        rf, ff, binomial, q_binomial, RisingFactorial, FallingFactorial, subfactorial)
+        rf, ff, binomial, q_binomial, multinomial, RisingFactorial, FallingFactorial, subfactorial)
 from sympy.functions.combinatorial.numbers import (carmichael, fibonacci, lucas, tribonacci,
         harmonic, bernoulli, bell, euler, catalan, genocchi, partition)
 from sympy.functions.elementary.miscellaneous import (sqrt, root, Min, Max,
@@ -49,7 +49,7 @@ from sympy.functions.special.mathieu_functions import (mathieus, mathieuc,
 ln = log
 
 __all__ = [
-    'factorial', 'factorial2', 'rf', 'ff', 'binomial', 'q_binomial', 'RisingFactorial',
+    'factorial', 'factorial2', 'rf', 'ff', 'binomial', 'q_binomial', 'multinomial', 'RisingFactorial',
     'FallingFactorial', 'subfactorial',
 
     'carmichael', 'fibonacci', 'lucas', 'tribonacci', 'harmonic', 'bernoulli',
