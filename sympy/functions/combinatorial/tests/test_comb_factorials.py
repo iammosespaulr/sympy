@@ -551,13 +551,18 @@ def test_binomial_rewrite():
 def test_q_binomial():
     n = Symbol('n', integer=True)
     k = Symbol('k', integer=True)
+    q = Symbol('q', integer=True)
     assert unchanged(q_binomial, n, n)
+    assert unchanged(q_binomial, n, k, q)
+    assert q_binomial(2, 1, q) == (q + 1)/q
+    assert q_binomial(2 , -1, q) == (q - 1)/(q + 2)
     assert q_binomial(3, 3) == 1
     assert q_binomial(3, 5) == 0
     assert q_binomial(5, 3) == 10
     assert q_binomial(-3, -5) == 6
     assert q_binomial(-5, -3) == 0
     assert q_binomial(-5, -5) == 1
+
 
 @XFAIL
 def test_factorial_simplify_fail():
