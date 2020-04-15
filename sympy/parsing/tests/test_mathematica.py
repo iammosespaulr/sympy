@@ -48,7 +48,11 @@ def test_mathematica():
         'Min[1,-2,3]': 'Min(1,-2,3)',
         'Exp[I Pi/2]': 'exp(I*pi/2)',
         'ArcTan[x,y]': 'atan2(y,x)',
-        'Pochhammer[x,y]': 'rf(x,y)'
+        'Pochhammer[x,y]': 'rf(x,y)',
+        'Factorial[x]': 'factorial(x)',
+        'FactorialPower[x,y]': 'ff(x,y)',
+        'Binomial[x,y]': 'binomial(x,y)',
+        'Multinomial[x,y,z]': 'multinomial(x,y,z)'
         }
 
     for e in d:
