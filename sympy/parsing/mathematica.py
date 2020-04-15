@@ -49,7 +49,11 @@ class MathematicaParser(object):
         'Max[*x]': 'Max(*x)',
         'Min[*x]': 'Min(*x)',
         'Pochhammer[x,y]':'rf(x,y)',
-        'ArcTan[x,y]':'atan2(y,x)'
+        'ArcTan[x,y]':'atan2(y,x)',
+        'Factorial[x]': 'factorial(x)',
+        'FactorialPower[x,y]': 'ff(x,y)',
+        'Binomial[x,y]': 'binomial(x,y)',
+        'Multinomial[*x]': 'multinomial(*x)'
     }
 
     # trigonometric, e.t.c.
