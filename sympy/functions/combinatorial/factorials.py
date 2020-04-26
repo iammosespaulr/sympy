@@ -1153,28 +1153,36 @@ class binomial(CombinatorialFunction):
                 True))
 
     def _eval_rewrite_as_factorial(self, n, k, **kwargs):
-        if (k.is_integer and (
-                    n.is_integer and n.is_nonnegative or
-                    k.is_nonpositive and n.is_integer is False) or
-                k.is_integer is False and n.is_integer and
-                    n.is_negative):
-            return factorial(n)/(factorial(k)*factorial(n - k))
+        from sympy import gamma, Pow
+        isint = lambda x: x.is_integer is True
+        nneg = lambda x: x.is_nonnegative is True
+        neg = lambda x: x.is_negative is True
+        if And(isint(n), isint(k)):
+            if And(neg(n), nneg(k)):
+                return(Pow(-1, k)*factorial(k - n - 1)/(factorial(k)*factorial(-n - 1)))
+            if And(neg(n), neg(k)):
+                return (Pow(-1, -k + n)*factorial(-k - 1)/(factorial(-k + n)*factorial(-n - 1)))
+            if And(nneg(n), neg(k)):
+                return S.Zero
+            if And(nneg(n), nneg(k)):
+                return factorial(n)/(factorial(k)*factorial(n - k))
 
     def _eval_rewrite_as_gamma(self, n, k, **kwargs):
-        from sympy import gamma, re, Pow, Not
+        from sympy import gamma, Pow
         isint = lambda x: x.is_integer is True
         nneg = lambda x: x.is_nonnegative is True
         neg = lambda x: x.is_negative is True
         if And(isint(n), isint(k)):
             if And(neg(n), nneg(k)):
                 return(Pow(-1, k)*gamma(k - n)/(gamma(-n)*gamma(k + 1)))
-            elif And(neg(n), neg(k)):
+            if And(neg(n), neg(k)):
                 return (Pow(-1, -k + n)*gamma(-k)/(gamma(-n)*gamma(-k + n + 1)))
-            elif And(nneg(n), neg(k)):
+            if And(nneg(n), neg(k)):
                 return S.Zero
-            else:
-                pass
-        return (gamma(n + 1)/(gamma(k + 1)*gamma(-k + n + 1)))
+            if And(nneg(n), nneg(k)):
+                return (gamma(n + 1)/(gamma(k + 1)*gamma(-k + n + 1)))
+        elif fuzzy_or(x.is_number for x in (n, k, n - k)):
+            return (gamma(n + 1)/(gamma(k + 1)*gamma(-k + n + 1)))
 
     def _eval_rewrite_as_tractable(self, n, k, **kwargs):
         g = self._eval_rewrite_as_gamma(n, k)
