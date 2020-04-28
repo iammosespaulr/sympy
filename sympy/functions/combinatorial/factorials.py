@@ -1155,52 +1155,44 @@ class binomial(CombinatorialFunction):
 
     def _eval_rewrite_as_factorial(self, n, k, **kwargs):
         from sympy import Pow
-        isint = lambda x: ask(Q.integer(x))
-        isneg = lambda x: ask(Q.negative(x))
-        isnneg = lambda x: ask(Q.nonnegative(x))
-        iszero = lambda x: ask(Q.zero(x))
 
-        if isnneg(n) and isnneg(k) or any(x is False for x in [isint(n), isint(k)]):
-            if iszero(n - k + 1):
+        if n.is_nonnegative and k.is_nonnegative or any(x is False for x in [n.is_integer, k.is_integer]):
+            if (n - k + 1).is_zero:
                 return S.Zero
             else:
                 return factorial(n)/(factorial(k)*factorial(n - k))
-        if fuzzy_and([isint(n), isint(k)]):
-            if isneg(n):
-                if isnneg(k):
+        if fuzzy_and([n.is_integer, k.is_integer]):
+            if n.is_negative:
+                if k.is_nonnegative:
                     return(Pow(-1, k)*factorial(k - n - 1)/(
                         factorial(k)*factorial(-n - 1)))
-                if isneg(k):
+                if k.is_negative:
                     return (Pow(-1, n - k)*factorial(-k - 1)/(
                         factorial(n - k)*factorial(-n - 1)))
-            elif isnneg(n):
-                if isneg(k):
+            elif n.is_nonnegative:
+                if k.is_negative:
                     return S.Zero
-                if isnneg(k):
+                if k.is_nonnegative:
                     return factorial(n)/(factorial(k)*factorial(n - k))
 
     def _eval_rewrite_as_gamma(self, n, k, **kwargs):
         from sympy import gamma, Pow
-        isint = lambda x: ask(Q.integer(x))
-        isneg = lambda x: ask(Q.negative(x))
-        isnneg = lambda x: ask(Q.nonnegative(x))
-        iszero = lambda x: ask(Q.zero(x))
 
-        if isnneg(n) and isnneg(k) or any(x is False for x in [isint(n), isint(k)]):
-            if iszero(n - k + 1):
+        if n.is_nonnegative and k.is_nonnegative or any(x is False for x in [n.is_integer, k.is_integer]):
+            if (n - k + 1).is_zero:
                 return S.Zero
             else:
                 return (gamma(n + 1)/(gamma(k + 1)*gamma(n - k + 1)))
-        if isint(n) and isint(k):
-            if isneg(n):
-                if isnneg(k):
+        if n.is_integer and k.is_integer:
+            if n.is_negative:
+                if k.is_nonnegative:
                     return(Pow(-1, k)*gamma(k - n)/(gamma(-n)*gamma(k + 1)))
-                if isneg(k):
+                if k.is_negative:
                     return (Pow(-1, n - k)*gamma(-k)/(gamma(-n)*gamma(n - k + 1)))
-            if isnneg(n):
-                if isneg(k):
+            if n.is_nonnegative:
+                if k.is_negative:
                     return S.Zero
-                if isnneg(k):
+                if k.is_nonnegative:
                     return (gamma(n + 1)/(gamma(k + 1)*gamma(n - k + 1)))
 
     def _eval_rewrite_as_tractable(self, n, k, **kwargs):
