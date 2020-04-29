@@ -942,82 +942,93 @@ class binomial(CombinatorialFunction):
             raise ArgumentIndexError(self, argindex)
 
     @classmethod
-    def _eval(cls, n, k):
+    def _eval(cls, n, k, method='ff'):
         # n.is_Number and k.is_Integer and k != 1 and n != k
         # and k > 0 (and, if n is positive, k < n - k)
+        from sympy import gamma
         Ntype = Float if k.has(Float) or n.has(Float) else Integer
-        k = as_int(k, strict=False)
-        direct = n.is_nonnegative
-        if direct:
-            try:
-                n = as_int(n, strict=False)
-            except ValueError:
-                direct = False
-        if direct:
-
+        if method == 'gamma':
+            rv = gamma(n + 1)/(gamma(k + 1)*gamma(n - k + 1))
+            if not rv.has(gamma):
+                return rv
+        else:
             if HAS_GMPY:
                 from sympy.core.compatibility import gmpy
                 return Ntype(gmpy.bincoef(n, k))
-
-            d, result = n - k, 1
-            for i in range(1, k + 1):
-                d += 1
-                result = result * d // i
-            return Ntype(result)
-        else:
-            return Mul(*[n + i for i in range(1 - k, 1)])/factorial(k)
+            res = ff(n, k)/factorial(k)
+            if not res.has(ff):
+                return _mexpand(res) if res else res
 
     @classmethod
     def eval(cls, n, k):
-        from sympy import Min
+        from sympy import Min, Pow
         n, k = map(sympify, (n, k))
-        if k == 1:
-            return n
         n_k = n - k
-        if n_k == 1:
+
+        # Known Properties for faster computation
+        if k.is_zero or n_k.is_zero:
+            return S.One
+        if S.One in (k, n_k):
             return n
-        if k.is_zero:
-            return S.One
-        if n_k.is_zero:
-            return S.One
-        if -1 in (k, n_k):
-            if (n + 1).is_zero is False:
-                # includes n.is_integer=False, too
-                # since adding 1 to it cannot give 0
-                return S.Zero
-        if all(int_like(x) for x in (n, k)):
-            if (n*k).is_positive and n_k.is_negative: # 0 > k > n
-                return S.Zero
-            if n.is_nonnegative and k.is_negative: # n >= 0 > k
-                return S.Zero
-            if n.is_nonnegative and n_k.is_negative: # k > n >= 0
-                return S.Zero
-        elif n.is_negative:
-            if int_like(n) and int_like(k) is False:
+        if n.is_integer and n.is_negative:
+            if k.is_integer is False:
                 return S.ComplexInfinity
-            elif int_like(n) is False:
-                if k.is_negative and int_like(k):
-                    return S.Zero
-                if n_k.is_negative and int_like(n_k):
-                    return S.Zero
 
-        if n.is_positive and k.is_positive:
-            kk = Min(k, n_k)
-            if kk.is_positive:
-                k = kk
-        elif n.is_nonzero and k.is_negative:
-            k = n_k
+        # n >= k >= 0
+        if n.is_extended_nonnegative and n_k.is_nonnegative and k.is_nonnegative:
+            if n.is_integer is False or k.is_integer is False:
+                return (cls._eval(n, k, 'gamma'))
+            return (cls._eval(n, k))
 
+        # k >= 0 > n
+        if n.is_extended_negative and k.is_extended_nonnegative:
+            if n.is_infinite:
+                return S.Zero
+            if k.is_integer:
+                n = -n + k - 1
+                res = (cls._eval(n, k))
+                if res is not None:
+                    return Pow(S.NegativeOne, k)*res
+            return (cls._eval(n, k, 'gamma'))
+
+        # 0 > n >= k
+        if n.is_negative and k.is_extended_negative:
+            if n_k.is_nonnegative:
+                if k.is_integer and n.is_integer:
+                    n, k = -k - 1, n - k
+                    res = (cls._eval(n, k))
+                    if res is not None:
+                        return Pow(S.NegativeOne, k)*res
+                return (cls._eval(n, k, 'gamma'))
+
+        # k > n >= 0
+        if n_k.is_negative and k.is_extended_positive and n.is_nonnegative:
+            if n.is_integer and k.is_integer:
+                return S.Zero
+            return (cls._eval(n, k, 'gamma'))
+
+        # n >= 0 > k
+        if n.is_extended_nonnegative and k.is_extended_negative:
+            if k.is_integer:
+                return S.Zero
+            if n.is_infinite or k.is_infinite:
+                return S.Zero
+            return (cls._eval(n, k, 'gamma'))
+
+        # 0 > k > n
+        if k.is_negative and n.is_extended_negative:
+            if n_k.is_negative:
+                if n.is_integer:
+                    if k.is_integer or k.is_infinite:
+                        return S.Zero
+                return (cls._eval(n, k, 'gamma'))
+
+        # Support for Complex numbers and so on
         if k.is_number:
             if int_like(k) and n.is_number:
-                res = cls._eval(n, k)
-                return _mexpand(res) if res else res
+                return cls._eval(n, k)
             elif int_like(k) is False:
-                from sympy import gamma
-                rv = gamma(n + 1)/(gamma(k + 1)*gamma(n - k + 1))
-                if not rv.has(gamma):
-                     return rv
-
+                return cls._eval(n, k ,'gamma')
     def _eval_Mod(self, q):
         n, k = self.args
 
