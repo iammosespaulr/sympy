@@ -1028,6 +1028,7 @@ class binomial(CombinatorialFunction):
                 return cls._eval(n, k)
             elif int_like(k) is False:
                 return cls._eval(n, k ,'gamma')
+
     def _eval_Mod(self, q):
         n, k = self.args
 
@@ -1169,8 +1170,7 @@ class binomial(CombinatorialFunction):
         if n.is_nonnegative and k.is_nonnegative or any(x is False for x in [n.is_integer, k.is_integer]):
             if (n - k + 1).is_zero:
                 return S.Zero
-            else:
-                return factorial(n)/(factorial(k)*factorial(n - k))
+            return factorial(n)/(factorial(k)*factorial(n - k))
         if fuzzy_and([n.is_integer, k.is_integer]):
             if n.is_negative:
                 if k.is_nonnegative:
@@ -1182,8 +1182,6 @@ class binomial(CombinatorialFunction):
             elif n.is_nonnegative:
                 if k.is_negative:
                     return S.Zero
-                if k.is_nonnegative:
-                    return factorial(n)/(factorial(k)*factorial(n - k))
 
     def _eval_rewrite_as_gamma(self, n, k, **kwargs):
         from sympy import gamma, Pow
@@ -1191,8 +1189,7 @@ class binomial(CombinatorialFunction):
         if n.is_nonnegative and k.is_nonnegative or any(x is False for x in [n.is_integer, k.is_integer]):
             if (n - k + 1).is_zero:
                 return S.Zero
-            else:
-                return (gamma(n + 1)/(gamma(k + 1)*gamma(n - k + 1)))
+            return (gamma(n + 1)/(gamma(k + 1)*gamma(n - k + 1)))
         if n.is_integer and k.is_integer:
             if n.is_negative:
                 if k.is_nonnegative:
@@ -1202,8 +1199,6 @@ class binomial(CombinatorialFunction):
             if n.is_nonnegative:
                 if k.is_negative:
                     return S.Zero
-                if k.is_nonnegative:
-                    return (gamma(n + 1)/(gamma(k + 1)*gamma(n - k + 1)))
 
     def _eval_rewrite_as_tractable(self, n, k, **kwargs):
         g = self._eval_rewrite_as_gamma(n, k)
@@ -1256,7 +1251,7 @@ class binomial(CombinatorialFunction):
                     elif (k.is_even != n.is_even) and (
                         k.is_even is not None) and (n.is_even is not None):
                         return False
-                else:
+                elif (n - k).is_nonpositive:
                     return True
             elif k.is_positive:
                 if k.is_odd:

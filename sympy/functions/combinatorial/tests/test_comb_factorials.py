@@ -504,6 +504,9 @@ def test_binomial():
     assert binomial(kne, kne - 1).is_zero is False
     assert binomial(kne, kne - 2).is_nonnegative is True
     assert binomial(kne, kne - 3).is_nonnegative is False
+    assert binomial(-2*kp, -4*kp - 1).is_nonnegative is False
+    assert binomial(-2*kp, -4*kp - 2).is_nonnegative is True
+    assert binomial(-3*kp, -2*kp - 1).is_nonnegative is True
     assert binomial(-1, 2, evaluate=False).is_nonnegative is True
     assert binomial(10, 5, evaluate=False).is_nonnegative is True
     assert binomial(10, -3, evaluate=False).is_nonnegative is True
