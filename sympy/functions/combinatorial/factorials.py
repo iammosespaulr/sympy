@@ -942,8 +942,10 @@ class binomial(CombinatorialFunction):
 
     @classmethod
     def _eval(cls, n, k, method='ff'):
-        # n.is_Number and k.is_Integer and k != 1 and n != k
-        # and k > 0 (and, if n is positive, k < n - k)
+        ''' This Contains the Barebones Implementation of
+        Newtons Generalized Binomial Theorem
+        '''
+
         from sympy import gamma
         Ntype = Float if k.has(Float) or n.has(Float) else Integer
         if method == 'gamma':
@@ -951,12 +953,12 @@ class binomial(CombinatorialFunction):
             if not rv.has(gamma):
                 return rv
         else:
-            if HAS_GMPY:
-                from sympy.core.compatibility import gmpy
-                return Ntype(gmpy.bincoef(n, k))
             res = ff(n, k)/factorial(k)
             if not res.has(ff):
                 return _mexpand(res) if res else res
+            if HAS_GMPY:
+                from sympy.core.compatibility import gmpy
+                return Ntype(gmpy.bincoef(n, k))
 
     @classmethod
     def eval(cls, n, k):
@@ -973,53 +975,72 @@ class binomial(CombinatorialFunction):
             if k.is_integer is False:
                 return S.ComplexInfinity
 
-        # n >= k >= 0
-        if n.is_extended_nonnegative and n_k.is_nonnegative and k.is_nonnegative:
-            if n.is_integer is False or k.is_integer is False:
-                return (cls._eval(n, k, 'gamma'))
-            return (cls._eval(n, k))
-
-        # k >= 0 > n
-        if n.is_extended_negative and k.is_extended_nonnegative:
+        # 0 <= k <= n
+        if n.is_extended_nonnegative and k.is_nonnegative:
             if n.is_infinite:
-                return S.Zero
-            if k.is_integer:
+                return S.Infinity
+            if n_k.is_nonnegative:
+                if k.is_integer is False or n.is_integer is False:
+                    return (cls._eval(n, k, 'gamma'))
+                if n.is_number and k.is_number:
+                    return (cls._eval(n, k))
+
+        # n < 0 <= k
+        if n.is_extended_negative and k.is_extended_nonnegative:
+            if k.is_infinite and n.is_infinite:
+                return S.Infinity
+            if n.is_infinite and not k.is_infinite:
+                return S.NegativeInfinity
+            if k.is_infinite and not n.is_infinite:
+                return S.Infinity
+            if n.is_number and k.is_integer:
                 n = -n + k - 1
                 res = (cls._eval(n, k))
                 if res is not None:
                     return Pow(S.NegativeOne, k)*res
             return (cls._eval(n, k, 'gamma'))
 
-        # 0 > n >= k
+        # k <= n < 0
         if n.is_negative and k.is_extended_negative:
+            if k.is_infinite:
+                return S.NegativeInfinity
             if n_k.is_nonnegative:
-                if k.is_integer and n.is_integer:
-                    n, k = -k - 1, n - k
-                    res = (cls._eval(n, k))
-                    if res is not None:
-                        return Pow(S.NegativeOne, k)*res
+                if n.is_number:
+                    if k.is_integer and n.is_integer:
+                        n, k = -k - 1, n - k
+                        res = (cls._eval(n, k))
+                        if res is not None:
+                            return Pow(S.NegativeOne, k)*res
                 return (cls._eval(n, k, 'gamma'))
 
-        # k > n >= 0
-        if n_k.is_negative and k.is_extended_positive and n.is_nonnegative:
-            if n.is_integer and k.is_integer:
+        # 0 <= n < k
+        if k.is_extended_positive and n.is_nonnegative:
+            if k.is_infinite:
                 return S.Zero
-            return (cls._eval(n, k, 'gamma'))
+            if n_k.is_negative:
+                if n.is_integer and k.is_integer:
+                    return S.Zero
+                if k.is_integer:
+                    return (cls._eval(n, k))
+                return (cls._eval(n, k, 'gamma'))
 
-        # n >= 0 > k
+        # k < 0 <= n
         if n.is_extended_nonnegative and k.is_extended_negative:
             if k.is_integer:
                 return S.Zero
             if n.is_infinite or k.is_infinite:
                 return S.Zero
+            if n_k.is_integer:
+                return (cls._eval(n, n_k))
             return (cls._eval(n, k, 'gamma'))
 
-        # 0 > k > n
+        # n < k < 0
         if k.is_negative and n.is_extended_negative:
+            if n.is_infinite:
+                return S.Zero
             if n_k.is_negative:
-                if n.is_integer:
-                    if k.is_integer or k.is_infinite:
-                        return S.Zero
+                if n.is_integer and k.is_integer:
+                    return S.Zero
                 return (cls._eval(n, k, 'gamma'))
 
         # Support for Complex numbers and so on
@@ -1230,7 +1251,7 @@ class binomial(CombinatorialFunction):
                 elif (n + 1).is_zero is False:
                     if n.is_infinite:
                         if n.is_extended_negative:
-                            return True
+                            return False
                         elif n.is_extended_positive:
                             return False
                     elif n.is_finite:
