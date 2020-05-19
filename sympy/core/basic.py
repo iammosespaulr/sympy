@@ -1631,14 +1631,18 @@ class Basic(metaclass=ManagedProperties):
 
         """
         from sympy.core.symbol import Wild
+        from sympy.core.function import WildFunction
         pattern = sympify(pattern)
         # match non-bound symbols
         canonical = lambda x: x if x.is_Symbol else x.as_dummy()
         m = canonical(pattern).matches(canonical(self), old=old)
         if m is None:
             return m
+        # sanitize in case other symbols were injected
+        wild = pattern.atoms(Wild, WildFunction)
+        m = {k: m[k] for k in set(m) & wild}
         # now see if bound symbols were requested
-        bwild = pattern.atoms(Wild) - set(m)
+        bwild = wild - set(m)
         if not bwild:
             return m
         # replace free-Wild symbols in pattern with match result
