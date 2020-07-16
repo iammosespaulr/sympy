@@ -412,6 +412,10 @@ def convert_func(func):
             elif name == "ln":
                 base = sympy.E
             expr = sympy.log(arg, base, evaluate=False)
+        
+        if name == "Gamma":
+            expr = sympy.gamma(arg, evaluate=False)
+
 
         func_pow = None
         should_pow = True

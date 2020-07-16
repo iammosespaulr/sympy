@@ -63,6 +63,8 @@ FUNC_CSC:  '\\csc';
 FUNC_SEC:  '\\sec';
 FUNC_COT:  '\\cot';
 
+FUNC_GAMMA: '\\Gamma';
+
 FUNC_ARCSIN: '\\arcsin';
 FUNC_ARCCOS: '\\arccos';
 FUNC_ARCTAN: '\\arctan';
@@ -218,7 +220,8 @@ func_normal:
     | FUNC_ARCSIN | FUNC_ARCCOS | FUNC_ARCTAN
     | FUNC_ARCCSC | FUNC_ARCSEC | FUNC_ARCCOT
     | FUNC_SINH | FUNC_COSH | FUNC_TANH
-    | FUNC_ARSINH | FUNC_ARCOSH | FUNC_ARTANH;
+    | FUNC_ARSINH | FUNC_ARCOSH | FUNC_ARTANH
+    | FUNC_GAMMA;
 
 func:
     func_normal
