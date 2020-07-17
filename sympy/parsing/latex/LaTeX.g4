@@ -140,7 +140,7 @@ EMPTY_SET: '\\emptyset';
 XI: '\\Xi';
 BAR_VAL: '\\|';
 DDOT: '\\ddot';
-LDOTS: '\\ldots
+LDOTS: '\\ldots';
 LL: '\\ll';
 GG: '\\gg';
 SIGMA: '\\Sigma';
@@ -154,7 +154,6 @@ O_DOT: '\\odot';
 UNDER_BRACE: '\\underbrace';
 UNDER_SET: '\\underset';
 O_SLASH: '\\oslash';
-O_INT: '\\oiint';
 BIG_CUP: '\\bigcup';
 BIG_CAP: '\\bigcap';
 BIG_O_PLUS: '\\bigoplus';
