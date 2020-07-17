@@ -1,21 +1,19 @@
 /*
-  ANTLR4 LaTeX Math Grammar
-
-  Ported from latex2sympy by @augustt198
-  https://github.com/augustt198/latex2sympy
-  See license in LICENSE.txt
-*/
+ ANTLR4 LaTeX Math Grammar
+ 
+ Ported from latex2sympy by @augustt198 https://github.com/augustt198/latex2sympy See license in
+ LICENSE.txt
+ */
 
 /*
-  After changing this file, it is necessary to run `python setup.py antlr`
-  in the root directory of the repository. This will regenerate the code in
-  `sympy/parsing/latex/_antlr/*.py`.
-*/
+ After changing this file, it is necessary to run `python setup.py antlr` in the root directory of
+ the repository. This will regenerate the code in `sympy/parsing/latex/_antlr/*.py`.
+ */
 
 grammar LaTeX;
 
 options {
-    language=Python2;
+	language = Python2;
 }
 
 WS: [ \t\r\n]+ -> skip;
@@ -47,22 +45,27 @@ CMD_RIGHT: '\\right' -> skip;
 
 BAR: '|';
 
-FUNC_LIM:  '\\lim';
-LIM_APPROACH_SYM: '\\to' | '\\rightarrow' | '\\Rightarrow' | '\\longrightarrow' | '\\Longrightarrow';
-FUNC_INT:  '\\int';
-FUNC_SUM:  '\\sum';
+FUNC_LIM: '\\lim';
+LIM_APPROACH_SYM:
+	'\\to'
+	| '\\rightarrow'
+	| '\\Rightarrow'
+	| '\\longrightarrow'
+	| '\\Longrightarrow';
+FUNC_INT: '\\int';
+FUNC_SUM: '\\sum';
 FUNC_PROD: '\\prod';
 
-FUNC_EXP:  '\\exp';
-FUNC_LOG:  '\\log';
-FUNC_LN:   '\\ln';
+FUNC_EXP: '\\exp';
+FUNC_LOG: '\\log';
+FUNC_LN: '\\ln';
 
-FUNC_SIN:  '\\sin';
-FUNC_COS:  '\\cos';
-FUNC_TAN:  '\\tan';
-FUNC_CSC:  '\\csc';
-FUNC_SEC:  '\\sec';
-FUNC_COT:  '\\cot';
+FUNC_SIN: '\\sin';
+FUNC_COS: '\\cos';
+FUNC_TAN: '\\tan';
+FUNC_CSC: '\\csc';
+FUNC_SEC: '\\sec';
+FUNC_COT: '\\cot';
 
 FUNC_ARCSIN: '\\arcsin';
 FUNC_ARCCOS: '\\arccos';
@@ -74,9 +77,9 @@ FUNC_ARCCOT: '\\arccot';
 FUNC_SINH: '\\sinh';
 FUNC_COSH: '\\cosh';
 FUNC_TANH: '\\tanh';
-FUNC_CSCH:  '\\csch';
-FUNC_SECH:  '\\sech';
-FUNC_COTH:  '\\coth';
+FUNC_CSCH: '\\csch';
+FUNC_SECH: '\\sech';
+FUNC_COTH: '\\coth';
 
 FUNC_ARSINH: '\\arsinh';
 FUNC_ARCOSH: '\\arcosh';
@@ -96,8 +99,8 @@ DELTA: '\\delta';
 
 OVERLINE: '\\overline';
 
-BEGIN_ARR: '\\begin' L_BRACE [a-zA-Z]+ R_BRACE -> skip;
-END_ARR: '\\end' L_BRACE [a-zA-Z]+ R_BRACE -> skip;
+BEGIN_ARR: '\\begin' L_BRACE [a-zA-Z]+ R_BRACE;
+END_ARR: '\\end' L_BRACE [a-zA-Z]+ R_BRACE;
 
 CDOTS: '\\cdots';
 CIRC: '\\circ';
@@ -172,42 +175,42 @@ VAR_NOTHING: '\\varnothing';
 UNDERLINE: '\\underline';
 OVERBRACE: '\\overbrace';
 NOT: '\\not';
-BIG_VEE: '\\bigvee'; 
-CO_PRODUCT: '\\coprod'; 
-BIG_WEDGE: '\\bigwedge'; 
-I_MATH: '\\imath'; 
-J_MATH: '\\jmath'; 
-CURLY_VEE: '\\curlyvee'; 
-CURLY_WEDGE: '\\curlywedge'; 
-N_I: '\\ni'; 
-ALEPH: '\\aleph'; 
-BETH: '\\beth'; 
-SUBSET_NEQ: '\\subsetneq'; 
-SQ_SUBSET: '\\sqsubset'; 
-SQ_SUBSET_EQ: '\\sqsupseteq'; 
-SQ_SUPERSET: '\\sqsupset'; 
-SQ_SUPERSET_EQ: '\\sqsubseteq'; 
-LLL: '\\lll'; 
-SMILE: '\\smile'; 
-FROWN: '\\frown'; 
-OVER_LEFTARROW: '\\overleftarrow'; 
-GGG: '\\ggg'; 
-VAR_LIMIT_SUPER: '\\varlimsup'; 
-MULTI_COL: '\\multicolumn'; 
-MULTI_ROW: '\\multirow'; 
-VAR_LIMIT_INF: '\\varliminf'; 
-COMPLEMENT: '\\complement'; 
-SUPERSET_NEQ: '\\supsetneq'; 
-SQ_CUP: '\\sqcup'; 
-SQ_CAP: '\\sqcap'; 
+BIG_VEE: '\\bigvee';
+CO_PRODUCT: '\\coprod';
+BIG_WEDGE: '\\bigwedge';
+I_MATH: '\\imath';
+J_MATH: '\\jmath';
+CURLY_VEE: '\\curlyvee';
+CURLY_WEDGE: '\\curlywedge';
+N_I: '\\ni';
+ALEPH: '\\aleph';
+BETH: '\\beth';
+SUBSET_NEQ: '\\subsetneq';
+SQ_SUBSET: '\\sqsubset';
+SQ_SUBSET_EQ: '\\sqsupseteq';
+SQ_SUPERSET: '\\sqsupset';
+SQ_SUPERSET_EQ: '\\sqsubseteq';
+LLL: '\\lll';
+SMILE: '\\smile';
+FROWN: '\\frown';
+OVER_LEFTARROW: '\\overleftarrow';
+GGG: '\\ggg';
+VAR_LIMIT_SUPER: '\\varlimsup';
+MULTI_COL: '\\multicolumn';
+MULTI_ROW: '\\multirow';
+VAR_LIMIT_INF: '\\varliminf';
+COMPLEMENT: '\\complement';
+SUPERSET_NEQ: '\\supsetneq';
+SQ_CUP: '\\sqcup';
+SQ_CAP: '\\sqcap';
 NEXISTS: '\\nexists';
 
 FUNC_SQRT: '\\sqrt';
 
 CMD_TIMES: '\\times';
-CMD_CDOT:  '\\cdot';
-CMD_DIV:   '\\div';
-CMD_FRAC:  '\\frac';
+CMD_CDOT: '\\cdot';
+CMD_DIV: '\\div';
+CMD_FRAC: '\\frac';
 CMD_BINOM: '\\binom';
 CMD_DBINOM: '\\dbinom';
 CMD_TBINOM: '\\tbinom';
@@ -224,8 +227,8 @@ DIFFERENTIAL: 'd' WS_CHAR*? ([a-zA-Z] | '\\' [a-zA-Z]+);
 LETTER: [a-zA-Z];
 fragment DIGIT: [0-9];
 NUMBER:
-    DIGIT+ (',' DIGIT DIGIT DIGIT)*
-    | DIGIT* (',' DIGIT DIGIT DIGIT)* '.' DIGIT+;
+	DIGIT+ (',' DIGIT DIGIT DIGIT)*
+	| DIGIT* (',' DIGIT DIGIT DIGIT)* '.' DIGIT+;
 
 EQUAL: '=';
 LT: '<';
@@ -240,166 +243,160 @@ SYMBOL: '\\' [a-zA-Z]+;
 math: relation;
 
 relation:
-    relation (EQUAL | LT | LTE | GT | GTE) relation
-    | expr;
+	relation (EQUAL | LT | LTE | GT | GTE) relation
+	| expr;
 
-equality:
-    expr EQUAL expr;
+equality: expr EQUAL expr;
 
 expr: additive;
 
-additive:
-    additive (ADD | SUB) additive
-    | mp;
+additive: additive (ADD | SUB) additive | mp;
 
 // mult part
 mp:
-    mp (MUL | CMD_TIMES | CMD_CDOT | DIV | CMD_DIV | COLON) mp
-    | unary;
+	mp (MUL | CMD_TIMES | CMD_CDOT | DIV | CMD_DIV | COLON) mp
+	| unary;
 
 mp_nofunc:
-    mp_nofunc (MUL | CMD_TIMES | CMD_CDOT | DIV | CMD_DIV | COLON) mp_nofunc
-    | unary_nofunc;
+	mp_nofunc (
+		MUL
+		| CMD_TIMES
+		| CMD_CDOT
+		| DIV
+		| CMD_DIV
+		| COLON
+	) mp_nofunc
+	| unary_nofunc;
 
-unary:
-    (ADD | SUB) unary
-    | postfix+;
+unary: (ADD | SUB) unary | postfix+;
 
 unary_nofunc:
-    (ADD | SUB) unary_nofunc
-    | postfix postfix_nofunc*;
+	(ADD | SUB) unary_nofunc
+	| postfix postfix_nofunc*;
 
 postfix: exp postfix_op*;
 postfix_nofunc: exp_nofunc postfix_op*;
 postfix_op: BANG | eval_at;
 
 eval_at:
-    BAR (eval_at_sup | eval_at_sub | eval_at_sup eval_at_sub);
+	BAR (eval_at_sup | eval_at_sub | eval_at_sup eval_at_sub);
 
-eval_at_sub:
-    UNDERSCORE L_BRACE
-    (expr | equality)
-    R_BRACE;
+eval_at_sub: UNDERSCORE L_BRACE (expr | equality) R_BRACE;
 
-eval_at_sup:
-    CARET L_BRACE
-    (expr | equality)
-    R_BRACE;
+eval_at_sup: CARET L_BRACE (expr | equality) R_BRACE;
 
-exp:
-    exp CARET (atom | L_BRACE expr R_BRACE) subexpr?
-    | comp;
+exp: exp CARET (atom | L_BRACE expr R_BRACE) subexpr? | comp;
 
 exp_nofunc:
-    exp_nofunc CARET (atom | L_BRACE expr R_BRACE) subexpr?
-    | comp_nofunc;
+	exp_nofunc CARET (atom | L_BRACE expr R_BRACE) subexpr?
+	| comp_nofunc;
 
 comp:
-    group
-    | abs_group
-    | func
-    | atom
-    | frac
-    | binom
-    | floor
-    | ceil
-    | delta;
+	group
+	| abs_group
+	| func
+	| atom
+	| frac
+	| binom
+	| floor
+	| ceil
+	| delta;
 
 comp_nofunc:
-    group
-    | abs_group
-    | atom
-    | frac
-    | binom
-    | floor
-    | ceil
-    | delta;
+	group
+	| abs_group
+	| atom
+	| frac
+	| binom
+	| floor
+	| ceil
+	| delta;
 
 group:
-    L_PAREN expr R_PAREN
-    | L_BRACKET expr R_BRACKET
-    | L_BRACE expr R_BRACE
-    | L_BRACE_LITERAL expr R_BRACE_LITERAL;
+	L_PAREN expr R_PAREN
+	| L_BRACKET expr R_BRACKET
+	| L_BRACE expr R_BRACE
+	| L_BRACE_LITERAL expr R_BRACE_LITERAL;
 
 abs_group: BAR expr BAR;
 
-atom: (LETTER | SYMBOL) subexpr? | NUMBER | DIFFERENTIAL | mathit;
+atom: (LETTER | SYMBOL) subexpr?
+	| NUMBER
+	| DIFFERENTIAL
+	| array
+	| mathit;
 
 mathit: CMD_MATHIT L_BRACE mathit_text R_BRACE;
-mathit_text: LETTER*;
+mathit_text: ((NUMBER | LETTER) (',' (NUMBER | LETTER))*)?;
+
+array: BEGIN_ARR array_text END_ARR;
+
+array_text: ((NUMBER | LETTER) (',' (NUMBER | LETTER))*)?;
 
 frac:
-    CMD_FRAC L_BRACE
-    upper=expr
-    R_BRACE L_BRACE
-    lower=expr
-    R_BRACE;
+	CMD_FRAC L_BRACE upper = expr R_BRACE L_BRACE lower = expr R_BRACE;
 
 binom:
-    (CMD_BINOM | CMD_DBINOM | CMD_TBINOM) L_BRACE
-    n=expr
-    R_BRACE L_BRACE
-    k=expr
-    R_BRACE;
+	(CMD_BINOM | CMD_DBINOM | CMD_TBINOM) L_BRACE n = expr R_BRACE L_BRACE k = expr R_BRACE;
 
-floor:
-    L_FLOOR
-    val=expr
-    R_FLOOR;
+floor: L_FLOOR val = expr R_FLOOR;
 
-ceil:
-    L_CEIL
-    val=expr
-    R_CEIL;
+ceil: L_CEIL val = expr R_CEIL;
 
-delta:
-    DELTA
-    UNDERSCORE L_BRACE
-    x=expr
-    y=expr
-    R_BRACE;
+delta: DELTA UNDERSCORE L_BRACE x = expr y = expr R_BRACE;
 
 func_normal:
-    FUNC_EXP | FUNC_LOG | FUNC_LN
-    | FUNC_SIN | FUNC_COS | FUNC_TAN
-    | FUNC_CSC | FUNC_SEC | FUNC_COT
-    | FUNC_ARCSIN | FUNC_ARCCOS | FUNC_ARCTAN
-    | FUNC_ARCCSC | FUNC_ARCSEC | FUNC_ARCCOT
-    | FUNC_SINH | FUNC_COSH | FUNC_TANH
-    | FUNC_CSCH | FUNC_SECH | FUNC_COTH
-    | FUNC_ARSINH | FUNC_ARCOSH | FUNC_ARTANH
-    | FUNC_ARCSCH | FUNC_ARSECH | FUNC_ARCOTH
-    | FUNC_GAMMA;
+	FUNC_EXP
+	| FUNC_LOG
+	| FUNC_LN
+	| FUNC_SIN
+	| FUNC_COS
+	| FUNC_TAN
+	| FUNC_CSC
+	| FUNC_SEC
+	| FUNC_COT
+	| FUNC_ARCSIN
+	| FUNC_ARCCOS
+	| FUNC_ARCTAN
+	| FUNC_ARCCSC
+	| FUNC_ARCSEC
+	| FUNC_ARCCOT
+	| FUNC_SINH
+	| FUNC_COSH
+	| FUNC_TANH
+	| FUNC_CSCH
+	| FUNC_SECH
+	| FUNC_COTH
+	| FUNC_ARSINH
+	| FUNC_ARCOSH
+	| FUNC_ARTANH
+	| FUNC_ARCSCH
+	| FUNC_ARSECH
+	| FUNC_ARCOTH
+	| FUNC_GAMMA;
 
 func:
-    func_normal
-    (subexpr? supexpr? | supexpr? subexpr?)
-    (L_PAREN func_arg R_PAREN | func_arg_noparens)
-
-    | (LETTER | SYMBOL) subexpr? // e.g. f(x)
-    L_PAREN args R_PAREN
-
-    | FUNC_INT
-    (subexpr supexpr | supexpr subexpr)?
-    (additive? DIFFERENTIAL | frac | additive)
-
-    | FUNC_SQRT
-    (L_BRACKET root=expr R_BRACKET)?
-    L_BRACE base=expr R_BRACE
-
-    | (FUNC_SUM | FUNC_PROD)
-    (subeq supexpr | supexpr subeq)
-    mp
-    | FUNC_LIM limit_sub mp;
+	func_normal (subexpr? supexpr? | supexpr? subexpr?) (
+		L_PAREN func_arg R_PAREN
+		| func_arg_noparens
+	)
+	| (LETTER | SYMBOL) subexpr? // e.g. f(x)
+	L_PAREN args R_PAREN
+	| FUNC_INT (subexpr supexpr | supexpr subexpr)? (
+		additive? DIFFERENTIAL
+		| frac
+		| additive
+	)
+	| FUNC_SQRT (L_BRACKET root = expr R_BRACKET)? L_BRACE base = expr R_BRACE
+	| (FUNC_SUM | FUNC_PROD) (subeq supexpr | supexpr subeq) mp
+	| FUNC_LIM limit_sub mp;
 
 args: (expr ',' args) | expr;
 
 limit_sub:
-    UNDERSCORE L_BRACE
-    (LETTER | SYMBOL)
-    LIM_APPROACH_SYM
-    expr (CARET L_BRACE (ADD | SUB) R_BRACE)?
-    R_BRACE;
+	UNDERSCORE L_BRACE (LETTER | SYMBOL) LIM_APPROACH_SYM expr (
+		CARET L_BRACE (ADD | SUB) R_BRACE
+	)? R_BRACE;
 
 func_arg: expr | (expr ',' func_arg);
 func_arg_noparens: mp_nofunc;
