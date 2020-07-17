@@ -56,19 +56,13 @@ FUNC_PROD: '\\prod';
 FUNC_EXP:  '\\exp';
 FUNC_LOG:  '\\log';
 FUNC_LN:   '\\ln';
+
 FUNC_SIN:  '\\sin';
 FUNC_COS:  '\\cos';
 FUNC_TAN:  '\\tan';
 FUNC_CSC:  '\\csc';
 FUNC_SEC:  '\\sec';
 FUNC_COT:  '\\cot';
-
-FUNC_GAMMA: '\\Gamma';
-
-L_FLOOR: '\\lfloor';
-R_FLOOR: '\\rfloor';
-L_CEIL: '\\lceil';
-R_CEIL: '\\rceil';
 
 FUNC_ARCSIN: '\\arcsin';
 FUNC_ARCCOS: '\\arccos';
@@ -80,9 +74,23 @@ FUNC_ARCCOT: '\\arccot';
 FUNC_SINH: '\\sinh';
 FUNC_COSH: '\\cosh';
 FUNC_TANH: '\\tanh';
+FUNC_CSCH:  '\\csch';
+FUNC_SECH:  '\\sech';
+FUNC_COTH:  '\\coth';
+
 FUNC_ARSINH: '\\arsinh';
 FUNC_ARCOSH: '\\arcosh';
 FUNC_ARTANH: '\\artanh';
+FUNC_ARCSCH: '\\arcsch';
+FUNC_ARSECH: '\\arsech';
+FUNC_ARCOTH: '\\arcoth';
+
+FUNC_GAMMA: '\\Gamma';
+
+L_FLOOR: '\\lfloor';
+R_FLOOR: '\\rfloor';
+L_CEIL: '\\lceil';
+R_CEIL: '\\rceil';
 
 FUNC_SQRT: '\\sqrt';
 
@@ -239,7 +247,9 @@ func_normal:
     | FUNC_ARCSIN | FUNC_ARCCOS | FUNC_ARCTAN
     | FUNC_ARCCSC | FUNC_ARCSEC | FUNC_ARCCOT
     | FUNC_SINH | FUNC_COSH | FUNC_TANH
+    | FUNC_CSCH | FUNC_SECH | FUNC_COTH
     | FUNC_ARSINH | FUNC_ARCOSH | FUNC_ARTANH
+    | FUNC_ARCSCH | FUNC_ARSECH | FUNC_ARCOTH
     | FUNC_GAMMA;
 
 func:
