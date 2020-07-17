@@ -95,8 +95,10 @@ R_CEIL: '\\rceil';
 DELTA: '\\delta';
 
 OVERLINE: '\\overline';
-BEGIN_ARR: '\\begin{array}';
-END_ARR: '\\end{array}';
+
+BEGIN_ARR: '\\begin' L_BRACE [a-zA-Z]+ R_BRACE -> skip;
+END_ARR: '\\end' L_BRACE [a-zA-Z]+ R_BRACE -> skip;
+
 CDOTS: '\\cdots';
 CIRC: '\\circ';
 CUP: '\\cup';
