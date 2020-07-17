@@ -285,6 +285,8 @@ def convert_comp(comp):
         return convert_floor(comp.floor())
     elif comp.ceil():
         return convert_ceil(comp.ceil())
+    elif comp.delta():
+        return convert_delta(comp.delta())
     elif comp.func():
         return convert_func(comp.func())
 
@@ -393,6 +395,10 @@ def convert_floor(floor):
 def convert_ceil(ceil):
     val = convert_expr(ceil.val)
     return sympy.ceiling(val, evaluate=False)
+
+def convert_delta(delta):
+    x, y = convert_expr(delta.x), convert_expr(delta.y)
+    return sympy.KroneckerDelta(x, y, evaluate=False)
 
 def convert_func(func):
     if func.func_normal():

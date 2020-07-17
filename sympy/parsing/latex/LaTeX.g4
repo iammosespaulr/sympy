@@ -92,6 +92,8 @@ R_FLOOR: '\\rfloor';
 L_CEIL: '\\lceil';
 R_CEIL: '\\rceil';
 
+DELTA: '\\delta';
+
 FUNC_SQRT: '\\sqrt';
 
 CMD_TIMES: '\\times';
@@ -192,7 +194,8 @@ comp:
     | frac
     | binom
     | floor
-    | ceil;
+    | ceil
+    | delta;
 
 comp_nofunc:
     group
@@ -201,7 +204,8 @@ comp_nofunc:
     | frac
     | binom
     | floor
-    | ceil;
+    | ceil
+    | delta;
 
 group:
     L_PAREN expr R_PAREN
@@ -239,6 +243,13 @@ ceil:
     L_CEIL
     val=expr
     R_CEIL;
+
+delta:
+    DELTA
+    UNDERSCORE L_BRACE
+    x=expr
+    y=expr
+    R_BRACE;
 
 func_normal:
     FUNC_EXP | FUNC_LOG | FUNC_LN
