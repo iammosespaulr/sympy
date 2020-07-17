@@ -65,6 +65,11 @@ FUNC_COT:  '\\cot';
 
 FUNC_GAMMA: '\\Gamma';
 
+L_FLOOR: '\\lfloor';
+R_FLOOR: '\\rfloor';
+L_CEIL: '\\lceil';
+R_CEIL: '\\rceil';
+
 FUNC_ARCSIN: '\\arcsin';
 FUNC_ARCCOS: '\\arccos';
 FUNC_ARCTAN: '\\arctan';
@@ -177,14 +182,18 @@ comp:
     | func
     | atom
     | frac
-    | binom;
+    | binom
+    | floor
+    | ceil;
 
 comp_nofunc:
     group
     | abs_group
     | atom
     | frac
-    | binom;
+    | binom
+    | floor
+    | ceil;
 
 group:
     L_PAREN expr R_PAREN
@@ -212,6 +221,16 @@ binom:
     R_BRACE L_BRACE
     k=expr
     R_BRACE;
+
+floor:
+    L_FLOOR
+    val=expr
+    R_FLOOR;
+
+ceil:
+    L_CEIL
+    val=expr
+    R_CEIL;
 
 func_normal:
     FUNC_EXP | FUNC_LOG | FUNC_LN
