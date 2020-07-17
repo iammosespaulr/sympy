@@ -331,7 +331,7 @@ mathit_text: ((NUMBER | LETTER) (',' (NUMBER | LETTER))*)?;
 
 array: BEGIN_ARR array_text END_ARR;
 
-array_text: ((NUMBER | LETTER) (',' (NUMBER | LETTER))*)?;
+array_text: ((NUMBER | LETTER) (('&' | ',')? (NUMBER | LETTER))*)?;
 
 frac:
 	CMD_FRAC L_BRACE upper = expr R_BRACE L_BRACE lower = expr R_BRACE;
