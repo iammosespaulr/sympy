@@ -353,7 +353,7 @@ matrix:
 determinant: L_BAR array R_BAR;
 
 mathit: CMD_MATHIT L_BRACE mathit_text R_BRACE;
-mathit_text: ((NUMBER | LETTER) (',' (NUMBER | LETTER))*)?;
+mathit_text: (NUMBER | LETTER)+;
 
 array:
 	BEGIN_ARR array_elements (('\\\\') array_elements)*? END_ARR;
