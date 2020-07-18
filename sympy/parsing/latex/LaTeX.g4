@@ -143,7 +143,7 @@ STAR: '\\star';
 
 DOT: '\\dot';
 DDOT: '\\ddot';
-PRIME: ('\'' | '’');
+PRIME: ('\'' | '’' | '\\prime');
 
 LDOTS: '\\ldots';
 VDOTS: '\\vdots';
@@ -343,7 +343,10 @@ atom: (LETTER | SYMBOL) subexpr?
 	| matrix
 	| determinant
 	| array
-	| mathit;
+	| mathit
+	| prime;
+
+prime: (LETTER CARET L_BRACE PRIME R_BRACE L_PAREN expr R_PAREN);
 
 matrix:
 	LEFT_BRACKET (BEGIN_ARR)? array_elements (
