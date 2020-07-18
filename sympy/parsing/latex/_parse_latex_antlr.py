@@ -5,7 +5,7 @@
 import sympy
 from sympy.external import import_module
 from sympy.printing.str import StrPrinter
-
+from sympy import MutableDenseMatrix
 from .errors import LaTeXParsingError
 
 
@@ -195,7 +195,12 @@ def convert_postfix_list(arr, i=0):
             # multiply by next
             return sympy.Mul(
                 res, convert_postfix_list(arr, i + 1), evaluate=False)
+    elif isinstance(res, sympy.tensor.array.dense_ndim_array.ImmutableDenseNDimArray):
+        return res
+    elif isinstance(res, MutableDenseMatrix):
+        return res
     else:  # must be derivative
+        print(type(res))
         wrt = res[0]
         if i == len(arr) - 1:
             raise LaTeXParsingError("Expected expression for derivative")
@@ -328,6 +333,16 @@ def convert_atom(atom):
     elif atom.mathit():
         text = rule2text(atom.mathit().mathit_text())
         return sympy.Symbol(text)
+    elif atom.array():
+        array = sympy.Array([list(map(convert_relation, x.relation())) for x in atom.array().array_elements()])
+        return array
+    elif atom.determinant():
+        determinant = sympy.Matrix([list(map(convert_relation, x.relation())) for x in atom.determinant().array().array_elements()]).det()
+        return determinant
+    elif atom.matrix():
+        matrix = sympy.Matrix([list(map(convert_relation, x.relation())) for x in atom.matrix().array().array_elements()])
+        return matrix
+    
 
 
 def rule2text(ctx):
