@@ -50,6 +50,8 @@ BAR: '|';
 
 R_BAR: '\\right|';
 L_BAR: '\\left|';
+LEFT_BRACKET: '\\left[';
+RIGHT_BRACKET: '\\right]';
 BAR_VAL: '\\|';
 
 FUNC_LIM: '\\lim';
@@ -60,12 +62,9 @@ LIM_APPROACH_SYM:
 	| '\\longrightarrow'
 	| '\\Longrightarrow';
 
-VAR_LIMIT_SUPER: '\\varlimsup';
-VAR_LIMIT_INF: '\\varliminf';
-
 FUNC_INT: '\\int';
-FUNC_SUM: '\\sum';
-FUNC_PROD: '\\prod';
+FUNC_SUM: ('\\sum' | SIGMA);
+FUNC_PROD: ('\\prod' | PI);
 
 FUNC_EXP: '\\exp';
 FUNC_LOG: '\\log';
@@ -107,22 +106,21 @@ R_CEIL: '\\rceil';
 I_MATH: '\\imath';
 J_MATH: '\\jmath';
 
-ALEPH: '\\aleph';
-BETH: '\\beth';
-
-DELTA: '\\delta';
+DELTA: '\\Delta';
+LOWER_DELTA: '\\delta';
 FUNC_GAMMA: '\\Gamma';
 LOWER_GAMMA: '\\gamma';
 NABLA: '\\nabla';
 SIGMA: '\\Sigma';
+PI: '\\Pi';
 LOWER_SIGMA: '\\sigma';
-XI: '\\Xi';
-LOWER_XI: '\\xi';
-LOWER_ZETA: '\\zeta';
+ZETA: '\\zeta';
 
 BEGIN_ARR:
-	'\\begin' L_BRACE [a-zA-Z]+ R_BRACE (L_BRACE LETTER* R_BRACE)?;
-END_ARR: '\\end' L_BRACE [a-zA-Z]+ R_BRACE;
+	'\\begin' L_BRACE (LETTER | '*')+ R_BRACE (
+		L_BRACE LETTER* R_BRACE
+	)?;
+END_ARR: '\\end' L_BRACE (LETTER | '*')+ R_BRACE;
 
 CIRC: '\\circ';
 RADIAN: '\\radian';
@@ -145,6 +143,7 @@ STAR: '\\star';
 
 DOT: '\\dot';
 DDOT: '\\ddot';
+PRIME: ('\'' | '’');
 
 LDOTS: '\\ldots';
 VDOTS: '\\vdots';
@@ -217,11 +216,9 @@ CMD_TIMES: '\\times';
 CMD_CDOT: '\\cdot';
 
 CMD_DIV: '\\div';
-CMD_FRAC: '\\frac';
+CMD_FRAC: ('\\frac' | '\\tfrac' | '\\dfrac');
 
-CMD_BINOM: '\\binom';
-CMD_DBINOM: '\\dbinom';
-CMD_TBINOM: '\\tbinom';
+CMD_BINOM: ('\\binom' | '\\dbinom' | '\\tbinom');
 
 CMD_MATHIT: '\\mathit';
 
@@ -240,11 +237,11 @@ NUMBER:
 	DIGIT+ (',' DIGIT DIGIT DIGIT)*
 	| DIGIT* (',' DIGIT DIGIT DIGIT)* '.' DIGIT+;
 
-EQUAL: '=';
+EQUAL: ('&' WS_CHAR*?)? '=';
 LT: '<';
-LTE: '\\leq';
+LTE: ('\\leq' | 'le' | LTE_Q | LTE_S);
 GT: '>';
-GTE: '\\geq';
+GTE: ('\\geq' | 'ge' | GTE_Q | GTE_S);
 
 GTE_Q: '\\geqq';
 LTE_Q: '\\leqq';
@@ -254,7 +251,6 @@ LL: '\\ll';
 GG: '\\gg';
 LLL: '\\lll';
 GGG: '\\ggg';
-AND_EQUAL: '&=';
 NEQ: '\\neq';
 
 BANG: '!';
@@ -264,10 +260,10 @@ SYMBOL: '\\' [a-zA-Z]+;
 math: relation;
 
 relation:
-	relation ((EQUAL | AND_EQUAL) | LT | LTE | GT | GTE) relation
+	relation (EQUAL | LT | LTE | GT | GTE | NEQ) relation
 	| expr;
 
-equality: expr (EQUAL | AND_EQUAL) expr;
+equality: expr EQUAL expr;
 
 expr: additive;
 
@@ -335,6 +331,7 @@ comp_nofunc:
 
 group:
 	L_PAREN expr R_PAREN
+	| L_BRACKET expr R_BRACKET
 	| L_BRACE expr R_BRACE
 	| L_BRACE_LITERAL expr R_BRACE_LITERAL;
 
@@ -348,7 +345,10 @@ atom: (LETTER | SYMBOL) subexpr?
 	| array
 	| mathit;
 
-matrix: L_BRACKET array R_BRACKET;
+matrix:
+	LEFT_BRACKET (BEGIN_ARR)? array_elements (
+		('\\\\') array_elements
+	)*? (END_ARR)? RIGHT_BRACKET;
 
 determinant: L_BAR array R_BAR;
 
@@ -364,13 +364,13 @@ frac:
 	CMD_FRAC L_BRACE upper = expr R_BRACE L_BRACE lower = expr R_BRACE;
 
 binom:
-	(CMD_BINOM | CMD_DBINOM | CMD_TBINOM) L_BRACE n = expr R_BRACE L_BRACE k = expr R_BRACE;
+	CMD_BINOM L_BRACE n = expr R_BRACE L_BRACE k = expr R_BRACE;
 
 floor: L_FLOOR val = expr R_FLOOR;
 
 ceil: L_CEIL val = expr R_CEIL;
 
-delta: DELTA UNDERSCORE L_BRACE x = expr y = expr R_BRACE;
+delta: LOWER_DELTA UNDERSCORE L_BRACE x = expr y = expr R_BRACE;
 
 func_normal:
 	FUNC_EXP
@@ -400,7 +400,11 @@ func_normal:
 	| FUNC_ARCSCH
 	| FUNC_ARSECH
 	| FUNC_ARCOTH
-	| FUNC_GAMMA;
+	| FUNC_GAMMA
+	| LOWER_GAMMA
+	| ZETA
+	| NABLA
+	| DELTA;
 
 func:
 	func_normal (subexpr? supexpr? | supexpr? subexpr?) (
