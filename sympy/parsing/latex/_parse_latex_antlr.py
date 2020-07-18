@@ -336,10 +336,10 @@ def convert_atom(atom):
         array = tuple([list(map(convert_relation, x.relation())) for x in atom.array().array_elements()])
         return array
     elif atom.determinant():
-        determinant = sympy.Matrix([list(map(convert_relation, x.relation())) for x in atom.determinant().array().array_elements()]).det()
+        determinant = sympy.Matrix([list(map(convert_relation, x.relation())) for x in atom.determinant().array_elements()]).det()
         return determinant
     elif atom.matrix():
-        matrix = sympy.Matrix([list(map(convert_relation, x.relation())) for x in atom.matrix().array().array_elements()])
+        matrix = sympy.Matrix([list(map(convert_relation, x.relation())) for x in atom.matrix().array_elements()])
         return matrix
     
 
