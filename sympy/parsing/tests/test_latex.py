@@ -216,7 +216,7 @@ GOOD_PAIRS = [
 def test_parseable():
     from sympy.parsing.latex import parse_latex
     for latex_str, sympy_expr in GOOD_PAIRS:
-        assert parse_latex(latex_str) == sympy_expr
+        assert parse_latex(latex_str) == sympy_expr, latex_str
 
 # At time of migration from latex2sympy, should work but doesn't
 FAILING_PAIRS = [
@@ -227,7 +227,7 @@ def test_failing_parseable():
     from sympy.parsing.latex import parse_latex
     for latex_str, sympy_expr in FAILING_PAIRS:
         with raises(Exception):
-            assert parse_latex(latex_str) == sympy_expr
+            assert parse_latex(latex_str) == sympy_expr, latex_str
 
 # These bad LaTeX strings should raise a LaTeXParsingError when parsed
 BAD_STRINGS = [
