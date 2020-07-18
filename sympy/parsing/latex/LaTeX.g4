@@ -350,7 +350,10 @@ matrix:
 		('\\\\') array_elements
 	)*? (END_ARR)? RIGHT_BRACKET;
 
-determinant: L_BAR array R_BAR;
+determinant:
+	L_BAR (BEGIN_ARR)? array_elements (('\\\\') array_elements)*? (
+		END_ARR
+	)? R_BAR;
 
 mathit: CMD_MATHIT L_BRACE mathit_text R_BRACE;
 mathit_text: (NUMBER | LETTER)+;
