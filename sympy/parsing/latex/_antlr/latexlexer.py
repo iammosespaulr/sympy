@@ -355,7 +355,7 @@ def serializedATN():
         buf.write(u"\u075d\3\2\2\2\u017f\u0762\3\2\2\2\u0181\u0767\3\2\2")
         buf.write(u"\2\u0183\u076c\3\2\2\2\u0185\u076e\3\2\2\2\u0187\u0188")
         buf.write(u"\7^\2\2\u0188\u0189\7^\2\2\u0189\4\3\2\2\2\u018a\u018b")
-        buf.write(u"\7.\2\2\u018b\6\3\2\2\2\u018c\u018d\7(\2\2\u018d\b\3")
+        buf.write(u"\7(\2\2\u018b\6\3\2\2\2\u018c\u018d\7.\2\2\u018d\b\3")
         buf.write(u"\2\2\2\u018e\u0190\t\2\2\2\u018f\u018e\3\2\2\2\u0190")
         buf.write(u"\u0191\3\2\2\2\u0191\u018f\3\2\2\2\u0191\u0192\3\2\2")
         buf.write(u"\2\u0192\u0193\3\2\2\2\u0193\u0194\b\5\2\2\u0194\n\3")
@@ -1112,7 +1112,7 @@ class LaTeXLexer(Lexer):
     modeNames = [ u"DEFAULT_MODE" ]
 
     literalNames = [ u"<INVALID>",
-            u"'\\\\'", u"','", u"'&'", u"'\\quad'", u"'\\qquad'", u"'\\negmedspace'",
+            u"'\\\\'", u"'&'", u"','", u"'\\quad'", u"'\\qquad'", u"'\\negmedspace'",
             u"'\\negthickspace'", u"'+'", u"'-'", u"'*'", u"'/'", u"'\\pm'",
             u"'\\mp'", u"'('", u"')'", u"'{'", u"'}'", u"'\\{'", u"'\\}'",
             u"'['", u"']'", u"'\\left'", u"'\\right'", u"'|'", u"'\\right|'",
