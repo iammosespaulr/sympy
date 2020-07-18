@@ -32,6 +32,9 @@ SUB: '-';
 MUL: '*';
 DIV: '/';
 
+PM: '\\pm';
+MP: '\\mp';
+
 L_PAREN: '(';
 R_PAREN: ')';
 L_BRACE: '{';
@@ -47,6 +50,7 @@ BAR: '|';
 
 R_BAR: '\\right|';
 L_BAR: '\\left|';
+BAR_VAL: '\\|';
 
 FUNC_LIM: '\\lim';
 LIM_APPROACH_SYM:
@@ -55,6 +59,10 @@ LIM_APPROACH_SYM:
 	| '\\Rightarrow'
 	| '\\longrightarrow'
 	| '\\Longrightarrow';
+
+VAR_LIMIT_SUPER: '\\varlimsup';
+VAR_LIMIT_INF: '\\varliminf';
+
 FUNC_INT: '\\int';
 FUNC_SUM: '\\sum';
 FUNC_PROD: '\\prod';
@@ -91,130 +99,126 @@ FUNC_ARCSCH: '\\arcsch';
 FUNC_ARSECH: '\\arsech';
 FUNC_ARCOTH: '\\arcoth';
 
-FUNC_GAMMA: '\\Gamma';
-
 L_FLOOR: '\\lfloor';
 R_FLOOR: '\\rfloor';
 L_CEIL: '\\lceil';
 R_CEIL: '\\rceil';
 
-DELTA: '\\delta';
+I_MATH: '\\imath';
+J_MATH: '\\jmath';
 
-OVERLINE: '\\overline';
+ALEPH: '\\aleph';
+BETH: '\\beth';
+
+DELTA: '\\delta';
+FUNC_GAMMA: '\\Gamma';
+LOWER_GAMMA: '\\gamma';
+NABLA: '\\nabla';
+SIGMA: '\\Sigma';
+LOWER_SIGMA: '\\sigma';
+XI: '\\Xi';
+LOWER_XI: '\\xi';
+LOWER_ZETA: '\\zeta';
 
 BEGIN_ARR:
 	'\\begin' L_BRACE [a-zA-Z]+ R_BRACE (L_BRACE LETTER* R_BRACE)?;
 END_ARR: '\\end' L_BRACE [a-zA-Z]+ R_BRACE;
 
-CDOTS: '\\cdots';
 CIRC: '\\circ';
-CUP: '\\cup';
-CAP: '\\cap';
-DOTS: '\\dots';
-EXISTS: '\\exists';
-FOR_ALL: '\\forall';
-LOWER_GAMMA: '\\gamma';
-HAT: '\\hat';
-IN: '\\in';
-LONG_DIV: '\\longdiv';
-NABLA: '\\nabla';
-NEQ: '\\neq';
-NOT_IN: '\\notin';
+RADIAN: '\\radian';
+
 O_INT: '\\oint';
 O_TIMES: '\\otimes';
 O_PLUS: '\\oplus';
 O_MINUS: '\\ominus';
-PARTIAL: '\\partial';
-PM: '\\pm';
-MP: '\\mp';
-LOWER_SIGMA: '\\sigma';
-SUBSET: '\\subset';
-SUPERSET: '\\supset';
-SUBSET_EQ: '\\subseteq';
-SUPERSET_EQ: '\\supseteq';
+O_DOT: '\\odot';
+BIG_O_PLUS: '\\bigoplus';
+BIG_O_TIMES: '\\bigotimes';
+O_SLASH: '\\oslash';
+
 TILDE: '\\tilde';
 VEC: '\\vec';
-WEDGE: '\\wedge';
-VEE: '\\vee';
-LOWER_XI: '\\xi';
-LOWER_ZETA: '\\zeta';
-DOT: '\\dot';
-VDOTS: '\\vdots';
+HAT: '\\hat';
 HBAR: '\\hbar';
 DAGGER: '\\dagger';
 STAR: '\\star';
-THEREFORE: '\\therefore';
-BECAUSE: '\\because';
-EMPTY_SET: '\\emptyset';
-XI: '\\Xi';
-BAR_VAL: '\\|';
+
+DOT: '\\dot';
 DDOT: '\\ddot';
+
 LDOTS: '\\ldots';
-LL: '\\ll';
-GG: '\\gg';
-SIGMA: '\\Sigma';
-MATH_BB: '\\mathbb';
-STACK_REL: '\\stackrel';
-MAPS_TO: '\\mapsto';
-IM: '\\Im';
-RE: '\\Re';
-NEG: '\\neg';
-O_DOT: '\\odot';
-UNDER_BRACE: '\\underbrace';
-UNDER_SET: '\\underset';
-O_SLASH: '\\oslash';
-BIG_CUP: '\\bigcup';
-BIG_CAP: '\\bigcap';
-BIG_O_PLUS: '\\bigoplus';
-BIG_O_TIMES: '\\bigotimes';
-LONG_MAPS_TO: '\\longmapsto';
+VDOTS: '\\vdots';
+DOTS: '\\dots';
+CDOTS: '\\cdots';
+
 WIDE_HAT: '\\widehat';
-GTE_Q: '\\geqq';
-LTE_Q: '\\leqq';
-LTE_S: '\\leqslant';
-GTE_S: '\\geqslant';
-N_SUBSET_EQ: '\\nsubseteq';
-N_SUPERSET_EQ: '\\nsupseteq';
-VAR_NOTHING: '\\varnothing';
 UNDERLINE: '\\underline';
 OVERBRACE: '\\overbrace';
+OVER_LEFTARROW: '\\overleftarrow';
+
 NOT: '\\not';
+VAR_NOTHING: '\\varnothing';
 BIG_VEE: '\\bigvee';
 CO_PRODUCT: '\\coprod';
+NEG: '\\neg';
+MAPS_TO: '\\mapsto';
 BIG_WEDGE: '\\bigwedge';
-I_MATH: '\\imath';
-J_MATH: '\\jmath';
 CURLY_VEE: '\\curlyvee';
 CURLY_WEDGE: '\\curlywedge';
 N_I: '\\ni';
-ALEPH: '\\aleph';
-BETH: '\\beth';
 SUBSET_NEQ: '\\subsetneq';
 SQ_SUBSET: '\\sqsubset';
 SQ_SUBSET_EQ: '\\sqsupseteq';
 SQ_SUPERSET: '\\sqsupset';
 SQ_SUPERSET_EQ: '\\sqsubseteq';
-LLL: '\\lll';
-SMILE: '\\smile';
-FROWN: '\\frown';
-OVER_LEFTARROW: '\\overleftarrow';
-GGG: '\\ggg';
-VAR_LIMIT_SUPER: '\\varlimsup';
-MULTI_COL: '\\multicolumn';
-MULTI_ROW: '\\multirow';
-VAR_LIMIT_INF: '\\varliminf';
 COMPLEMENT: '\\complement';
 SUPERSET_NEQ: '\\supsetneq';
 SQ_CUP: '\\sqcup';
 SQ_CAP: '\\sqcap';
 NEXISTS: '\\nexists';
+N_SUBSET_EQ: '\\nsubseteq';
+N_SUPERSET_EQ: '\\nsupseteq';
+UNDER_BRACE: '\\underbrace';
+UNDER_SET: '\\underset';
+BIG_CUP: '\\bigcup';
+BIG_CAP: '\\bigcap';
+LONG_MAPS_TO: '\\longmapsto';
+THEREFORE: '\\therefore';
+BECAUSE: '\\because';
+EMPTY_SET: '\\emptyset';
+SUBSET: '\\subset';
+SUPERSET: '\\supset';
+SUBSET_EQ: '\\subseteq';
+SUPERSET_EQ: '\\supseteq';
+NOT_IN: '\\notin';
+EXISTS: '\\exists';
+FOR_ALL: '\\forall';
+CUP: '\\cup';
+CAP: '\\cap';
+OVERLINE: '\\overline';
+IN: '\\in';
+WEDGE: '\\wedge';
+VEE: '\\vee';
+
+SMILE: '\\smile';
+FROWN: '\\frown';
+MATH_BB: '\\mathbb';
+STACK_REL: '\\stackrel';
+IM: '\\Im';
+RE: '\\Re';
+
+MULTI_COL: '\\multicolumn';
+MULTI_ROW: '\\multirow';
 
 FUNC_SQRT: '\\sqrt';
+LONG_DIV: '\\longdiv';
 
 CMD_TIMES: '\\times';
 CMD_CDOT: '\\cdot';
+
 CMD_DIV: '\\div';
 CMD_FRAC: '\\frac';
+
 CMD_BINOM: '\\binom';
 CMD_DBINOM: '\\dbinom';
 CMD_TBINOM: '\\tbinom';
@@ -228,6 +232,8 @@ COLON: ':';
 fragment WS_CHAR: [ \t\r\n];
 DIFFERENTIAL: 'd' WS_CHAR*? ([a-zA-Z] | '\\' [a-zA-Z]+);
 
+PARTIAL: '\\partial';
+
 LETTER: [a-zA-Z];
 fragment DIGIT: [0-9];
 NUMBER:
@@ -240,7 +246,16 @@ LTE: '\\leq';
 GT: '>';
 GTE: '\\geq';
 
+GTE_Q: '\\geqq';
+LTE_Q: '\\leqq';
+LTE_S: '\\leqslant';
+GTE_S: '\\geqslant';
+LL: '\\ll';
+GG: '\\gg';
+LLL: '\\lll';
+GGG: '\\ggg';
 AND_EQUAL: '&=';
+NEQ: '\\neq';
 
 BANG: '!';
 
