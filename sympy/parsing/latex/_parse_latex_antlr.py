@@ -102,8 +102,8 @@ def convert_relation(rel):
         return sympy.GreaterThan(lh, rh)
     elif rel.EQUAL():
         return sympy.Eq(lh, rh)
-    elif rel.AND_EQUAL():
-        return sympy.Eq(lh, rh)
+    elif rel.NEQ():
+        return sympy.Ne(lh, rh)
 
 def convert_expr(expr):
     return convert_add(expr.additive())
