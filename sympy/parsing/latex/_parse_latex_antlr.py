@@ -195,7 +195,7 @@ def convert_postfix_list(arr, i=0):
             # multiply by next
             return sympy.Mul(
                 res, convert_postfix_list(arr, i + 1), evaluate=False)
-    elif isinstance(res, sympy.tensor.array.dense_ndim_array.ImmutableDenseNDimArray):
+    elif isinstance(res, list):
         return res
     elif isinstance(res, MutableDenseMatrix):
         return res
@@ -334,7 +334,7 @@ def convert_atom(atom):
         text = rule2text(atom.mathit().mathit_text())
         return sympy.Symbol(text)
     elif atom.array():
-        array = sympy.Array([list(map(convert_relation, x.relation())) for x in atom.array().array_elements()])
+        array = [list(map(convert_relation, x.relation())) for x in atom.array().array_elements()]
         return array
     elif atom.determinant():
         determinant = sympy.Matrix([list(map(convert_relation, x.relation())) for x in atom.determinant().array().array_elements()]).det()
