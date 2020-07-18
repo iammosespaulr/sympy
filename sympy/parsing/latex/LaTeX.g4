@@ -45,6 +45,9 @@ CMD_RIGHT: '\\right' -> skip;
 
 BAR: '|';
 
+R_BAR: '\\right|';
+L_BAR: '\\left|';
+
 FUNC_LIM: '\\lim';
 LIM_APPROACH_SYM:
 	'\\to'
@@ -99,7 +102,8 @@ DELTA: '\\delta';
 
 OVERLINE: '\\overline';
 
-BEGIN_ARR: '\\begin' L_BRACE [a-zA-Z]+ R_BRACE;
+BEGIN_ARR:
+	'\\begin' L_BRACE [a-zA-Z]+ R_BRACE (L_BRACE LETTER* R_BRACE)?;
 END_ARR: '\\end' L_BRACE [a-zA-Z]+ R_BRACE;
 
 CDOTS: '\\cdots';
@@ -236,6 +240,8 @@ LTE: '\\leq';
 GT: '>';
 GTE: '\\geq';
 
+AND_EQUAL: '&=';
+
 BANG: '!';
 
 SYMBOL: '\\' [a-zA-Z]+;
@@ -243,10 +249,10 @@ SYMBOL: '\\' [a-zA-Z]+;
 math: relation;
 
 relation:
-	relation (EQUAL | LT | LTE | GT | GTE) relation
+	relation ((EQUAL | AND_EQUAL) | LT | LTE | GT | GTE) relation
 	| expr;
 
-equality: expr EQUAL expr;
+equality: expr (EQUAL | AND_EQUAL) expr;
 
 expr: additive;
 
@@ -314,7 +320,6 @@ comp_nofunc:
 
 group:
 	L_PAREN expr R_PAREN
-	| L_BRACKET expr R_BRACKET
 	| L_BRACE expr R_BRACE
 	| L_BRACE_LITERAL expr R_BRACE_LITERAL;
 
@@ -323,15 +328,22 @@ abs_group: BAR expr BAR;
 atom: (LETTER | SYMBOL) subexpr?
 	| NUMBER
 	| DIFFERENTIAL
+	| matrix
+	| determinant
 	| array
 	| mathit;
+
+matrix: L_BRACKET array R_BRACKET;
+
+determinant: L_BAR array R_BAR;
 
 mathit: CMD_MATHIT L_BRACE mathit_text R_BRACE;
 mathit_text: ((NUMBER | LETTER) (',' (NUMBER | LETTER))*)?;
 
-array: BEGIN_ARR array_text END_ARR;
+array:
+	BEGIN_ARR array_elements (('\\\\') array_elements)*? END_ARR;
 
-array_text: ((NUMBER | LETTER) (('&' | ',')? (NUMBER | LETTER))*)?;
+array_elements: (relation) (('&' | ',')? (relation))*?;
 
 frac:
 	CMD_FRAC L_BRACE upper = expr R_BRACE L_BRACE lower = expr R_BRACE;
