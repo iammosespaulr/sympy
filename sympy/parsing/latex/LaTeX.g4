@@ -52,6 +52,8 @@ R_BAR: '\\right|';
 L_BAR: '\\left|';
 LEFT_BRACKET: '\\left[';
 RIGHT_BRACKET: '\\right]';
+//LEFT_PAREN: '\\left('; RIGHT_PAREN: '\\right)';
+
 BAR_VAL: '\\|';
 
 FUNC_LIM: '\\lim';
