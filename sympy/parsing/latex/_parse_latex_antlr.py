@@ -461,8 +461,31 @@ def convert_func(func):
             expr = sympy.log(arg, base, evaluate=False)
         
         if name == "Gamma":
-            expr = sympy.gamma(arg, evaluate=False)
+            a = arg
+            try:
+                x = convert_func_arg(func.func_arg().func_arg())
+                expr = sympy.uppergamma(a, x, evaluate=False)
+            except:
+                expr = sympy.gamma(a, evaluate=False)
 
+        if name == "gamma":
+            a = arg
+            x = convert_func_arg(func.func_arg().func_arg())
+            expr = sympy.lowergamma(a, x, evaluate=False)
+
+        if name == "Delta":
+            pass
+
+        if name == "nabla":
+            pass
+
+        if name == "zeta":
+            s = arg
+            try:
+                a = convert_func_arg(func.func_arg().func_arg())
+                expr = sympy.zeta(s, a, evaluate=False)
+            except:
+                expr = sympy.zeta(s, evaluate=False)
 
         func_pow = None
         should_pow = True
