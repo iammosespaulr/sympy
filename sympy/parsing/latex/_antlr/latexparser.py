@@ -74,7 +74,7 @@ def serializedATN():
         buf.write(u"\5+\u0221\n+\3,\3,\3,\3,\3,\3-\3-\3-\3-\3-\3-\6\u0151")
         buf.write(u"\u0162\u017a\u0186\b\4\n\f\16 \".\2\4\6\b\n\f\16\20\22")
         buf.write(u"\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNP")
-        buf.write(u"RTVX\2\n\4\2\u00b5\u00b9\u00c2\u00c2\3\2\21\22\5\2\23")
+        buf.write(u"RTVX\2\n\4\2\u00b5\u00b8\u00bb\u00bc\3\2\21\22\5\2\23")
         buf.write(u"\24\u00a8\u00aa\u00b0\u00b0\4\2\u00b3\u00b3\u00c4\u00c4")
         buf.write(u"\3\2\u00b3\u00b4\3\2\6\7\7\2,FMMOQSSUU\3\2*+\2\u0256")
         buf.write(u"\2Z\3\2\2\2\4\\\3\2\2\2\6g\3\2\2\2\bk\3\2\2\2\nm\3\2")
@@ -350,9 +350,9 @@ class LaTeXParser ( Parser ):
                      u"'\\cdot'", u"'\\div'", u"<INVALID>", u"<INVALID>",
                      u"'\\mathit'", u"'_'", u"'^'", u"':'", u"<INVALID>",
                      u"'\\partial'", u"<INVALID>", u"<INVALID>", u"<INVALID>",
-                     u"'<'", u"<INVALID>", u"'>'", u"<INVALID>", u"'\\geqq'",
-                     u"'\\leqq'", u"'\\leqslant'", u"'\\geqslant'", u"'\\ll'",
-                     u"'\\gg'", u"'\\lll'", u"'\\ggg'", u"'\\neq'", u"'!'" ]
+                     u"'\\neq'", u"'<'", u"<INVALID>", u"'\\leqq'", u"'\\leqslant'",
+                     u"'>'", u"<INVALID>", u"'\\geqq'", u"'\\geqslant'",
+                     u"'\\ll'", u"'\\gg'", u"'\\lll'", u"'\\ggg'", u"'!'" ]
 
     symbolicNames = [ u"<INVALID>", u"<INVALID>", u"<INVALID>", u"<INVALID>",
                       u"<INVALID>", u"<INVALID>", u"WS", u"THINSPACE", u"MEDSPACE",
@@ -394,10 +394,10 @@ class LaTeXParser ( Parser ):
                       u"FUNC_SQRT", u"LONG_DIV", u"CMD_TIMES", u"CMD_CDOT",
                       u"CMD_DIV", u"CMD_FRAC", u"CMD_BINOM", u"CMD_MATHIT",
                       u"UNDERSCORE", u"CARET", u"COLON", u"DIFFERENTIAL",
-                      u"PARTIAL", u"LETTER", u"NUMBER", u"EQUAL", u"LT",
-                      u"LTE", u"GT", u"GTE", u"GTE_Q", u"LTE_Q", u"LTE_S",
-                      u"GTE_S", u"LL", u"GG", u"LLL", u"GGG", u"NEQ", u"BANG",
-                      u"SYMBOL" ]
+                      u"PARTIAL", u"LETTER", u"NUMBER", u"EQUAL", u"NEQ",
+                      u"LT", u"LTE", u"LTE_Q", u"LTE_S", u"GT", u"GTE",
+                      u"GTE_Q", u"GTE_S", u"LL", u"GG", u"LLL", u"GGG",
+                      u"BANG", u"SYMBOL" ]
 
     RULE_math = 0
     RULE_relation = 1
@@ -635,19 +635,19 @@ class LaTeXParser ( Parser ):
     LETTER=177
     NUMBER=178
     EQUAL=179
-    LT=180
-    LTE=181
-    GT=182
-    GTE=183
-    GTE_Q=184
-    LTE_Q=185
-    LTE_S=186
-    GTE_S=187
-    LL=188
-    GG=189
-    LLL=190
-    GGG=191
-    NEQ=192
+    NEQ=180
+    LT=181
+    LTE=182
+    LTE_Q=183
+    LTE_S=184
+    GT=185
+    GTE=186
+    GTE_Q=187
+    GTE_S=188
+    LL=189
+    GG=190
+    LLL=191
+    GGG=192
     BANG=193
     SYMBOL=194
 
@@ -762,7 +762,7 @@ class LaTeXParser ( Parser ):
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                     self.state = 94
                     _la = self._input.LA(1)
-                    if not(((((_la - 179)) & ~0x3f) == 0 and ((1 << (_la - 179)) & ((1 << (LaTeXParser.EQUAL - 179)) | (1 << (LaTeXParser.LT - 179)) | (1 << (LaTeXParser.LTE - 179)) | (1 << (LaTeXParser.GT - 179)) | (1 << (LaTeXParser.GTE - 179)) | (1 << (LaTeXParser.NEQ - 179)))) != 0)):
+                    if not(((((_la - 179)) & ~0x3f) == 0 and ((1 << (_la - 179)) & ((1 << (LaTeXParser.EQUAL - 179)) | (1 << (LaTeXParser.NEQ - 179)) | (1 << (LaTeXParser.LT - 179)) | (1 << (LaTeXParser.LTE - 179)) | (1 << (LaTeXParser.GT - 179)) | (1 << (LaTeXParser.GTE - 179)))) != 0)):
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
