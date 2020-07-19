@@ -99,7 +99,7 @@ def serializedATN():
         buf.write(u"\3I\3I\3J\3J\3J\3J\3J\3J\3J\3K\3K\3K\3K\3K\3K\3K\3L\3")
         buf.write(u"L\3L\3L\3L\3L\3L\3M\3M\3M\3M\3M\3M\3M\3N\3N\3N\3N\3N")
         buf.write(u"\3N\3N\3O\3O\3O\3O\3O\3O\3O\3P\3P\3P\3P\3P\3P\3P\3Q\3")
-        buf.write(u"Q\3Q\3Q\3Q\3Q\3Q\3R\3R\3R\3R\3S\3S\3S\3S\3S\3S\3S\3T")
+        buf.write(u"Q\3Q\3Q\3Q\3Q\3Q\3R\3R\3R\3R\3R\3R\3R\3S\3S\3S\3S\3T")
         buf.write(u"\3T\3T\3T\3T\3T\3U\3U\3U\3U\3U\3U\3U\3U\3U\3U\6U\u03db")
         buf.write(u"\nU\rU\16U\u03dc\3U\3U\3U\7U\u03e2\nU\fU\16U\u03e5\13")
         buf.write(u"U\3U\3U\5U\u03e9\nU\3V\3V\3V\3V\3V\3V\3V\3V\6V\u03f3")
@@ -316,7 +316,7 @@ def serializedATN():
         buf.write(u"\2\u0093\u0387\3\2\2\2\u0095\u038e\3\2\2\2\u0097\u0395")
         buf.write(u"\3\2\2\2\u0099\u039c\3\2\2\2\u009b\u03a3\3\2\2\2\u009d")
         buf.write(u"\u03aa\3\2\2\2\u009f\u03b1\3\2\2\2\u00a1\u03b8\3\2\2")
-        buf.write(u"\2\u00a3\u03bf\3\2\2\2\u00a5\u03c3\3\2\2\2\u00a7\u03ca")
+        buf.write(u"\2\u00a3\u03bf\3\2\2\2\u00a5\u03c6\3\2\2\2\u00a7\u03ca")
         buf.write(u"\3\2\2\2\u00a9\u03d0\3\2\2\2\u00ab\u03ea\3\2\2\2\u00ad")
         buf.write(u"\u03f8\3\2\2\2\u00af\u03fe\3\2\2\2\u00b1\u0406\3\2\2")
         buf.write(u"\2\u00b3\u040c\3\2\2\2\u00b5\u0414\3\2\2\2\u00b7\u041b")
@@ -465,7 +465,7 @@ def serializedATN():
         buf.write(u"\5\u00a1Q\2\u02af\u02aa\3\2\2\2\u02af\u02ae\3\2\2\2\u02b0")
         buf.write(u"R\3\2\2\2\u02b1\u02b2\7^\2\2\u02b2\u02b3\7r\2\2\u02b3")
         buf.write(u"\u02b4\7t\2\2\u02b4\u02b5\7q\2\2\u02b5\u02b8\7f\2\2\u02b6")
-        buf.write(u"\u02b8\5\u00a3R\2\u02b7\u02b1\3\2\2\2\u02b7\u02b6\3\2")
+        buf.write(u"\u02b8\5\u00a5S\2\u02b7\u02b1\3\2\2\2\u02b7\u02b6\3\2")
         buf.write(u"\2\2\u02b8T\3\2\2\2\u02b9\u02ba\7^\2\2\u02ba\u02bb\7")
         buf.write(u"g\2\2\u02bb\u02bc\7z\2\2\u02bc\u02bd\7r\2\2\u02bdV\3")
         buf.write(u"\2\2\2\u02be\u02bf\7^\2\2\u02bf\u02c0\7n\2\2\u02c0\u02c1")
@@ -557,14 +557,14 @@ def serializedATN():
         buf.write(u"\3\2\2\2\u03b8\u03b9\7^\2\2\u03b9\u03ba\7U\2\2\u03ba")
         buf.write(u"\u03bb\7k\2\2\u03bb\u03bc\7i\2\2\u03bc\u03bd\7o\2\2\u03bd")
         buf.write(u"\u03be\7c\2\2\u03be\u00a2\3\2\2\2\u03bf\u03c0\7^\2\2")
-        buf.write(u"\u03c0\u03c1\7R\2\2\u03c1\u03c2\7k\2\2\u03c2\u00a4\3")
-        buf.write(u"\2\2\2\u03c3\u03c4\7^\2\2\u03c4\u03c5\7u\2\2\u03c5\u03c6")
-        buf.write(u"\7k\2\2\u03c6\u03c7\7i\2\2\u03c7\u03c8\7o\2\2\u03c8\u03c9")
-        buf.write(u"\7c\2\2\u03c9\u00a6\3\2\2\2\u03ca\u03cb\7^\2\2\u03cb")
-        buf.write(u"\u03cc\7|\2\2\u03cc\u03cd\7g\2\2\u03cd\u03ce\7v\2\2\u03ce")
-        buf.write(u"\u03cf\7c\2\2\u03cf\u00a8\3\2\2\2\u03d0\u03d1\7^\2\2")
-        buf.write(u"\u03d1\u03d2\7d\2\2\u03d2\u03d3\7g\2\2\u03d3\u03d4\7")
-        buf.write(u"i\2\2\u03d4\u03d5\7k\2\2\u03d5\u03d6\7p\2\2\u03d6\u03d7")
+        buf.write(u"\u03c0\u03c1\7u\2\2\u03c1\u03c2\7k\2\2\u03c2\u03c3\7")
+        buf.write(u"i\2\2\u03c3\u03c4\7o\2\2\u03c4\u03c5\7c\2\2\u03c5\u00a4")
+        buf.write(u"\3\2\2\2\u03c6\u03c7\7^\2\2\u03c7\u03c8\7R\2\2\u03c8")
+        buf.write(u"\u03c9\7k\2\2\u03c9\u00a6\3\2\2\2\u03ca\u03cb\7^\2\2")
+        buf.write(u"\u03cb\u03cc\7|\2\2\u03cc\u03cd\7g\2\2\u03cd\u03ce\7")
+        buf.write(u"v\2\2\u03ce\u03cf\7c\2\2\u03cf\u00a8\3\2\2\2\u03d0\u03d1")
+        buf.write(u"\7^\2\2\u03d1\u03d2\7d\2\2\u03d2\u03d3\7g\2\2\u03d3\u03d4")
+        buf.write(u"\7i\2\2\u03d4\u03d5\7k\2\2\u03d5\u03d6\7p\2\2\u03d6\u03d7")
         buf.write(u"\3\2\2\2\u03d7\u03da\5/\30\2\u03d8\u03db\5\u0165\u00b3")
         buf.write(u"\2\u03d9\u03db\7,\2\2\u03da\u03d8\3\2\2\2\u03da\u03d9")
         buf.write(u"\3\2\2\2\u03db\u03dc\3\2\2\2\u03dc\u03da\3\2\2\2\u03dc")
@@ -1003,8 +1003,8 @@ class LaTeXLexer(Lexer):
     LOWER_GAMMA = 78
     NABLA = 79
     SIGMA = 80
-    PI = 81
-    LOWER_SIGMA = 82
+    LOWER_SIGMA = 81
+    PI = 82
     ZETA = 83
     BEGIN_ARR = 84
     END_ARR = 85
@@ -1136,7 +1136,7 @@ class LaTeXLexer(Lexer):
             u"'\\arcosh'", u"'\\artanh'", u"'\\arcsch'", u"'\\arsech'",
             u"'\\arcoth'", u"'\\lfloor'", u"'\\rfloor'", u"'\\lceil'", u"'\\rceil'",
             u"'\\imath'", u"'\\jmath'", u"'\\Delta'", u"'\\delta'", u"'\\Gamma'",
-            u"'\\gamma'", u"'\\nabla'", u"'\\Sigma'", u"'\\Pi'", u"'\\sigma'",
+            u"'\\gamma'", u"'\\nabla'", u"'\\Sigma'", u"'\\sigma'", u"'\\Pi'",
             u"'\\zeta'", u"'\\circ'", u"'\\radian'", u"'\\oint'", u"'\\otimes'",
             u"'\\oplus'", u"'\\ominus'", u"'\\odot'", u"'\\bigoplus'", u"'\\bigotimes'",
             u"'\\oslash'", u"'\\tilde'", u"'\\vec'", u"'\\hat'", u"'\\hbar'",
@@ -1176,7 +1176,7 @@ class LaTeXLexer(Lexer):
             u"FUNC_ARTANH", u"FUNC_ARCSCH", u"FUNC_ARSECH", u"FUNC_ARCOTH",
             u"L_FLOOR", u"R_FLOOR", u"L_CEIL", u"R_CEIL", u"I_MATH", u"J_MATH",
             u"DELTA", u"LOWER_DELTA", u"FUNC_GAMMA", u"LOWER_GAMMA", u"NABLA",
-            u"SIGMA", u"PI", u"LOWER_SIGMA", u"ZETA", u"BEGIN_ARR", u"END_ARR",
+            u"SIGMA", u"LOWER_SIGMA", u"PI", u"ZETA", u"BEGIN_ARR", u"END_ARR",
             u"CIRC", u"RADIAN", u"O_INT", u"O_TIMES", u"O_PLUS", u"O_MINUS",
             u"O_DOT", u"BIG_O_PLUS", u"BIG_O_TIMES", u"O_SLASH", u"TILDE",
             u"VEC", u"HAT", u"HBAR", u"DAGGER", u"STAR", u"DOT", u"DDOT",
@@ -1215,7 +1215,7 @@ class LaTeXLexer(Lexer):
                   u"FUNC_ARSECH", u"FUNC_ARCOTH", u"L_FLOOR", u"R_FLOOR",
                   u"L_CEIL", u"R_CEIL", u"I_MATH", u"J_MATH", u"DELTA",
                   u"LOWER_DELTA", u"FUNC_GAMMA", u"LOWER_GAMMA", u"NABLA",
-                  u"SIGMA", u"PI", u"LOWER_SIGMA", u"ZETA", u"BEGIN_ARR",
+                  u"SIGMA", u"LOWER_SIGMA", u"PI", u"ZETA", u"BEGIN_ARR",
                   u"END_ARR", u"CIRC", u"RADIAN", u"O_INT", u"O_TIMES",
                   u"O_PLUS", u"O_MINUS", u"O_DOT", u"BIG_O_PLUS", u"BIG_O_TIMES",
                   u"O_SLASH", u"TILDE", u"VEC", u"HAT", u"HBAR", u"DAGGER",

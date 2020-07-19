@@ -66,28 +66,28 @@ def serializedATN():
         buf.write(u"\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNP")
         buf.write(u"RTVX\2\n\4\2\u00b5\u00b9\u00c2\u00c2\3\2\21\22\5\2\23")
         buf.write(u"\24\u00a8\u00aa\u00b0\u00b0\4\2\u00b3\u00b3\u00c4\u00c4")
-        buf.write(u"\3\2\u00b3\u00b4\3\2\6\7\6\2,FMMOQUU\3\2*+\2\u0256\2")
-        buf.write(u"Z\3\2\2\2\4\\\3\2\2\2\6g\3\2\2\2\bk\3\2\2\2\nm\3\2\2")
-        buf.write(u"\2\fx\3\2\2\2\16\u0083\3\2\2\2\20\u0095\3\2\2\2\22\u00a0")
-        buf.write(u"\3\2\2\2\24\u00a2\3\2\2\2\26\u00a9\3\2\2\2\30\u00b2\3")
-        buf.write(u"\2\2\2\32\u00b4\3\2\2\2\34\u00bc\3\2\2\2\36\u00c4\3\2")
-        buf.write(u"\2\2 \u00cc\3\2\2\2\"\u00e0\3\2\2\2$\u00fd\3\2\2\2&\u0107")
-        buf.write(u"\3\2\2\2(\u0119\3\2\2\2*\u011b\3\2\2\2,\u012a\3\2\2\2")
-        buf.write(u".\u012c\3\2\2\2\60\u0148\3\2\2\2\62\u0159\3\2\2\2\64")
-        buf.write(u"\u016a\3\2\2\2\66\u0170\3\2\2\28\u0174\3\2\2\2:\u017f")
-        buf.write(u"\3\2\2\2<\u0189\3\2\2\2>\u0191\3\2\2\2@\u0199\3\2\2\2")
-        buf.write(u"B\u019d\3\2\2\2D\u01a1\3\2\2\2F\u01a8\3\2\2\2H\u01f3")
-        buf.write(u"\3\2\2\2J\u01fa\3\2\2\2L\u01fc\3\2\2\2N\u020e\3\2\2\2")
-        buf.write(u"P\u0210\3\2\2\2R\u0212\3\2\2\2T\u021a\3\2\2\2V\u0222")
-        buf.write(u"\3\2\2\2X\u0227\3\2\2\2Z[\5\4\3\2[\3\3\2\2\2\\]\b\3\1")
-        buf.write(u"\2]^\5\b\5\2^d\3\2\2\2_`\f\4\2\2`a\t\2\2\2ac\5\4\3\5")
-        buf.write(u"b_\3\2\2\2cf\3\2\2\2db\3\2\2\2de\3\2\2\2e\5\3\2\2\2f")
-        buf.write(u"d\3\2\2\2gh\5\b\5\2hi\7\u00b5\2\2ij\5\b\5\2j\7\3\2\2")
-        buf.write(u"\2kl\5\n\6\2l\t\3\2\2\2mn\b\6\1\2no\5\f\7\2ou\3\2\2\2")
-        buf.write(u"pq\f\4\2\2qr\t\3\2\2rt\5\n\6\5sp\3\2\2\2tw\3\2\2\2us")
-        buf.write(u"\3\2\2\2uv\3\2\2\2v\13\3\2\2\2wu\3\2\2\2xy\b\7\1\2yz")
-        buf.write(u"\5\20\t\2z\u0080\3\2\2\2{|\f\4\2\2|}\t\4\2\2}\177\5\f")
-        buf.write(u"\7\5~{\3\2\2\2\177\u0082\3\2\2\2\u0080~\3\2\2\2\u0080")
+        buf.write(u"\3\2\u00b3\u00b4\3\2\6\7\7\2,FMMOQSSUU\3\2*+\2\u0256")
+        buf.write(u"\2Z\3\2\2\2\4\\\3\2\2\2\6g\3\2\2\2\bk\3\2\2\2\nm\3\2")
+        buf.write(u"\2\2\fx\3\2\2\2\16\u0083\3\2\2\2\20\u0095\3\2\2\2\22")
+        buf.write(u"\u00a0\3\2\2\2\24\u00a2\3\2\2\2\26\u00a9\3\2\2\2\30\u00b2")
+        buf.write(u"\3\2\2\2\32\u00b4\3\2\2\2\34\u00bc\3\2\2\2\36\u00c4\3")
+        buf.write(u"\2\2\2 \u00cc\3\2\2\2\"\u00e0\3\2\2\2$\u00fd\3\2\2\2")
+        buf.write(u"&\u0107\3\2\2\2(\u0119\3\2\2\2*\u011b\3\2\2\2,\u012a")
+        buf.write(u"\3\2\2\2.\u012c\3\2\2\2\60\u0148\3\2\2\2\62\u0159\3\2")
+        buf.write(u"\2\2\64\u016a\3\2\2\2\66\u0170\3\2\2\28\u0174\3\2\2\2")
+        buf.write(u":\u017f\3\2\2\2<\u0189\3\2\2\2>\u0191\3\2\2\2@\u0199")
+        buf.write(u"\3\2\2\2B\u019d\3\2\2\2D\u01a1\3\2\2\2F\u01a8\3\2\2\2")
+        buf.write(u"H\u01f3\3\2\2\2J\u01fa\3\2\2\2L\u01fc\3\2\2\2N\u020e")
+        buf.write(u"\3\2\2\2P\u0210\3\2\2\2R\u0212\3\2\2\2T\u021a\3\2\2\2")
+        buf.write(u"V\u0222\3\2\2\2X\u0227\3\2\2\2Z[\5\4\3\2[\3\3\2\2\2\\")
+        buf.write(u"]\b\3\1\2]^\5\b\5\2^d\3\2\2\2_`\f\4\2\2`a\t\2\2\2ac\5")
+        buf.write(u"\4\3\5b_\3\2\2\2cf\3\2\2\2db\3\2\2\2de\3\2\2\2e\5\3\2")
+        buf.write(u"\2\2fd\3\2\2\2gh\5\b\5\2hi\7\u00b5\2\2ij\5\b\5\2j\7\3")
+        buf.write(u"\2\2\2kl\5\n\6\2l\t\3\2\2\2mn\b\6\1\2no\5\f\7\2ou\3\2")
+        buf.write(u"\2\2pq\f\4\2\2qr\t\3\2\2rt\5\n\6\5sp\3\2\2\2tw\3\2\2")
+        buf.write(u"\2us\3\2\2\2uv\3\2\2\2v\13\3\2\2\2wu\3\2\2\2xy\b\7\1")
+        buf.write(u"\2yz\5\20\t\2z\u0080\3\2\2\2{|\f\4\2\2|}\t\4\2\2}\177")
+        buf.write(u"\5\f\7\5~{\3\2\2\2\177\u0082\3\2\2\2\u0080~\3\2\2\2\u0080")
         buf.write(u"\u0081\3\2\2\2\u0081\r\3\2\2\2\u0082\u0080\3\2\2\2\u0083")
         buf.write(u"\u0084\b\b\1\2\u0084\u0085\5\22\n\2\u0085\u008b\3\2\2")
         buf.write(u"\2\u0086\u0087\f\4\2\2\u0087\u0088\t\4\2\2\u0088\u008a")
@@ -314,7 +314,7 @@ class LaTeXParser ( Parser ):
                      u"'\\arcoth'", u"'\\lfloor'", u"'\\rfloor'", u"'\\lceil'", 
                      u"'\\rceil'", u"'\\imath'", u"'\\jmath'", u"'\\Delta'", 
                      u"'\\delta'", u"'\\Gamma'", u"'\\gamma'", u"'\\nabla'", 
-                     u"'\\Sigma'", u"'\\Pi'", u"'\\sigma'", u"'\\zeta'", 
+                     u"'\\Sigma'", u"'\\sigma'", u"'\\Pi'", u"'\\zeta'", 
                      u"<INVALID>", u"<INVALID>", u"'\\circ'", u"'\\radian'", 
                      u"'\\oint'", u"'\\otimes'", u"'\\oplus'", u"'\\ominus'", 
                      u"'\\odot'", u"'\\bigoplus'", u"'\\bigotimes'", u"'\\oslash'", 
@@ -363,7 +363,7 @@ class LaTeXParser ( Parser ):
                       u"FUNC_ARCOTH", u"L_FLOOR", u"R_FLOOR", u"L_CEIL", 
                       u"R_CEIL", u"I_MATH", u"J_MATH", u"DELTA", u"LOWER_DELTA", 
                       u"FUNC_GAMMA", u"LOWER_GAMMA", u"NABLA", u"SIGMA", 
-                      u"PI", u"LOWER_SIGMA", u"ZETA", u"BEGIN_ARR", u"END_ARR", 
+                      u"LOWER_SIGMA", u"PI", u"ZETA", u"BEGIN_ARR", u"END_ARR", 
                       u"CIRC", u"RADIAN", u"O_INT", u"O_TIMES", u"O_PLUS", 
                       u"O_MINUS", u"O_DOT", u"BIG_O_PLUS", u"BIG_O_TIMES", 
                       u"O_SLASH", u"TILDE", u"VEC", u"HAT", u"HBAR", u"DAGGER", 
@@ -526,8 +526,8 @@ class LaTeXParser ( Parser ):
     LOWER_GAMMA=78
     NABLA=79
     SIGMA=80
-    PI=81
-    LOWER_SIGMA=82
+    LOWER_SIGMA=81
+    PI=82
     ZETA=83
     BEGIN_ARR=84
     END_ARR=85
@@ -1153,7 +1153,7 @@ class LaTeXParser ( Parser ):
                 self.state = 141
                 self.unary()
                 pass
-            elif token in [LaTeXParser.L_PAREN, LaTeXParser.L_BRACE, LaTeXParser.L_BRACE_LITERAL, LaTeXParser.L_BRACKET, LaTeXParser.BAR, LaTeXParser.L_BAR, LaTeXParser.LEFT_BRACKET, LaTeXParser.FUNC_LIM, LaTeXParser.FUNC_INT, LaTeXParser.FUNC_SUM, LaTeXParser.FUNC_PROD, LaTeXParser.FUNC_EXP, LaTeXParser.FUNC_LOG, LaTeXParser.FUNC_LN, LaTeXParser.FUNC_SIN, LaTeXParser.FUNC_COS, LaTeXParser.FUNC_TAN, LaTeXParser.FUNC_CSC, LaTeXParser.FUNC_SEC, LaTeXParser.FUNC_COT, LaTeXParser.FUNC_ARCSIN, LaTeXParser.FUNC_ARCCOS, LaTeXParser.FUNC_ARCTAN, LaTeXParser.FUNC_ARCCSC, LaTeXParser.FUNC_ARCSEC, LaTeXParser.FUNC_ARCCOT, LaTeXParser.FUNC_SINH, LaTeXParser.FUNC_COSH, LaTeXParser.FUNC_TANH, LaTeXParser.FUNC_CSCH, LaTeXParser.FUNC_SECH, LaTeXParser.FUNC_COTH, LaTeXParser.FUNC_ARSINH, LaTeXParser.FUNC_ARCOSH, LaTeXParser.FUNC_ARTANH, LaTeXParser.FUNC_ARCSCH, LaTeXParser.FUNC_ARSECH, LaTeXParser.FUNC_ARCOTH, LaTeXParser.L_FLOOR, LaTeXParser.L_CEIL, LaTeXParser.DELTA, LaTeXParser.LOWER_DELTA, LaTeXParser.FUNC_GAMMA, LaTeXParser.LOWER_GAMMA, LaTeXParser.NABLA, LaTeXParser.ZETA, LaTeXParser.BEGIN_ARR, LaTeXParser.FUNC_SQRT, LaTeXParser.CMD_FRAC, LaTeXParser.CMD_BINOM, LaTeXParser.CMD_MATHIT, LaTeXParser.DIFFERENTIAL, LaTeXParser.LETTER, LaTeXParser.NUMBER, LaTeXParser.SYMBOL]:
+            elif token in [LaTeXParser.L_PAREN, LaTeXParser.L_BRACE, LaTeXParser.L_BRACE_LITERAL, LaTeXParser.L_BRACKET, LaTeXParser.BAR, LaTeXParser.L_BAR, LaTeXParser.LEFT_BRACKET, LaTeXParser.FUNC_LIM, LaTeXParser.FUNC_INT, LaTeXParser.FUNC_SUM, LaTeXParser.FUNC_PROD, LaTeXParser.FUNC_EXP, LaTeXParser.FUNC_LOG, LaTeXParser.FUNC_LN, LaTeXParser.FUNC_SIN, LaTeXParser.FUNC_COS, LaTeXParser.FUNC_TAN, LaTeXParser.FUNC_CSC, LaTeXParser.FUNC_SEC, LaTeXParser.FUNC_COT, LaTeXParser.FUNC_ARCSIN, LaTeXParser.FUNC_ARCCOS, LaTeXParser.FUNC_ARCTAN, LaTeXParser.FUNC_ARCCSC, LaTeXParser.FUNC_ARCSEC, LaTeXParser.FUNC_ARCCOT, LaTeXParser.FUNC_SINH, LaTeXParser.FUNC_COSH, LaTeXParser.FUNC_TANH, LaTeXParser.FUNC_CSCH, LaTeXParser.FUNC_SECH, LaTeXParser.FUNC_COTH, LaTeXParser.FUNC_ARSINH, LaTeXParser.FUNC_ARCOSH, LaTeXParser.FUNC_ARTANH, LaTeXParser.FUNC_ARCSCH, LaTeXParser.FUNC_ARSECH, LaTeXParser.FUNC_ARCOTH, LaTeXParser.L_FLOOR, LaTeXParser.L_CEIL, LaTeXParser.DELTA, LaTeXParser.LOWER_DELTA, LaTeXParser.FUNC_GAMMA, LaTeXParser.LOWER_GAMMA, LaTeXParser.NABLA, LaTeXParser.LOWER_SIGMA, LaTeXParser.ZETA, LaTeXParser.BEGIN_ARR, LaTeXParser.FUNC_SQRT, LaTeXParser.CMD_FRAC, LaTeXParser.CMD_BINOM, LaTeXParser.CMD_MATHIT, LaTeXParser.DIFFERENTIAL, LaTeXParser.LETTER, LaTeXParser.NUMBER, LaTeXParser.SYMBOL]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 143 
                 self._errHandler.sync(self)
@@ -1236,7 +1236,7 @@ class LaTeXParser ( Parser ):
                 self.state = 150
                 self.unary_nofunc()
                 pass
-            elif token in [LaTeXParser.L_PAREN, LaTeXParser.L_BRACE, LaTeXParser.L_BRACE_LITERAL, LaTeXParser.L_BRACKET, LaTeXParser.BAR, LaTeXParser.L_BAR, LaTeXParser.LEFT_BRACKET, LaTeXParser.FUNC_LIM, LaTeXParser.FUNC_INT, LaTeXParser.FUNC_SUM, LaTeXParser.FUNC_PROD, LaTeXParser.FUNC_EXP, LaTeXParser.FUNC_LOG, LaTeXParser.FUNC_LN, LaTeXParser.FUNC_SIN, LaTeXParser.FUNC_COS, LaTeXParser.FUNC_TAN, LaTeXParser.FUNC_CSC, LaTeXParser.FUNC_SEC, LaTeXParser.FUNC_COT, LaTeXParser.FUNC_ARCSIN, LaTeXParser.FUNC_ARCCOS, LaTeXParser.FUNC_ARCTAN, LaTeXParser.FUNC_ARCCSC, LaTeXParser.FUNC_ARCSEC, LaTeXParser.FUNC_ARCCOT, LaTeXParser.FUNC_SINH, LaTeXParser.FUNC_COSH, LaTeXParser.FUNC_TANH, LaTeXParser.FUNC_CSCH, LaTeXParser.FUNC_SECH, LaTeXParser.FUNC_COTH, LaTeXParser.FUNC_ARSINH, LaTeXParser.FUNC_ARCOSH, LaTeXParser.FUNC_ARTANH, LaTeXParser.FUNC_ARCSCH, LaTeXParser.FUNC_ARSECH, LaTeXParser.FUNC_ARCOTH, LaTeXParser.L_FLOOR, LaTeXParser.L_CEIL, LaTeXParser.DELTA, LaTeXParser.LOWER_DELTA, LaTeXParser.FUNC_GAMMA, LaTeXParser.LOWER_GAMMA, LaTeXParser.NABLA, LaTeXParser.ZETA, LaTeXParser.BEGIN_ARR, LaTeXParser.FUNC_SQRT, LaTeXParser.CMD_FRAC, LaTeXParser.CMD_BINOM, LaTeXParser.CMD_MATHIT, LaTeXParser.DIFFERENTIAL, LaTeXParser.LETTER, LaTeXParser.NUMBER, LaTeXParser.SYMBOL]:
+            elif token in [LaTeXParser.L_PAREN, LaTeXParser.L_BRACE, LaTeXParser.L_BRACE_LITERAL, LaTeXParser.L_BRACKET, LaTeXParser.BAR, LaTeXParser.L_BAR, LaTeXParser.LEFT_BRACKET, LaTeXParser.FUNC_LIM, LaTeXParser.FUNC_INT, LaTeXParser.FUNC_SUM, LaTeXParser.FUNC_PROD, LaTeXParser.FUNC_EXP, LaTeXParser.FUNC_LOG, LaTeXParser.FUNC_LN, LaTeXParser.FUNC_SIN, LaTeXParser.FUNC_COS, LaTeXParser.FUNC_TAN, LaTeXParser.FUNC_CSC, LaTeXParser.FUNC_SEC, LaTeXParser.FUNC_COT, LaTeXParser.FUNC_ARCSIN, LaTeXParser.FUNC_ARCCOS, LaTeXParser.FUNC_ARCTAN, LaTeXParser.FUNC_ARCCSC, LaTeXParser.FUNC_ARCSEC, LaTeXParser.FUNC_ARCCOT, LaTeXParser.FUNC_SINH, LaTeXParser.FUNC_COSH, LaTeXParser.FUNC_TANH, LaTeXParser.FUNC_CSCH, LaTeXParser.FUNC_SECH, LaTeXParser.FUNC_COTH, LaTeXParser.FUNC_ARSINH, LaTeXParser.FUNC_ARCOSH, LaTeXParser.FUNC_ARTANH, LaTeXParser.FUNC_ARCSCH, LaTeXParser.FUNC_ARSECH, LaTeXParser.FUNC_ARCOTH, LaTeXParser.L_FLOOR, LaTeXParser.L_CEIL, LaTeXParser.DELTA, LaTeXParser.LOWER_DELTA, LaTeXParser.FUNC_GAMMA, LaTeXParser.LOWER_GAMMA, LaTeXParser.NABLA, LaTeXParser.LOWER_SIGMA, LaTeXParser.ZETA, LaTeXParser.BEGIN_ARR, LaTeXParser.FUNC_SQRT, LaTeXParser.CMD_FRAC, LaTeXParser.CMD_BINOM, LaTeXParser.CMD_MATHIT, LaTeXParser.DIFFERENTIAL, LaTeXParser.LETTER, LaTeXParser.NUMBER, LaTeXParser.SYMBOL]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 151
                 self.postfix()
@@ -3191,6 +3191,9 @@ class LaTeXParser ( Parser ):
         def DELTA(self):
             return self.getToken(LaTeXParser.DELTA, 0)
 
+        def LOWER_SIGMA(self):
+            return self.getToken(LaTeXParser.LOWER_SIGMA, 0)
+
         def getRuleIndex(self):
             return LaTeXParser.RULE_func_normal
 
@@ -3206,7 +3209,7 @@ class LaTeXParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 422
             _la = self._input.LA(1)
-            if not(((((_la - 42)) & ~0x3f) == 0 and ((1 << (_la - 42)) & ((1 << (LaTeXParser.FUNC_EXP - 42)) | (1 << (LaTeXParser.FUNC_LOG - 42)) | (1 << (LaTeXParser.FUNC_LN - 42)) | (1 << (LaTeXParser.FUNC_SIN - 42)) | (1 << (LaTeXParser.FUNC_COS - 42)) | (1 << (LaTeXParser.FUNC_TAN - 42)) | (1 << (LaTeXParser.FUNC_CSC - 42)) | (1 << (LaTeXParser.FUNC_SEC - 42)) | (1 << (LaTeXParser.FUNC_COT - 42)) | (1 << (LaTeXParser.FUNC_ARCSIN - 42)) | (1 << (LaTeXParser.FUNC_ARCCOS - 42)) | (1 << (LaTeXParser.FUNC_ARCTAN - 42)) | (1 << (LaTeXParser.FUNC_ARCCSC - 42)) | (1 << (LaTeXParser.FUNC_ARCSEC - 42)) | (1 << (LaTeXParser.FUNC_ARCCOT - 42)) | (1 << (LaTeXParser.FUNC_SINH - 42)) | (1 << (LaTeXParser.FUNC_COSH - 42)) | (1 << (LaTeXParser.FUNC_TANH - 42)) | (1 << (LaTeXParser.FUNC_CSCH - 42)) | (1 << (LaTeXParser.FUNC_SECH - 42)) | (1 << (LaTeXParser.FUNC_COTH - 42)) | (1 << (LaTeXParser.FUNC_ARSINH - 42)) | (1 << (LaTeXParser.FUNC_ARCOSH - 42)) | (1 << (LaTeXParser.FUNC_ARTANH - 42)) | (1 << (LaTeXParser.FUNC_ARCSCH - 42)) | (1 << (LaTeXParser.FUNC_ARSECH - 42)) | (1 << (LaTeXParser.FUNC_ARCOTH - 42)) | (1 << (LaTeXParser.DELTA - 42)) | (1 << (LaTeXParser.FUNC_GAMMA - 42)) | (1 << (LaTeXParser.LOWER_GAMMA - 42)) | (1 << (LaTeXParser.NABLA - 42)) | (1 << (LaTeXParser.ZETA - 42)))) != 0)):
+            if not(((((_la - 42)) & ~0x3f) == 0 and ((1 << (_la - 42)) & ((1 << (LaTeXParser.FUNC_EXP - 42)) | (1 << (LaTeXParser.FUNC_LOG - 42)) | (1 << (LaTeXParser.FUNC_LN - 42)) | (1 << (LaTeXParser.FUNC_SIN - 42)) | (1 << (LaTeXParser.FUNC_COS - 42)) | (1 << (LaTeXParser.FUNC_TAN - 42)) | (1 << (LaTeXParser.FUNC_CSC - 42)) | (1 << (LaTeXParser.FUNC_SEC - 42)) | (1 << (LaTeXParser.FUNC_COT - 42)) | (1 << (LaTeXParser.FUNC_ARCSIN - 42)) | (1 << (LaTeXParser.FUNC_ARCCOS - 42)) | (1 << (LaTeXParser.FUNC_ARCTAN - 42)) | (1 << (LaTeXParser.FUNC_ARCCSC - 42)) | (1 << (LaTeXParser.FUNC_ARCSEC - 42)) | (1 << (LaTeXParser.FUNC_ARCCOT - 42)) | (1 << (LaTeXParser.FUNC_SINH - 42)) | (1 << (LaTeXParser.FUNC_COSH - 42)) | (1 << (LaTeXParser.FUNC_TANH - 42)) | (1 << (LaTeXParser.FUNC_CSCH - 42)) | (1 << (LaTeXParser.FUNC_SECH - 42)) | (1 << (LaTeXParser.FUNC_COTH - 42)) | (1 << (LaTeXParser.FUNC_ARSINH - 42)) | (1 << (LaTeXParser.FUNC_ARCOSH - 42)) | (1 << (LaTeXParser.FUNC_ARTANH - 42)) | (1 << (LaTeXParser.FUNC_ARCSCH - 42)) | (1 << (LaTeXParser.FUNC_ARSECH - 42)) | (1 << (LaTeXParser.FUNC_ARCOTH - 42)) | (1 << (LaTeXParser.DELTA - 42)) | (1 << (LaTeXParser.FUNC_GAMMA - 42)) | (1 << (LaTeXParser.LOWER_GAMMA - 42)) | (1 << (LaTeXParser.NABLA - 42)) | (1 << (LaTeXParser.LOWER_SIGMA - 42)) | (1 << (LaTeXParser.ZETA - 42)))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -3336,7 +3339,7 @@ class LaTeXParser ( Parser ):
             self.state = 497
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [LaTeXParser.FUNC_EXP, LaTeXParser.FUNC_LOG, LaTeXParser.FUNC_LN, LaTeXParser.FUNC_SIN, LaTeXParser.FUNC_COS, LaTeXParser.FUNC_TAN, LaTeXParser.FUNC_CSC, LaTeXParser.FUNC_SEC, LaTeXParser.FUNC_COT, LaTeXParser.FUNC_ARCSIN, LaTeXParser.FUNC_ARCCOS, LaTeXParser.FUNC_ARCTAN, LaTeXParser.FUNC_ARCCSC, LaTeXParser.FUNC_ARCSEC, LaTeXParser.FUNC_ARCCOT, LaTeXParser.FUNC_SINH, LaTeXParser.FUNC_COSH, LaTeXParser.FUNC_TANH, LaTeXParser.FUNC_CSCH, LaTeXParser.FUNC_SECH, LaTeXParser.FUNC_COTH, LaTeXParser.FUNC_ARSINH, LaTeXParser.FUNC_ARCOSH, LaTeXParser.FUNC_ARTANH, LaTeXParser.FUNC_ARCSCH, LaTeXParser.FUNC_ARSECH, LaTeXParser.FUNC_ARCOTH, LaTeXParser.DELTA, LaTeXParser.FUNC_GAMMA, LaTeXParser.LOWER_GAMMA, LaTeXParser.NABLA, LaTeXParser.ZETA]:
+            if token in [LaTeXParser.FUNC_EXP, LaTeXParser.FUNC_LOG, LaTeXParser.FUNC_LN, LaTeXParser.FUNC_SIN, LaTeXParser.FUNC_COS, LaTeXParser.FUNC_TAN, LaTeXParser.FUNC_CSC, LaTeXParser.FUNC_SEC, LaTeXParser.FUNC_COT, LaTeXParser.FUNC_ARCSIN, LaTeXParser.FUNC_ARCCOS, LaTeXParser.FUNC_ARCTAN, LaTeXParser.FUNC_ARCCSC, LaTeXParser.FUNC_ARCSEC, LaTeXParser.FUNC_ARCCOT, LaTeXParser.FUNC_SINH, LaTeXParser.FUNC_COSH, LaTeXParser.FUNC_TANH, LaTeXParser.FUNC_CSCH, LaTeXParser.FUNC_SECH, LaTeXParser.FUNC_COTH, LaTeXParser.FUNC_ARSINH, LaTeXParser.FUNC_ARCOSH, LaTeXParser.FUNC_ARTANH, LaTeXParser.FUNC_ARCSCH, LaTeXParser.FUNC_ARSECH, LaTeXParser.FUNC_ARCOTH, LaTeXParser.DELTA, LaTeXParser.FUNC_GAMMA, LaTeXParser.LOWER_GAMMA, LaTeXParser.NABLA, LaTeXParser.LOWER_SIGMA, LaTeXParser.ZETA]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 424
                 self.func_normal()
@@ -3444,7 +3447,7 @@ class LaTeXParser ( Parser ):
                     self.state = 459
                     self.subexpr()
                     pass
-                elif token in [LaTeXParser.ADD, LaTeXParser.SUB, LaTeXParser.L_PAREN, LaTeXParser.L_BRACE, LaTeXParser.L_BRACE_LITERAL, LaTeXParser.L_BRACKET, LaTeXParser.BAR, LaTeXParser.L_BAR, LaTeXParser.LEFT_BRACKET, LaTeXParser.FUNC_LIM, LaTeXParser.FUNC_INT, LaTeXParser.FUNC_SUM, LaTeXParser.FUNC_PROD, LaTeXParser.FUNC_EXP, LaTeXParser.FUNC_LOG, LaTeXParser.FUNC_LN, LaTeXParser.FUNC_SIN, LaTeXParser.FUNC_COS, LaTeXParser.FUNC_TAN, LaTeXParser.FUNC_CSC, LaTeXParser.FUNC_SEC, LaTeXParser.FUNC_COT, LaTeXParser.FUNC_ARCSIN, LaTeXParser.FUNC_ARCCOS, LaTeXParser.FUNC_ARCTAN, LaTeXParser.FUNC_ARCCSC, LaTeXParser.FUNC_ARCSEC, LaTeXParser.FUNC_ARCCOT, LaTeXParser.FUNC_SINH, LaTeXParser.FUNC_COSH, LaTeXParser.FUNC_TANH, LaTeXParser.FUNC_CSCH, LaTeXParser.FUNC_SECH, LaTeXParser.FUNC_COTH, LaTeXParser.FUNC_ARSINH, LaTeXParser.FUNC_ARCOSH, LaTeXParser.FUNC_ARTANH, LaTeXParser.FUNC_ARCSCH, LaTeXParser.FUNC_ARSECH, LaTeXParser.FUNC_ARCOTH, LaTeXParser.L_FLOOR, LaTeXParser.L_CEIL, LaTeXParser.DELTA, LaTeXParser.LOWER_DELTA, LaTeXParser.FUNC_GAMMA, LaTeXParser.LOWER_GAMMA, LaTeXParser.NABLA, LaTeXParser.ZETA, LaTeXParser.BEGIN_ARR, LaTeXParser.FUNC_SQRT, LaTeXParser.CMD_FRAC, LaTeXParser.CMD_BINOM, LaTeXParser.CMD_MATHIT, LaTeXParser.DIFFERENTIAL, LaTeXParser.LETTER, LaTeXParser.NUMBER, LaTeXParser.SYMBOL]:
+                elif token in [LaTeXParser.ADD, LaTeXParser.SUB, LaTeXParser.L_PAREN, LaTeXParser.L_BRACE, LaTeXParser.L_BRACE_LITERAL, LaTeXParser.L_BRACKET, LaTeXParser.BAR, LaTeXParser.L_BAR, LaTeXParser.LEFT_BRACKET, LaTeXParser.FUNC_LIM, LaTeXParser.FUNC_INT, LaTeXParser.FUNC_SUM, LaTeXParser.FUNC_PROD, LaTeXParser.FUNC_EXP, LaTeXParser.FUNC_LOG, LaTeXParser.FUNC_LN, LaTeXParser.FUNC_SIN, LaTeXParser.FUNC_COS, LaTeXParser.FUNC_TAN, LaTeXParser.FUNC_CSC, LaTeXParser.FUNC_SEC, LaTeXParser.FUNC_COT, LaTeXParser.FUNC_ARCSIN, LaTeXParser.FUNC_ARCCOS, LaTeXParser.FUNC_ARCTAN, LaTeXParser.FUNC_ARCCSC, LaTeXParser.FUNC_ARCSEC, LaTeXParser.FUNC_ARCCOT, LaTeXParser.FUNC_SINH, LaTeXParser.FUNC_COSH, LaTeXParser.FUNC_TANH, LaTeXParser.FUNC_CSCH, LaTeXParser.FUNC_SECH, LaTeXParser.FUNC_COTH, LaTeXParser.FUNC_ARSINH, LaTeXParser.FUNC_ARCOSH, LaTeXParser.FUNC_ARTANH, LaTeXParser.FUNC_ARCSCH, LaTeXParser.FUNC_ARSECH, LaTeXParser.FUNC_ARCOTH, LaTeXParser.L_FLOOR, LaTeXParser.L_CEIL, LaTeXParser.DELTA, LaTeXParser.LOWER_DELTA, LaTeXParser.FUNC_GAMMA, LaTeXParser.LOWER_GAMMA, LaTeXParser.NABLA, LaTeXParser.LOWER_SIGMA, LaTeXParser.ZETA, LaTeXParser.BEGIN_ARR, LaTeXParser.FUNC_SQRT, LaTeXParser.CMD_FRAC, LaTeXParser.CMD_BINOM, LaTeXParser.CMD_MATHIT, LaTeXParser.DIFFERENTIAL, LaTeXParser.LETTER, LaTeXParser.NUMBER, LaTeXParser.SYMBOL]:
                     pass
                 else:
                     pass
