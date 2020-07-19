@@ -329,6 +329,20 @@ def convert_atom(atom):
     elif atom.DIFFERENTIAL():
         var = get_differential_var(atom.DIFFERENTIAL())
         return sympy.Symbol('d' + var.name)
+    elif atom.prime():
+        val = convert_expr(atom.prime().expr())
+        text = rule2text(atom.prime())
+        funcv = text.split('^')[0]
+        if funcv == text:
+            funcv = funcv.replace("’","'")
+            interim = funcv.split("(")[0]
+            n_times = interim.count("'")
+            funcv = interim.strip("'")
+        else:
+            n_times = text.count('\\prime')
+        x = sympy.Symbol('x')
+        func = sympy.Function(funcv)(x)
+        return func.diff(x, n_times).subs(x, val)
     elif atom.mathit():
         text = rule2text(atom.mathit().mathit_text())
         return sympy.Symbol(text)
