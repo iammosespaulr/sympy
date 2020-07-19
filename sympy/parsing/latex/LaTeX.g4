@@ -112,8 +112,8 @@ FUNC_GAMMA: '\\Gamma';
 LOWER_GAMMA: '\\gamma';
 NABLA: '\\nabla';
 SIGMA: '\\Sigma';
-PI: '\\Pi';
 LOWER_SIGMA: '\\sigma';
+PI: '\\Pi';
 ZETA: '\\zeta';
 
 BEGIN_ARR:
@@ -412,7 +412,8 @@ func_normal:
 	| LOWER_GAMMA
 	| ZETA
 	| NABLA
-	| DELTA;
+	| DELTA
+	| LOWER_SIGMA;
 
 func:
 	func_normal (subexpr? supexpr? | supexpr? subexpr?) (
