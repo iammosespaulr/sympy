@@ -238,20 +238,22 @@ NUMBER:
 	| DIGIT* (',' DIGIT DIGIT DIGIT)* '.' DIGIT+;
 
 EQUAL: ('&' WS_CHAR*?)? '=';
+NEQ: '\\neq';
+
 LT: '<';
 LTE: ('\\leq' | 'le' | LTE_Q | LTE_S);
-GT: '>';
-GTE: ('\\geq' | 'ge' | GTE_Q | GTE_S);
-
-GTE_Q: '\\geqq';
 LTE_Q: '\\leqq';
 LTE_S: '\\leqslant';
+
+GT: '>';
+GTE: ('\\geq' | 'ge' | GTE_Q | GTE_S);
+GTE_Q: '\\geqq';
 GTE_S: '\\geqslant';
+
 LL: '\\ll';
 GG: '\\gg';
 LLL: '\\lll';
 GGG: '\\ggg';
-NEQ: '\\neq';
 
 BANG: '!';
 
