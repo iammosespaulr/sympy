@@ -466,10 +466,10 @@ def convert_func(func):
         
         if name == "Gamma":
             a = arg                
-            if hasattr(func.func_arg(), 'func_arg'):
+            try:
                 x = convert_func_arg(func.func_arg().func_arg())
                 expr = sympy.uppergamma(a, x, evaluate=False)
-            else:
+            except:
                 def _gamma(x):
                     return sympy.gamma(x, evaluate=False)
                 if isinstance(a, MutableDenseMatrix):
