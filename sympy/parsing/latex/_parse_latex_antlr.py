@@ -346,7 +346,7 @@ def convert_atom(atom):
     elif atom.angularunit():
         text = rule2text(atom.angularunit())
         val = sympy.parse_expr(text.split('^')[0])
-        return sympy.deg(val)
+        return sympy.rad(val)
     elif atom.mathit():
         text = rule2text(atom.mathit().mathit_text())
         return sympy.Symbol(text)
@@ -466,10 +466,10 @@ def convert_func(func):
         
         if name == "Gamma":
             a = arg                
-            try:
+            if hasattr(func.func_arg(), 'func_arg'):
                 x = convert_func_arg(func.func_arg().func_arg())
                 expr = sympy.uppergamma(a, x, evaluate=False)
-            except:
+            else:
                 def _gamma(x):
                     return sympy.gamma(x, evaluate=False)
                 if isinstance(a, MutableDenseMatrix):
