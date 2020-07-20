@@ -52,8 +52,8 @@ R_BAR: '\\right|';
 L_BAR: '\\left|';
 LEFT_BRACKET: '\\left[';
 RIGHT_BRACKET: '\\right]';
-//LEFT_PAREN: '\\left('; RIGHT_PAREN: '\\right)';
 
+PERIOD: '.';
 BAR_VAL: '\\|';
 
 FUNC_LIM: '\\lim';
@@ -336,7 +336,9 @@ group:
 	L_PAREN expr R_PAREN
 	| L_BRACKET expr R_BRACKET
 	| L_BRACE expr R_BRACE
-	| L_BRACE_LITERAL expr R_BRACE_LITERAL;
+	| L_BRACE_LITERAL expr R_BRACE_LITERAL
+	| L_BRACE_LITERAL expr PERIOD
+	| PERIOD expr R_BRACE_LITERAL;
 
 abs_group: BAR expr BAR;
 
