@@ -461,12 +461,19 @@ def convert_func(func):
             expr = sympy.log(arg, base, evaluate=False)
         
         if name == "Gamma":
-            a = arg
+            a = arg                
             try:
                 x = convert_func_arg(func.func_arg().func_arg())
                 expr = sympy.uppergamma(a, x, evaluate=False)
             except:
-                expr = sympy.gamma(a, evaluate=False)
+                def _gamma(x):
+                    return sympy.gamma(x, evaluate=False)
+                if isinstance(a, MutableDenseMatrix):
+                    expr = a.applyfunc(_gamma)
+                elif isinstance(a, tuple):
+                    expr = tuple(sympy.Array(a).applyfunc(_gamma).tolist())
+                else:
+                    expr = sympy.gamma(a, evaluate=False)
 
         if name == "gamma":
             a = arg
