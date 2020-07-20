@@ -124,9 +124,6 @@ BEGIN_ARR:
 	)?;
 END_ARR: '\\end' L_BRACE (LETTER | '*')+ R_BRACE;
 
-CIRC: '\\circ';
-RADIAN: '\\radian';
-
 O_INT: '\\oint';
 O_TIMES: '\\otimes';
 O_PLUS: '\\oplus';
@@ -146,6 +143,8 @@ STAR: '\\star';
 DOT: '\\dot';
 DDOT: '\\ddot';
 PRIME: '\\prime';
+
+CIRC: '\\circ';
 
 LDOTS: '\\ldots';
 VDOTS: '\\vdots';
@@ -348,10 +347,17 @@ atom: (LETTER | SYMBOL) subexpr?
 	| determinant
 	| array
 	| mathit
-	| prime;
+	| prime
+	| angularunit;
+
+angularunit: (NUMBER | LETTER) CARET L_BRACE CIRC R_BRACE;
 
 prime: (
-		LETTER ((CARET L_BRACE PRIME* R_BRACE) | '\''* | '’'*) L_PAREN expr R_PAREN
+		(LETTER | SYMBOL) (
+			(CARET L_BRACE PRIME* R_BRACE)
+			| '\''*
+			| '’'*
+		) L_PAREN expr R_PAREN
 	);
 
 matrix:

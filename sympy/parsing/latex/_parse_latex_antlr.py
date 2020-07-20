@@ -343,6 +343,10 @@ def convert_atom(atom):
         x = sympy.Symbol('x')
         func = sympy.Function(funcv)(x)
         return func.diff(x, n_times).subs(x, val)
+    elif atom.angularunit():
+        text = rule2text(atom.angularunit())
+        val = sympy.parse_expr(text.split('^')[0])
+        return sympy.deg(val)
     elif atom.mathit():
         text = rule2text(atom.mathit().mathit_text())
         return sympy.Symbol(text)
