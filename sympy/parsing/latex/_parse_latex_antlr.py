@@ -85,13 +85,32 @@ def parse_latex(sympy):
 
     return expr
 
-
+def checkassignmentvseq(lh, rh):
+    return not isinstance(lh, (sympy.MutableDenseMatrix, tuple)) and isinstance(rh, (sympy.MutableDenseMatrix, tuple))
 def convert_relation(rel):
     if rel.expr():
         return convert_expr(rel.expr())
-
     lh = convert_relation(rel.relation(0))
     rh = convert_relation(rel.relation(1))
+    print(rule2text(rel))
+    print(type(lh), lh)
+    print(type(rh), rh)
+    if any(isinstance(x, (sympy.MutableDenseMatrix, tuple)) for x in (lh, rh)):
+        l = sympy.Symbol('l')
+        if checkassignmentvseq(lh, rh):
+            val = tuple([x.subs(l, rh) for x in sympy.solve(sympy.Eq(lh, l), lh.free_symbols)])
+            if len(val) > 1:
+                return val
+            else:
+                return val[0]
+        elif checkassignmentvseq(rh, lh):
+            val = tuple([x.subs(l, lh) for x in  sympy.solve(sympy.Eq(rh, l), rh.free_symbols)])
+            if len(val) > 1:
+                return val
+            else:
+                return val[0]
+        else:
+            pass
     if rel.LT():
         return sympy.StrictLessThan(lh, rh)
     elif rel.LTE():
