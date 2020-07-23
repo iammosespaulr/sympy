@@ -92,9 +92,9 @@ def convert_relation(rel):
         return convert_expr(rel.expr())
     lh = convert_relation(rel.relation(0))
     rh = convert_relation(rel.relation(1))
-    print(rule2text(rel))
-    print(type(lh), lh)
-    print(type(rh), rh)
+    #print(rule2text(rel))
+    #print(type(lh), lh)
+    #print(type(rh), rh)
     if any(isinstance(x, (sympy.MutableDenseMatrix, tuple)) for x in (lh, rh)):
         l = sympy.Symbol('l')
         if checkassignmentvseq(lh, rh):
