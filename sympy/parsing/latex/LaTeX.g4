@@ -228,7 +228,18 @@ CARET: '^';
 COLON: ':';
 
 fragment WS_CHAR: [ \t\r\n];
-DIFFERENTIAL: 'd' WS_CHAR*? ([a-zA-Z] | '\\' [a-zA-Z]+);
+DIFFERENTIAL:
+	'd' (
+		WS_CHAR*? CARET (
+			(NUMBER | LETTER)
+			| L_BRACE (NUMBER | LETTER) R_BRACE
+		)
+	)? WS_CHAR*? ([a-zA-Z] | '\\' [a-zA-Z]+) (
+		WS_CHAR*? CARET (
+			(NUMBER | LETTER)
+			| L_BRACE (NUMBER | LETTER) R_BRACE
+		)
+	)?;
 
 PARTIAL: '\\partial';
 
