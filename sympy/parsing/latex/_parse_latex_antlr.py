@@ -434,8 +434,22 @@ def convert_frac(frac):
     lower_itv_len = lower_itv[1] - lower_itv[0] + 1
     if (frac.lower.start == frac.lower.stop
             and frac.lower.start.type == LaTeXLexer.DIFFERENTIAL):
-        wrt, nthbot = get_differential_var_str_lower(frac.lower.start.text)
-        print("Lower: ", wrt, nthbot)
+        wrt = get_differential_var_str(frac.lower.start.text)
+        symb = wrt.split("^")[0]
+        nbot = "1"
+        if symb + "^" in wrt:
+            if "^{" in wrt:
+                start = symb +'^{'
+                end = '}'
+                nbot = wrt[wrt.find(start) + len(start) : wrt.rfind(end)]
+                wrt = wrt.replace(start[1:] + nbot + end, '')
+            else:
+                nbot = wrt[2]
+                wrt = wrt.replace("^" + nbot, '', 1)
+        nbot = parse_latex(nbot)
+        #print("Symb :", symb)
+        #print("Lower :", wrt)
+        #print("nbot :", nbot)
         diff_op = True
     elif (lower_itv_len == 2 and frac.lower.start.type == LaTeXLexer.SYMBOL
           and frac.lower.start.text == '\\partial'
@@ -456,8 +470,20 @@ def convert_frac(frac):
               and frac.upper.start.type == LaTeXLexer.SYMBOL
               and frac.upper.start.text == '\\partial'):
             return [wrt]
-        upper_text, nthtop = get_differential_var_str_upper(frac.upper.start.text)
-        print("Upper: ",upper_text, nthtop)
+        upper_text = rule2text(frac.upper)
+        ntop = "1"
+        if "d^" in upper_text:
+            if "^{" in upper_text:
+                start = 'd^{'
+                end = '}'
+                ntop = upper_text[upper_text.find(start) + len(start) : upper_text.rfind(end)]
+                upper_text = upper_text.replace(start[1:]+ntop+end, '')
+            else:
+                ntop = upper_text[2]
+                upper_text = upper_text.replace("^" + ntop, '', 1)
+        ntop = parse_latex(ntop)
+        #print("Upper:", upper_text)
+        #print("ntop :", ntop)
 
         expr_top = None
         if diff_op and upper_text.startswith('d'):
@@ -465,7 +491,7 @@ def convert_frac(frac):
         elif partial_op and frac.upper.start.text == '\\partial':
             expr_top = parse_latex(upper_text[len('\\partial'):])
         if expr_top:
-            return sympy.Derivative(expr_top, wrt, nthbot)
+            return sympy.Derivative(expr_top, (wrt, ntop))
 
     expr_top = convert_expr(frac.upper)
     expr_bot = convert_expr(frac.lower)
@@ -693,13 +719,11 @@ def handle_limit(func):
 
 
 def get_differential_var(d):
-    text, nth = get_differential_var_str_upper(d.getText())
+    text = get_differential_var_str(d.getText())
     return sympy.Symbol(text)
 
 
-def get_differential_var_str_upper(text):
-    nth = 1
-    print("Text:", text)
+def get_differential_var_str(text):
     for i in range(1, len(text)):
         c = text[i]
         if not (c == " " or c == "\r" or c == "\n" or c == "\t"):
@@ -708,20 +732,4 @@ def get_differential_var_str_upper(text):
     text = text[idx:]
     if text[0] == "\\":
         text = text[1:]
-    print("Inside Upper: ", text)
-    return text, nth
-
-def get_differential_var_str_lower(text):
-    nth = 1
-    for i in range(1, len(text)):
-        c = text[i]
-        if not (c == " " or c == "\r" or c == "\n" or c == "\t"):
-            idx = i
-            break
-    text = text[idx:]
-    if text[0] == "\\":
-        text = text[1:]
-    if len(text.split('^')) > 1:
-        nth = sympy.sympify(text.split('^')[-1].strip("{}"))
-    print("Inside Lower: ", nth, type(nth))
-    return text, nth
+    return text
