@@ -249,7 +249,7 @@ NUMBER:
 	DIGIT+ (',' DIGIT DIGIT DIGIT)*
 	| DIGIT* (',' DIGIT DIGIT DIGIT)* '.' DIGIT+;
 
-EQUAL: ('&' WS_CHAR*?)? '=';
+EQUAL: (('&' WS_CHAR*?)? '=') | ('=' (WS_CHAR*? '&')?);
 NEQ: '\\neq';
 
 LT: '<';
