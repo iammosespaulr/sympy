@@ -47,13 +47,13 @@ if ErrorListener:
                 ]
                 if len(expected) < 10:
                     expected = " ".join(expected)
-                    err = (fmt % ("I expected one of these: " + expected, self.src,
+                    err = (fmt % ("I expected one of these: " + expected + " here", self.src,
                                   marker))
                 else:
                     err = (fmt % ("I expected something else here", self.src,
                                   marker))
             else:
-                err = fmt % ("I don't understand this", self.src, marker)
+                err = fmt % ("I don't understand what's here", self.src, marker)
             raise LaTeXParsingError(err)
 
 
