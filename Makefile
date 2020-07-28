@@ -7,7 +7,7 @@ test:
 	pytest sympy/parsing/tests/test_latex.py
 
 install:
-	pip install . --target ../../Mathpix/package/ --upgrade
+	pip install . --target ../package/ --upgrade
 
 install_loc: install
 	pip install . --upgrade
