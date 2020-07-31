@@ -398,6 +398,20 @@ def convert_atom(atom):
         x = sympy.Symbol('x')
         func = sympy.Function(funcv)(x)
         return func.diff(x, n_times).subs(x, val)
+    elif atom.dot():
+        try:
+            val = convert_atom(atom.dot().atom())
+        except:
+            val = convert_expr(atom.dot().expr())
+        t = sympy.Symbol('t')
+        return sympy.Derivative(val, (t, 1))
+    elif atom.ddot():
+        try:
+            val = convert_atom(atom.ddot().atom())
+        except:
+            val = convert_expr(atom.ddot().expr())
+        t = sympy.Symbol('t')
+        return sympy.Derivative(val, (t, 2))
     elif atom.angularunit():
         text = rule2text(atom.angularunit())
         val = sympy.parse_expr(text.split('^')[0])
