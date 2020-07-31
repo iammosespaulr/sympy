@@ -1,4 +1,4 @@
-# Generated from /Users/mosespaul/Desktop/Coding/GSoC/sympy2/sympy/parsing/latex/LaTeX.g4 by ANTLR 4.8
+# Generated from /Users/mosespaul/Desktop/Coding/Mathpix/sympy/sympy/parsing/latex/LaTeX.g4 by ANTLR 4.8
 # encoding: utf-8
 from __future__ import print_function
 from antlr4 import *
