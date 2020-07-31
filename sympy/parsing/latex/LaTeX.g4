@@ -361,6 +361,8 @@ atom: (LETTER | SYMBOL) subexpr?
 	| array
 	| mathit
 	| prime
+	| dot
+	| ddot
 	| angularunit;
 
 angularunit: (NUMBER | LETTER) CARET L_BRACE CIRC R_BRACE;
@@ -372,6 +374,10 @@ prime: (
 			| '’'*
 		) L_PAREN expr R_PAREN
 	);
+
+dot: DOT ((L_BRACE expr R_BRACE) | atom);
+
+ddot: DDOT ((L_BRACE expr R_BRACE) | atom);
 
 matrix:
 	LEFT_BRACKET (BEGIN_ARR)? array_elements (
