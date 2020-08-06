@@ -53,6 +53,12 @@ L_BAR: '\\left|';
 LEFT_BRACKET: '\\left[';
 RIGHT_BRACKET: '\\right]';
 
+L_ANGLE: '\\langle';
+R_ANGLE: '\\rangle';
+
+L_L_ANGLE: '\\left\\angle';
+R_R_ANGLE: '\\right\\angle';
+
 PERIOD: '.';
 BAR_VAL: '\\|';
 
@@ -363,7 +369,13 @@ atom: (LETTER | SYMBOL) subexpr?
 	| prime
 	| dot
 	| ddot
-	| angularunit;
+	| angularunit
+	| bra
+	| ket;
+
+bra: L_ANGLE expr (R_BAR | BAR);
+
+ket: (L_BAR | BAR) expr R_ANGLE;
 
 angularunit: (NUMBER | LETTER) CARET L_BRACE CIRC R_BRACE;
 
