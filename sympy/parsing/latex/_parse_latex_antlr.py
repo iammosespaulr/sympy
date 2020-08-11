@@ -400,16 +400,16 @@ def convert_atom(atom):
         func = sympy.Function(funcv)(x)
         return func.diff(x, n_times).subs(x, val)
     elif atom.dot():
-        try:
+        if atom.dot().atom():
             val = convert_atom(atom.dot().atom())
-        except:
+        elif atom.dot().expr():
             val = convert_expr(atom.dot().expr())
         t = sympy.Symbol('t')
         return sympy.Derivative(val, (t, 1))
     elif atom.ddot():
-        try:
+        if atom.ddot().atom():
             val = convert_atom(atom.ddot().atom())
-        except:
+        elif atom.ddot().expr():
             val = convert_expr(atom.ddot().expr())
         t = sympy.Symbol('t')
         return sympy.Derivative(val, (t, 2))
@@ -561,7 +561,10 @@ def convert_func(func):
 
         if (name == "log" or name == "ln"):
             if func.subexpr():
-                base = convert_expr(func.subexpr().expr())
+                if func.subexpr().expr():
+                    base = convert_expr(func.subexpr().expr())
+                elif func.subexpr().atom():
+                    base = convert_atom(func.subexpr().atom())
             elif name == "log":
                 base = 10
             elif name == "ln":
@@ -570,10 +573,10 @@ def convert_func(func):
         
         if name == "Gamma":
             a = arg                
-            try:
+            if func.func_arg().func_arg():
                 x = convert_func_arg(func.func_arg().func_arg())
                 expr = sympy.uppergamma(a, x, evaluate=False)
-            except:
+            else:
                 def _gamma(x):
                     return sympy.gamma(x, evaluate=False)
                 if isinstance(a, MutableDenseMatrix):
@@ -596,10 +599,10 @@ def convert_func(func):
 
         if name == "zeta":
             s = arg
-            try:
+            if func.func_arg().func_arg():
                 a = convert_func_arg(func.func_arg().func_arg())
                 expr = sympy.zeta(s, a, evaluate=False)
-            except:
+            else:
                 expr = sympy.zeta(s, evaluate=False)
 
         func_pow = None
