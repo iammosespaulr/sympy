@@ -17,7 +17,6 @@ options {
 }
 
 WS: [ \t\r\n]+ -> skip;
-
 THINSPACE: ('\\,' | '\\thinspace') -> skip;
 MEDSPACE: ('\\:' | '\\medspace') -> skip;
 THICKSPACE: ('\\;' | '\\thickspace') -> skip;
@@ -26,6 +25,25 @@ QQUAD: '\\qquad' -> skip;
 NEGTHINSPACE: ('\\!' | '\\negthinspace') -> skip;
 NEGMEDSPACE: '\\negmedspace' -> skip;
 NEGTHICKSPACE: '\\negthickspace' -> skip;
+CMD_LEFT: '\\left' -> skip;
+CMD_RIGHT: '\\right' -> skip;
+
+IGNORE:
+	(
+		'\\vrule'
+		| '\\vcenter'
+		| '\\vbox'
+		| '\\vskip'
+		| '\\vspace'
+		| '\\hfil'
+		| '\\*'
+		| '\\-'
+		| '\\.'
+		| '\\/'
+		| '\\"'
+		| '\\('
+		| '\\='
+	) -> skip;
 
 ADD: '+';
 SUB: '-';
@@ -43,8 +61,6 @@ L_BRACE_LITERAL: '\\{';
 R_BRACE_LITERAL: '\\}';
 L_BRACKET: '[';
 R_BRACKET: ']';
-CMD_LEFT: '\\left' -> skip;
-CMD_RIGHT: '\\right' -> skip;
 
 BAR: '|';
 
@@ -250,10 +266,12 @@ DIFFERENTIAL:
 PARTIAL: '\\partial';
 
 LETTER: [a-zA-Z];
-fragment DIGIT: [0-9];
-NUMBER:
-	DIGIT+ (',' DIGIT DIGIT DIGIT)*
-	| DIGIT* (',' DIGIT DIGIT DIGIT)* '.' DIGIT+;
+fragment DIGIT: [0-9]+;
+//Real number as defined in CFITSIO Lexical Parser
+fragment FLOAT: ([0-9]* [.][0-9]+)
+	| ([0-9]* [.]* [0-9]+ [eEdD][+-]? [0-9]+)
+	| ([0-9]* [.]);
+NUMBER: (DIGIT | FLOAT);
 
 EQUAL: (('&' WS_CHAR*?)? '=') | ('=' (WS_CHAR*? '&')?);
 NEQ: '\\neq';
@@ -355,7 +373,9 @@ group:
 	| L_BRACE expr R_BRACE
 	| L_BRACE_LITERAL expr R_BRACE_LITERAL
 	| L_BRACE_LITERAL expr PERIOD
-	| PERIOD expr R_BRACE_LITERAL;
+	| PERIOD expr R_BRACE_LITERAL
+	| L_PAREN expr PERIOD
+	| PERIOD expr R_PAREN;
 
 abs_group: BAR expr BAR;
 
