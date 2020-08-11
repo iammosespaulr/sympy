@@ -19,7 +19,7 @@ import sys
 def serializedATN():
     with StringIO() as buf:
         buf.write(u"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3")
-        buf.write(u"\u00c9\u026a\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6")
+        buf.write(u"\u00ca\u026a\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6")
         buf.write(u"\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4")
         buf.write(u"\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t")
         buf.write(u"\22\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27")
@@ -431,7 +431,7 @@ class LaTeXParser ( Parser ):
                       u"PARTIAL", u"LETTER", u"NUMBER", u"EQUAL", u"NEQ",
                       u"LT", u"LTE", u"LTE_Q", u"LTE_S", u"GT", u"GTE",
                       u"GTE_Q", u"GTE_S", u"LL", u"GG", u"LLL", u"GGG",
-                      u"BANG", u"SYMBOL" ]
+                      u"BANG", u"SYMBOL", u"TEXT" ]
 
     RULE_math = 0
     RULE_relation = 1
@@ -694,6 +694,7 @@ class LaTeXParser ( Parser ):
     GGG=197
     BANG=198
     SYMBOL=199
+    TEXT=200
 
     def __init__(self, input, output=sys.stdout):
         super(LaTeXParser, self).__init__(input, output=output)

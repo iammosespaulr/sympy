@@ -424,6 +424,11 @@ determinant:
 mathit: CMD_MATHIT L_BRACE mathit_text R_BRACE;
 mathit_text: (NUMBER | LETTER)+;
 
+TEXT:
+	'\\text' (WS)*? L_BRACE (WS)*? (NUMBER | LETTER)+ (WS)*? R_BRACE (
+		WS
+	)*? -> skip;
+
 array:
 	BEGIN_ARR array_elements (('\\\\') array_elements)*? END_ARR;
 
