@@ -479,7 +479,9 @@ func_normal:
 	| ZETA
 	| NABLA
 	| DELTA
-	| LOWER_SIGMA;
+	| LOWER_SIGMA
+	| VEC
+	| HAT;
 
 func:
 	func_normal (subexpr? supexpr? | supexpr? subexpr?) (
