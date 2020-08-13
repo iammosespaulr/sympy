@@ -11,3 +11,6 @@ install:
 
 install_loc: install
 	pip install . --upgrade
+
+bforepushing:
+	rm -rf sympy/parsing/latex/.antlr
