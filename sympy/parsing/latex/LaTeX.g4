@@ -386,7 +386,6 @@ atom: (LETTER | SYMBOL) subexpr?
 	| determinant
 	| array
 	| mathit
-	| preprime
 	| prime
 	| dot
 	| ddot
