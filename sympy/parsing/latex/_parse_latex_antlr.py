@@ -333,7 +333,14 @@ def convert_exp(exp):
 
 def convert_comp(comp):
     if comp.group():
-        return convert_expr(comp.group().expr())
+        expr = convert_expr(comp.group().expr())
+        matrix_form  = (comp.group().L_BRACE() and comp.group().R_BRACE()) or \
+            (comp.group().L_PAREN() and comp.group().R_PAREN()) or \
+            (comp.group().L_BRACKET() and comp.group().R_BRACKET()) or \
+            (comp.group().L_BRACE_LITERAL() and comp.group().R_BRACE_LITERAL())
+        if isinstance(expr, tuple) and matrix_form:
+            return MutableDenseMatrix(expr)
+        return expr
     elif comp.abs_group():
         return sympy.Abs(convert_expr(comp.abs_group().expr()), evaluate=False)
     elif comp.atom():
@@ -386,7 +393,11 @@ def convert_atom(atom):
         var = get_differential_var(atom.DIFFERENTIAL())
         return sympy.Symbol('d' + var.name)
     elif atom.prime():
-        val = convert_expr(atom.prime().expr())
+        if atom.prime().expr():
+            val = convert_expr(atom.prime().expr())
+        else:
+            func = sympy.Function(sympy.Symbol(atom.prime().preprime().LETTER().getText()))('t')
+            return func.diff(sympy.Symbol('t'), 1)
         text = rule2text(atom.prime())
         funcv = text.split('^')[0]
         if funcv == text:

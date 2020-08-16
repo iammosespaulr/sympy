@@ -66,14 +66,9 @@ BAR: '|';
 
 R_BAR: '\\right|';
 L_BAR: '\\left|';
-LEFT_BRACKET: '\\left[';
-RIGHT_BRACKET: '\\right]';
 
 L_ANGLE: '\\langle';
 R_ANGLE: '\\rangle';
-
-L_L_ANGLE: '\\left\\angle';
-R_R_ANGLE: '\\right\\angle';
 
 PERIOD: '.';
 BAR_VAL: '\\|';
@@ -382,7 +377,6 @@ abs_group: BAR expr BAR;
 atom: (LETTER | SYMBOL) subexpr?
 	| NUMBER
 	| DIFFERENTIAL
-	| matrix
 	| determinant
 	| array
 	| mathit
@@ -405,16 +399,11 @@ preprime:
 		| '\''*
 		| '’'*
 	);
-prime: ( preprime L_PAREN expr R_PAREN);
+prime: preprime (L_PAREN expr R_PAREN)?;
 
 dot: DOT ((L_BRACE expr R_BRACE) | atom);
 
 ddot: DDOT ((L_BRACE expr R_BRACE) | atom);
-
-matrix:
-	LEFT_BRACKET (BEGIN_ARR)? array_elements (
-		('\\\\') array_elements
-	)*? (END_ARR)? RIGHT_BRACKET;
 
 determinant:
 	L_BAR (BEGIN_ARR)? array_elements (('\\\\') array_elements)*? (
