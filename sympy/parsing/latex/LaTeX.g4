@@ -386,6 +386,7 @@ atom: (LETTER | SYMBOL) subexpr?
 	| determinant
 	| array
 	| mathit
+	| preprime
 	| prime
 	| dot
 	| ddot
@@ -399,13 +400,13 @@ ket: (L_BAR | BAR) expr R_ANGLE;
 
 angularunit: (NUMBER | LETTER) CARET L_BRACE CIRC R_BRACE;
 
-prime: (
-		(LETTER | SYMBOL) (
-			(CARET L_BRACE PRIME* R_BRACE)
-			| '\''*
-			| '’'*
-		) L_PAREN expr R_PAREN
+preprime:
+	(LETTER | SYMBOL) (
+		(CARET L_BRACE PRIME* R_BRACE)
+		| '\''*
+		| '’'*
 	);
+prime: ( preprime L_PAREN expr R_PAREN);
 
 dot: DOT ((L_BRACE expr R_BRACE) | atom);
 
@@ -502,7 +503,7 @@ func:
 args: (expr ',' args) | expr;
 
 limit_sub:
-	UNDERSCORE L_BRACE (LETTER | SYMBOL) LIM_APPROACH_SYM expr (
+	('\\limits')? UNDERSCORE L_BRACE (LETTER | SYMBOL) LIM_APPROACH_SYM expr (
 		CARET L_BRACE (ADD | SUB) R_BRACE
 	)? R_BRACE;
 

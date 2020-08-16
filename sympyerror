@@ -1,9 +1,5 @@
 1- \varepsilon \leq V_j(t) \leq 1+\varepsilon
 Can only compare inequalities with Expr
-A_L(\omega,\omega') =\frac{1}{D}\sum_s {w_s^2 R_s(\omega)\delta(\omega-\omega' -\omega_s)}
-I expected something else here
-A_L(\omega,\omega') =\frac{1}{D}\sum_s {w_s^2 R_s(\omega)\delta(\omega-\omega' -\omega_s)}
-~~~~~~~~~~~~~~~~~~^
 [\alpha,\psi]=\lambda \psi,~~~\lambda\geq 0
 I expected one of these: ']' here
 [\alpha,\psi]=\lambda \psi,~~~\lambda\geq 0
