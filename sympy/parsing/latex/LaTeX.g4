@@ -125,15 +125,12 @@ R_CEIL: '\\rceil';
 I_MATH: '\\imath';
 J_MATH: '\\jmath';
 
-DELTA: '\\Delta';
-LOWER_DELTA: '\\delta';
-FUNC_GAMMA: '\\Gamma';
-LOWER_GAMMA: '\\gamma';
-NABLA: '\\nabla';
+//DELTA: '\\Delta'; LOWER_DELTA: '\\delta'; FUNC_GAMMA: '\\Gamma'; LOWER_GAMMA: '\\gamma'; NABLA:
+// '\\nabla';
 SIGMA: '\\Sigma';
-LOWER_SIGMA: '\\sigma';
+//LOWER_SIGMA: '\\sigma'; 
 PI: '\\Pi';
-ZETA: '\\zeta';
+//ZETA: '\\zeta';
 
 BEGIN_ARR:
 	'\\begin' L_BRACE (LETTER | '*')+ R_BRACE (
@@ -349,8 +346,8 @@ comp:
 	| frac
 	| binom
 	| floor
-	| ceil
-	| delta;
+	| ceil;
+//| delta;
 
 comp_nofunc:
 	group
@@ -359,8 +356,8 @@ comp_nofunc:
 	| frac
 	| binom
 	| floor
-	| ceil
-	| delta;
+	| ceil;
+//| delta;
 
 group:
 	L_PAREN expr R_PAREN
@@ -433,7 +430,7 @@ floor: L_FLOOR val = expr R_FLOOR;
 
 ceil: L_CEIL val = expr R_CEIL;
 
-delta: LOWER_DELTA UNDERSCORE L_BRACE x = expr y = expr R_BRACE;
+//delta: LOWER_DELTA UNDERSCORE L_BRACE x = expr y = expr R_BRACE;
 
 func_normal:
 	FUNC_EXP
@@ -463,12 +460,7 @@ func_normal:
 	| FUNC_ARCSCH
 	| FUNC_ARSECH
 	| FUNC_ARCOTH
-	| FUNC_GAMMA
-	| LOWER_GAMMA
-	| ZETA
-	| NABLA
-	| DELTA
-	| LOWER_SIGMA
+	//| FUNC_GAMMA | LOWER_GAMMA | ZETA | NABLA | DELTA | LOWER_SIGMA
 	| VEC
 	| HAT;
 

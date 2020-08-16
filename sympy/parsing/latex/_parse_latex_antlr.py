@@ -96,20 +96,26 @@ def convert_relation(rel):
     #print(rule2text(rel))
     #print(type(lh), lh)
     #print(type(rh), rh)
-    if any(isinstance(x, (sympy.MutableDenseMatrix, tuple)) for x in (lh, rh)):
+    if any(isinstance(x, (sympy.MutableDenseMatrix, tuple, sympy.ImmutableMatrix)) for x in (lh, rh)) and not any(isinstance(x, (sympy.MutableDenseMatrix, tuple, sympy.ImmutableMatrix)) for x in (lh, rh)):
         l = sympy.Symbol('l')
         if checkassignmentvseq(lh, rh):
             val = tuple([x.subs(l, rh) for x in sympy.solve(sympy.Eq(lh, l), lh.free_symbols)])
             if len(val) > 1:
                 return val
             else:
-                return val[0]
+                if val:
+                    return val[0]
+                else:
+                    pass
         elif checkassignmentvseq(rh, lh):
-            val = tuple([x.subs(l, lh) for x in  sympy.solve(sympy.Eq(rh, l), rh.free_symbols)])
+            val = tuple([x.subs(l, lh) for x in sympy.solve(sympy.Eq(rh, l), rh.free_symbols)])
             if len(val) > 1:
                 return val
             else:
-                return val[0]
+                if val:
+                    return val[0]
+                else:
+                    pass
         else:
             pass
     if rel.LT():
@@ -353,8 +359,8 @@ def convert_comp(comp):
         return convert_floor(comp.floor())
     elif comp.ceil():
         return convert_ceil(comp.ceil())
-    elif comp.delta():
-        return convert_delta(comp.delta())
+    #elif comp.delta():
+    #    return convert_delta(comp.delta())
     elif comp.func():
         return convert_func(comp.func())
 
@@ -396,8 +402,9 @@ def convert_atom(atom):
         if atom.prime().expr():
             val = convert_expr(atom.prime().expr())
         else:
-            func = sympy.Function(sympy.Symbol(atom.prime().preprime().LETTER().getText()))('t')
-            return func.diff(sympy.Symbol('t'), 1)
+            #func = sympy.Function(sympy.Symbol(atom.prime().preprime().LETTER().getText()))('t')
+            #return func.diff(sympy.Symbol('t'), 1)
+            return sympy.Symbol(rule2text(atom.prime().preprime()))
         text = rule2text(atom.prime())
         funcv = text.split('^')[0]
         if funcv == text:
