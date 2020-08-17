@@ -243,7 +243,7 @@ COLON: ':';
 
 fragment WS_CHAR: [ \t\r\n];
 DIFFERENTIAL:
-	'd' (
+	('d' | PARTIAL) (
 		WS_CHAR*? CARET (
 			(NUMBER | LETTER)
 			| L_BRACE (NUMBER | LETTER) R_BRACE

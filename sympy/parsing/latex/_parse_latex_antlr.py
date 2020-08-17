@@ -397,6 +397,7 @@ def convert_atom(atom):
         return sympy.Number(s)
     elif atom.DIFFERENTIAL():
         var = get_differential_var(atom.DIFFERENTIAL())
+        #print("Atom: ", var)
         return sympy.Symbol('d' + var.name)
     elif atom.prime():
         if atom.prime().expr():
@@ -472,8 +473,9 @@ def convert_frac(frac):
     lower_itv = frac.lower.getSourceInterval()
     lower_itv_len = lower_itv[1] - lower_itv[0] + 1
     if (frac.lower.start == frac.lower.stop
-            and frac.lower.start.type == LaTeXLexer.DIFFERENTIAL):
+            and frac.lower.start.type == LaTeXLexer.DIFFERENTIAL and frac.lower.start.text[0] == 'd'):
         wrt = get_differential_var_str(frac.lower.start.text)
+        #print('wrt: ', wrt)
         symb = wrt.split("^")[0]
         nbot = "1"
         if symb + "^" in wrt:
@@ -490,15 +492,28 @@ def convert_frac(frac):
         #print("Lower :", wrt)
         #print("nbot :", nbot)
         diff_op = True
-    elif (lower_itv_len == 2 and frac.lower.start.type == LaTeXLexer.SYMBOL
-          and frac.lower.start.text == '\\partial'
-          and (frac.lower.stop.type == LaTeXLexer.LETTER
-               or frac.lower.stop.type == LaTeXLexer.SYMBOL)):
+    elif (frac.lower.start == frac.lower.stop
+            and frac.lower.start.type == LaTeXLexer.DIFFERENTIAL and '\\partial' in frac.lower.start.text):
+        wrt = get_differential_var_str(frac.lower.start.text)
+        wrt = wrt[1:]
+        #print('wrt: ', wrt)
+        symb = wrt.split("^")[0]
+        nbot = "1"
+        if symb + "^" in wrt:
+            if "^{" in wrt:
+                start = symb +'^{'
+                end = '}'
+                nbot = wrt[wrt.find(start) + len(start) : wrt.rfind(end)]
+                wrt = wrt.replace(start[1:] + nbot + end, '')
+            else:
+                nbot = wrt[2]
+                wrt = wrt.replace("^" + nbot, '', 1)
+        nbot = parse_latex(nbot)
+        #print("Symb :", symb)
+        #print("Lower :", wrt)
+        #print("nbot :", nbot)
         partial_op = True
-        wrt = frac.lower.stop.text
-        if frac.lower.stop.type == LaTeXLexer.SYMBOL:
-            wrt = wrt[1:]
-
+    #print(diff_op, partial_op)
     if diff_op or partial_op:
         wrt = sympy.Symbol(wrt)
         if (diff_op and frac.upper.start == frac.upper.stop
@@ -520,6 +535,15 @@ def convert_frac(frac):
             else:
                 ntop = upper_text[2]
                 upper_text = upper_text.replace("^" + ntop, '', 1)
+        if "\\partial^" in upper_text:
+            if "^{" in upper_text:
+                start = '\\partial^{'
+                end = '}'
+                ntop = upper_text[upper_text.find(start) + len(start) : upper_text.rfind(end)]
+                upper_text = upper_text.replace(start+ntop+end, 'd')
+            else:
+                ntop = upper_text[2]
+                upper_text = upper_text.replace("^" + ntop, '', 1)
         ntop = parse_latex(ntop)
         #print("Upper:", upper_text)
         #print("ntop :", ntop)
@@ -527,8 +551,9 @@ def convert_frac(frac):
         expr_top = None
         if diff_op and upper_text.startswith('d'):
             expr_top = parse_latex(upper_text[1:])
-        elif partial_op and frac.upper.start.text == '\\partial':
-            expr_top = parse_latex(upper_text[len('\\partial'):])
+        if partial_op and upper_text.startswith('d'):
+            expr_top = sympy.Function(parse_latex(upper_text[1:]))(wrt)
+        #print("expr_top: ", expr_top)
         if expr_top:
             return sympy.Derivative(expr_top, (wrt, ntop))
 
@@ -762,16 +787,22 @@ def handle_limit(func):
 
 def get_differential_var(d):
     text = get_differential_var_str(d.getText())
+    #print("Get Diff var: ", text)
     return sympy.Symbol(text)
 
 
 def get_differential_var_str(text):
-    for i in range(1, len(text)):
-        c = text[i]
-        if not (c == " " or c == "\r" or c == "\n" or c == "\t"):
-            idx = i
-            break
-    text = text[idx:]
+    #print("Text: ", text, '\\partial' in text)
+    if '\\partial' in text:
+        text = text[text.index('\\partial', 0)+8:]
+    else:    
+        for i in range(1, len(text)):
+            c = text[i]
+            if not (c == " " or c == "\r" or c == "\n" or c == "\t"):
+                idx = i
+                break
+        text = text[idx:]
     if text[0] == "\\":
         text = text[1:]
+    #print("Get Diff Var Str:", text)
     return text
