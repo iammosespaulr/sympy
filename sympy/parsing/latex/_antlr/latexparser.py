@@ -19,7 +19,7 @@ import sys
 def serializedATN():
     with StringIO() as buf:
         buf.write(u"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3")
-        buf.write(u"\u00c0\u0253\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6")
+        buf.write(u"\u00c1\u0253\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6")
         buf.write(u"\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4")
         buf.write(u"\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t")
         buf.write(u"\22\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27")
@@ -76,9 +76,9 @@ def serializedATN():
         buf.write(u"\3/\5/\u0247\n/\3\60\3\60\3\60\3\60\3\60\3\61\3\61\3")
         buf.write(u"\61\3\61\3\61\3\61\5\u018c\u01a4\u01b0\b\4\n\f\16 \"")
         buf.write(u"\62\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60")
-        buf.write(u"\62\64\668:<>@BDFHJLNPRTVXZ\\^`\2\f\4\2\u00b0\u00b3\u00b6")
-        buf.write(u"\u00b7\3\2\25\26\5\2\27\30\u00a3\u00a5\u00ab\u00ab\4")
-        buf.write(u"\2\u00ae\u00ae\u00bf\u00bf\3\2#$\4\2##%%\3\2\u00ae\u00af")
+        buf.write(u"\62\64\668:<>@BDFHJLNPRTVXZ\\^`\2\f\4\2\u00b1\u00b4\u00b7")
+        buf.write(u"\u00b8\3\2\25\26\5\2\27\30\u00a3\u00a5\u00ab\u00ab\4")
+        buf.write(u"\2\u00ae\u00ae\u00c0\u00c0\3\2#$\4\2##%%\3\2\u00ae\u00af")
         buf.write(u"\3\2\6\7\4\2/I]^\3\2-.\2\u027f\2b\3\2\2\2\4d\3\2\2\2")
         buf.write(u"\6o\3\2\2\2\bs\3\2\2\2\nu\3\2\2\2\f\u0080\3\2\2\2\16")
         buf.write(u"\u008b\3\2\2\2\20\u009d\3\2\2\2\22\u00a8\3\2\2\2\24\u00aa")
@@ -96,7 +96,7 @@ def serializedATN():
         buf.write(u"`\u024d\3\2\2\2bc\5\4\3\2c\3\3\2\2\2de\b\3\1\2ef\5\b")
         buf.write(u"\5\2fl\3\2\2\2gh\f\4\2\2hi\t\2\2\2ik\5\4\3\5jg\3\2\2")
         buf.write(u"\2kn\3\2\2\2lj\3\2\2\2lm\3\2\2\2m\5\3\2\2\2nl\3\2\2\2")
-        buf.write(u"op\5\b\5\2pq\7\u00b0\2\2qr\5\b\5\2r\7\3\2\2\2st\5\n\6")
+        buf.write(u"op\5\b\5\2pq\7\u00b1\2\2qr\5\b\5\2r\7\3\2\2\2st\5\n\6")
         buf.write(u"\2t\t\3\2\2\2uv\b\6\1\2vw\5\f\7\2w}\3\2\2\2xy\f\4\2\2")
         buf.write(u"yz\t\3\2\2z|\5\n\6\5{x\3\2\2\2|\177\3\2\2\2}{\3\2\2\2")
         buf.write(u"}~\3\2\2\2~\13\3\2\2\2\177}\3\2\2\2\u0080\u0081\b\7\1")
@@ -123,7 +123,7 @@ def serializedATN():
         buf.write(u"\u00ae\3\2\2\2\u00b1\u00b5\5\"\22\2\u00b2\u00b4\5\30")
         buf.write(u"\r\2\u00b3\u00b2\3\2\2\2\u00b4\u00b7\3\2\2\2\u00b5\u00b3")
         buf.write(u"\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6\27\3\2\2\2\u00b7\u00b5")
-        buf.write(u"\3\2\2\2\u00b8\u00bb\7\u00be\2\2\u00b9\u00bb\5\32\16")
+        buf.write(u"\3\2\2\2\u00b8\u00bb\7\u00bf\2\2\u00b9\u00bb\5\32\16")
         buf.write(u"\2\u00ba\u00b8\3\2\2\2\u00ba\u00b9\3\2\2\2\u00bb\31\3")
         buf.write(u"\2\2\2\u00bc\u00c2\7#\2\2\u00bd\u00c3\5\36\20\2\u00be")
         buf.write(u"\u00c3\5\34\17\2\u00bf\u00c0\5\36\20\2\u00c0\u00c1\5")
@@ -368,9 +368,10 @@ class LaTeXParser ( Parser ):
                      u"'\\cdot'", u"'\\div'", u"<INVALID>", u"<INVALID>",
                      u"'\\mathit'", u"'_'", u"'^'", u"':'", u"<INVALID>",
                      u"'\\partial'", u"<INVALID>", u"<INVALID>", u"<INVALID>",
-                     u"'\\neq'", u"'<'", u"<INVALID>", u"'\\leqq'", u"'\\leqslant'",
-                     u"'>'", u"<INVALID>", u"'\\geqq'", u"'\\geqslant'",
-                     u"'\\ll'", u"'\\gg'", u"'\\lll'", u"'\\ggg'", u"'!'" ]
+                     u"<INVALID>", u"'\\neq'", u"'<'", u"<INVALID>", u"'\\leqq'",
+                     u"'\\leqslant'", u"'>'", u"<INVALID>", u"'\\geqq'",
+                     u"'\\geqslant'", u"'\\ll'", u"'\\gg'", u"'\\lll'",
+                     u"'\\ggg'", u"'!'" ]
 
     symbolicNames = [ u"<INVALID>", u"<INVALID>", u"<INVALID>", u"<INVALID>",
                       u"<INVALID>", u"<INVALID>", u"<INVALID>", u"WS", u"THINSPACE",
@@ -410,10 +411,10 @@ class LaTeXParser ( Parser ):
                       u"FUNC_SQRT", u"LONG_DIV", u"CMD_TIMES", u"CMD_CDOT",
                       u"CMD_DIV", u"CMD_FRAC", u"CMD_BINOM", u"CMD_MATHIT",
                       u"UNDERSCORE", u"CARET", u"COLON", u"DIFFERENTIAL",
-                      u"PARTIAL", u"LETTER", u"NUMBER", u"EQUAL", u"NEQ",
-                      u"LT", u"LTE", u"LTE_Q", u"LTE_S", u"GT", u"GTE",
-                      u"GTE_Q", u"GTE_S", u"LL", u"GG", u"LLL", u"GGG",
-                      u"BANG", u"SYMBOL", u"TEXT" ]
+                      u"PARTIAL", u"LETTER", u"NUMBER", u"DATE", u"EQUAL",
+                      u"NEQ", u"LT", u"LTE", u"LTE_Q", u"LTE_S", u"GT",
+                      u"GTE", u"GTE_Q", u"GTE_S", u"LL", u"GG", u"LLL",
+                      u"GGG", u"BANG", u"SYMBOL", u"TEXT" ]
 
     RULE_math = 0
     RULE_relation = 1
@@ -649,23 +650,24 @@ class LaTeXParser ( Parser ):
     PARTIAL=171
     LETTER=172
     NUMBER=173
-    EQUAL=174
-    NEQ=175
-    LT=176
-    LTE=177
-    LTE_Q=178
-    LTE_S=179
-    GT=180
-    GTE=181
-    GTE_Q=182
-    GTE_S=183
-    LL=184
-    GG=185
-    LLL=186
-    GGG=187
-    BANG=188
-    SYMBOL=189
-    TEXT=190
+    DATE=174
+    EQUAL=175
+    NEQ=176
+    LT=177
+    LTE=178
+    LTE_Q=179
+    LTE_S=180
+    GT=181
+    GTE=182
+    GTE_Q=183
+    GTE_S=184
+    LL=185
+    GG=186
+    LLL=187
+    GGG=188
+    BANG=189
+    SYMBOL=190
+    TEXT=191
 
     def __init__(self, input, output=sys.stdout):
         super(LaTeXParser, self).__init__(input, output=output)
@@ -778,7 +780,7 @@ class LaTeXParser ( Parser ):
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                     self.state = 102
                     _la = self._input.LA(1)
-                    if not(((((_la - 174)) & ~0x3f) == 0 and ((1 << (_la - 174)) & ((1 << (LaTeXParser.EQUAL - 174)) | (1 << (LaTeXParser.NEQ - 174)) | (1 << (LaTeXParser.LT - 174)) | (1 << (LaTeXParser.LTE - 174)) | (1 << (LaTeXParser.GT - 174)) | (1 << (LaTeXParser.GTE - 174)))) != 0)):
+                    if not(((((_la - 175)) & ~0x3f) == 0 and ((1 << (_la - 175)) & ((1 << (LaTeXParser.EQUAL - 175)) | (1 << (LaTeXParser.NEQ - 175)) | (1 << (LaTeXParser.LT - 175)) | (1 << (LaTeXParser.LTE - 175)) | (1 << (LaTeXParser.GT - 175)) | (1 << (LaTeXParser.GTE - 175)))) != 0)):
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)

@@ -394,6 +394,10 @@ def convert_atom(atom):
             return sympy.Symbol(s)
     elif atom.NUMBER():
         s = atom.NUMBER().getText().replace(",", "")
+        if len(s) > 1:
+            s = s.lstrip('0')
+            if not s:
+                s = '0'
         return sympy.Number(s)
     elif atom.DIFFERENTIAL():
         var = get_differential_var(atom.DIFFERENTIAL())
