@@ -96,7 +96,8 @@ def convert_relation(rel):
     #print(rule2text(rel))
     #print(type(lh), lh)
     #print(type(rh), rh)
-    if any(isinstance(x, (sympy.MutableDenseMatrix, tuple, sympy.ImmutableMatrix)) for x in (lh, rh)) and not any(isinstance(x, (sympy.MutableDenseMatrix, tuple, sympy.ImmutableMatrix)) for x in (lh, rh)):
+    #print(any(isinstance(x, (sympy.MutableDenseMatrix, tuple, sympy.ImmutableMatrix)) for x in (lh, rh)), not all(isinstance(x, (sympy.MutableDenseMatrix, tuple, sympy.ImmutableMatrix)) for x in (lh, rh)))
+    if any(isinstance(x, (sympy.MutableDenseMatrix, tuple, sympy.ImmutableMatrix)) for x in (lh, rh)) and not all(isinstance(x, (sympy.MutableDenseMatrix, tuple, sympy.ImmutableMatrix)) for x in (lh, rh)):
         l = sympy.Symbol('l')
         if checkassignmentvseq(lh, rh):
             val = tuple([x.subs(l, rh) for x in sympy.solve(sympy.Eq(lh, l), lh.free_symbols)])
