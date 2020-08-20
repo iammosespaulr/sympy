@@ -15,6 +15,7 @@ from sympy.core.function import _coeff_isneg, AppliedUndef, Derivative
 from sympy.core.operations import AssocOp
 from sympy.core.sympify import SympifyError
 from sympy.logic.boolalg import true
+import sympy
 
 # sympy.printing imports
 from sympy.printing.precedence import precedence_traditional
@@ -34,9 +35,11 @@ import re
 # Complete list at
 # https://docs.mathjax.org/en/latest/tex.html#supported-latex-commands
 # This variable only contains those functions which sympy uses.
-accepted_latex_functions = ['arcsin', 'arccos', 'arctan', 'sin', 'cos', 'tan',
-                            'sinh', 'cosh', 'tanh', 'sqrt', 'ln', 'log', 'sec',
-                            'csc', 'cot', 'coth', 're', 'im', 'frac', 'root',
+accepted_latex_functions = ['sin', 'cos', 'tan', 'csc', 'sec', 'cot',
+                            'sinh', 'cosh', 'tanh', 'csch', 'sech', 'coth',
+                            'arcsin', 'arccos', 'arctan', 'arccsc', 'arcsec', 'arccot',
+                            'arsinh', 'arcosh', 'artanh', 'arcsch', 'arsech', 'arcoth',
+                            'sqrt', 'ln', 'log', 're', 'im', 'frac', 'root',
                             'arg',
                             ]
 
@@ -144,9 +147,9 @@ class LatexPrinter(Printer):
         "fold_frac_powers": False,
         "fold_func_brackets": False,
         "fold_short_frac": None,
-        "inv_trig_style": "abbreviated",
+        "inv_trig_style": "power",
         "itex": False,
-        "ln_notation": False,
+        "ln_notation": True,
         "long_frac_ratio": None,
         "mat_delim": "[",
         "mat_str": None,
@@ -1008,8 +1011,8 @@ class LatexPrinter(Printer):
             return tex
 
     def _print_log(self, expr, exp=None):
-        if not self._settings["ln_notation"]:
-            tex = r"\log{\left(%s \right)}" % self._print(expr.args[0])
+        if not self._settings["ln_notation"] or not expr.args[1] == sympy.E:
+            tex = r"\log_{%s} {\left(%s \right)}" % (self._print(expr.args[1]), self._print(expr.args[0]))
         else:
             tex = r"\ln{\left(%s \right)}" % self._print(expr.args[0])
 
@@ -2710,8 +2713,8 @@ def translate(s):
 
 
 def latex(expr, full_prec=False, min=None, max=None, fold_frac_powers=False,
-          fold_func_brackets=False, fold_short_frac=None, inv_trig_style="abbreviated",
-          itex=False, ln_notation=False, long_frac_ratio=None,
+          fold_func_brackets=False, fold_short_frac=None, inv_trig_style="power",
+          itex=False, ln_notation=True, long_frac_ratio=None,
           mat_delim="[", mat_str=None, mode="plain", mul_symbol=None,
           order=None, symbol_names=None, root_notation=True,
           mat_symbol_style="plain", imaginary_unit="i", gothic_re_im=False,
