@@ -1011,10 +1011,13 @@ class LatexPrinter(Printer):
             return tex
 
     def _print_log(self, expr, exp=None):
-        if not self._settings["ln_notation"] or not expr.args[1] == sympy.E:
-            tex = r"\log_{%s} {\left(%s \right)}" % (self._print(expr.args[1]), self._print(expr.args[0]))
+        if not len(expr.args) == 2:
+            base = sympy.E
+        top = expr.args[0]
+        if not self._settings["ln_notation"] or not base == sympy.E:
+            tex = r"\log_{%s} {\left(%s \right)}" % (self._print(base), self._print(top))
         else:
-            tex = r"\ln{\left(%s \right)}" % self._print(expr.args[0])
+            tex = r"\ln{\left(%s \right)}" % self._print(top)
 
         if exp is not None:
             return r"%s^{%s}" % (tex, exp)
