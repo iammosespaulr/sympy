@@ -1013,6 +1013,8 @@ class LatexPrinter(Printer):
     def _print_log(self, expr, exp=None):
         if not len(expr.args) == 2:
             base = sympy.E
+        else:
+            base = expr.args[1]
         top = expr.args[0]
         if not self._settings["ln_notation"] or not base == sympy.E:
             tex = r"\log_{%s} {\left(%s \right)}" % (self._print(base), self._print(top))
