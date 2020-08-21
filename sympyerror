@@ -3,11 +3,6 @@ Can only compare inequalities with Expr
 
  --- 
 
-A_L(\omega,\omega') =\frac{1}{D}\sum_s {w_s^2 R_s(\omega)\delta(\omega-\omega' -\omega_s)}
-'NoneType' object is not subscriptable
-
- --- 
-
 [\alpha,\psi]=\lambda \psi,~~~\lambda\geq 0
 I don't understand what's here
 [\alpha,\psi]=\lambda \psi,~~~\lambda\geq 0
@@ -127,11 +122,6 @@ I expected something else here
 
  --- 
 
-b_j(t+1) = b_j(t) + \beta_j(t) \Delta{t}
-local variable 'expr' referenced before assignment
-
- --- 
-
 c\ = \ \varphi^{1/A}
 I don't understand what's here
 c\ = \ \varphi^{1/A}
@@ -153,20 +143,6 @@ D_1=[-L,L],   \mbox{and}  D_2 = (-\infty, -L) \cup (L, \infty)
 
  --- 
 
-\delta=\int\int [\,|W(x,p)|-W(x,p)\,]\,dx\,dp
-I expected one of these: '_' here
-\delta=\int\int [\,|W(x,p)|-W(x,p)\,]\,dx\,dp
-~~~~~~^
-
- --- 
-
-\Delta_\tau = 1.1 \, \varepsilon_w
-I expected something else here
-\Delta_\tau = 1.1 \, \varepsilon_w
-~~~~~~~~~~~~^
-
- --- 
-
 \Delta_\tau = 2\Delta_\xi+ \Delta_A\
 I don't understand what's here
 \Delta_\tau = 2\Delta_\xi+ \Delta_A\
@@ -174,20 +150,10 @@ I don't understand what's here
 
  --- 
 
-\Delta\theta={\pi\over n-1}
-local variable 'expr' referenced before assignment
-
- --- 
-
-\Delta\theta={\pi\over n+1+j/(k-1)}
-local variable 'expr' referenced before assignment
-
- --- 
-
 \delta {V} = {\rm{ }}\mathop {\max }\limits_j | {\frac{{{V_j(t)} - {V_0}}}{{{V_0}}}} |
-missing '_' at '{'
+I don't understand what's here
 \delta {V} = {\rm{ }}\mathop {\max }\limits_j | {\frac{{{V_j(t)} - {V_0}}}{{{V_0}}}} |
-~~~~~~~^
+~~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -209,18 +175,6 @@ dP^{(\beta)}_{\langle {\tilde S}\rangle}({\tilde S}) = p^{(\beta)}_{\langle {\ti
 I don't understand what's here
 dP^{(\beta)}_{\langle {\tilde S}\rangle}({\tilde S}) = p^{(\beta)}_{\langle {\tilde S}\rangle}({\tilde S})\, dR\, \frac{d\theta}{2\pi}
 ~~~~~~~~~~~~~~~~~~~~~~~^
-
- --- 
-
-d'(x'_i,x'_j)\leqslant\min\{d'(x'_i,x'_k),d'(x'_j,x'_k)\}
-'NoneType' object is not subscriptable
-
- --- 
-
-\epsilon(t)=-\int \dot{\gamma}_{MAX}(t')\cdot \cos\beta_{MAX}(t') dt'
-I expected something else here
-\epsilon(t)=-\int \dot{\gamma}_{MAX}(t')\cdot \cos\beta_{MAX}(t') dt'
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -279,23 +233,9 @@ I expected something else here
  --- 
 
 \frac{\partial^2 \phi}{\partial x^2}+\frac{\partial^2 \phi}{\partial y^2}=-\pi \cos(\pi x)-\pi \cos(\pi y)
-I expected something else here
-\frac{\partial^2 \phi}{\partial x^2}+\frac{\partial^2 \phi}{\partial y^2}=-\pi \cos(\pi x)-\pi \cos(\pi y)
-~~~~~~^
-
- --- 
-
-\frac{\partial P}{\partial t}=-\nabla(P\cdot V)
 I don't understand what's here
-\frac{\partial P}{\partial t}=-\nabla(P\cdot V)
-~~~~~~^
-
- --- 
-
--\frac{\partial S}{\partial t}=\frac{(\nabla S)^2}{2m}+\Phi-\frac{\hbar^2}{2m}\frac{\Delta A}A
-I don't understand what's here
--\frac{\partial S}{\partial t}=\frac{(\nabla S)^2}{2m}+\Phi-\frac{\hbar^2}{2m}\frac{\Delta A}A
-~~~~~~~^
+^2 \phi
+^
 
  --- 
 
@@ -313,13 +253,15 @@ I don't understand what's here
 
  --- 
 
-h_{22}^{QA}(t)=e^{-2i\epsilon(t)}\sum_{m'=-2}^{2}e^{-im'\gamma_{MAX}(t)} d^2_{m'2}(-\beta_{MAX}(t))h_{2m'}(t)
-'NoneType' object is not subscriptable
+g(r)=f(r)+\frac{1}{2}\frac{\partial f(r)}{\partial r}r
+expecting string or Symbol for name
 
  --- 
 
 \hat{\bf n} \cdot (\hat{\bf x} \frac{\partial \phi}{\partial x}+\hat{\bf y} \frac{\partial \phi}{\partial y} )=0 \mbox{~~~~~~~~~$(x,y) \in \Gamma$.}
-local variable 'expr' referenced before assignment
+I don't understand what's here
+\hat{\bf n} \cdot (\hat{\bf x} \frac{\partial \phi}{\partial x}+\hat{\bf y} \frac{\partial \phi}{\partial y} )=0 \mbox{~~~~~~~~~$(x,y) \in \Gamma$.}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -365,13 +307,6 @@ I(\vec{\mu}) = \sum_{i=1}^r\sum_{j=1}^r d_{i,j} I(\mu_i,\mu_j)
 
  --- 
 
-J^{s}_{k}(\omega) = |\langle \Psi_{sk}^{f}|\Delta| \Psi^{0}\rangle |^2 \delta(\omega - \varepsilon_k + E_0 - E_s)
-missing {'|', '\right|'} at '\delta'
-J^{s}_{k}(\omega) = |\langle \Psi_{sk}^{f}|\Delta| \Psi^{0}\rangle |^2 \delta(\omega - \varepsilon_k + E_0 - E_s)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-
- --- 
-
 \kappa_i=\arccos ( \frac{\vec{S}_i\cdot \vec{L}}{\|\vec{S}_i\|\|\vec{L}\|})
 I expected something else here
 \kappa_i=\arccos ( \frac{\vec{S}_i\cdot \vec{L}}{\|\vec{S}_i\|\|\vec{L}\|})
@@ -387,9 +322,9 @@ I expected one of these: '|' '\right|' here
  --- 
 
 \langle (\frac{\partial u}{\partial x})^2 \rangle =\frac{2u'^2}{\lambda_f^2}= \frac{4k^2}{3\lambda_f^2}
-I expected something else here
+I expected one of these: '|' '\right|' here
 \langle (\frac{\partial u}{\partial x})^2 \rangle =\frac{2u'^2}{\lambda_f^2}= \frac{4k^2}{3\lambda_f^2}
-~~~~~~~~~~~~~~~^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -442,13 +377,10 @@ I expected one of these: '|' '\right|' here
 
  --- 
 
-\mathcal D^2\Delta\psi+i\mathcal D\frac{\partial}{\partial t}\psi-\frac{\Phi}{2m}\psi=0
-local variable 'expr' referenced before assignment
-
- --- 
-
 \mathcal D\Delta\psi+i\frac{\partial\psi}{\partial t}=(\frac{\Phi}{2m\langle\mathcal D\rangle}+\delta\mathcal D(\nabla\ln\psi)^2 )\psi
-local variable 'expr' referenced before assignment
+I expected something else here
+\mathcal D\Delta\psi+i\frac{\partial\psi}{\partial t}=(\frac{\Phi}{2m\langle\mathcal D\rangle}+\delta\mathcal D(\nabla\ln\psi)^2 )\psi
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -456,16 +388,6 @@ local variable 'expr' referenced before assignment
 I expected something else here
 \mathcal D=\hbar/2m
 ~~~~~~~~~~~^
-
- --- 
-
-\mathcal D(t,\tau)=\mathcal D '(t)\tau^{(2/D)-1}
-'NoneType' object is not subscriptable
-
- --- 
-
-\mathcal V =-2i\mathcal D \nabla(\ln\psi)
-local variable 'expr' referenced before assignment
 
  --- 
 
@@ -497,32 +419,6 @@ I expected something else here
 
  --- 
 
-\nabla\cdot\epsilon_r(\mathbf{r})\nabla\phi(\mathbf{r})=-\frac{\rho(\mathbf{r})}{\epsilon_0}
-I don't understand what's here
-\nabla\cdot\epsilon_r(\mathbf{r})\nabla\phi(\mathbf{r})=-\frac{\rho(\mathbf{r})}{\epsilon_0}
-~~~~~~^
-
- --- 
-
-\nabla\cdot\textbf{D}=\rho(x,y)
-I don't understand what's here
-\nabla\cdot\textbf{D}=\rho(x,y)
-~~~~~~^
-
- --- 
-
-\nabla\phi(x,y)=-\frac{\textbf{D}}{\epsilon}
-local variable 'expr' referenced before assignment
-
- --- 
-
-\nabla\times\textbf{E}=0
-I don't understand what's here
-\nabla\times\textbf{E}=0
-~~~~~~^
-
- --- 
-
 N \ := \ d\cdot \varphi^{L/A}
 I don't understand what's here
 N \ := \ d\cdot \varphi^{L/A}
@@ -541,13 +437,6 @@ I don't understand what's here
 I don't understand what's here
 \overline{\bf K}^T \cdot \textbf{I}_\phi= \textbf{V}_\phi
 ^
-
- --- 
-
--{\partial^2 \Psi \over \partial x^2}+V(x)\Psi+\gamma f(|\Psi|) \Psi=-i{\partial \Psi \over \partial t}
-I expected something else here
--{\partial^2 \Psi \over \partial x^2}+V(x)\Psi+\gamma f(|\Psi|) \Psi=-i{\partial \Psi \over \partial t}
-~~^
 
  --- 
 
@@ -733,11 +622,6 @@ R_s(\omega) = \sum_k J^s_{k}(\omega)/ J^0_{s}(\omega)
 
  --- 
 
-R+T=\frac{k^4u'^2+k^2v'^2+k^2u^2+2k^2W[2W-1]}{k^4u'^2+k^2v'^2+k^2u^2+2k^2W}
-SympifyError: None
-
- --- 
-
 R+T_{left} \ne 1  \mbox{and}  R+T_{right} \ne 1
 I expected something else here
 R+T_{left} \ne 1  \mbox{and}  R+T_{right} \ne 1
@@ -745,27 +629,10 @@ R+T_{left} \ne 1  \mbox{and}  R+T_{right} \ne 1
 
  --- 
 
-s_1 = \sigma_1,  s_2 = \langle \sigma_1,\sigma_2 \rangle, \ldots , s_r = \langle \sigma_1, \langle \sigma_2,\ldots,\sigma_r \rangle \rangle
-I expected something else here
-s_1 = \sigma_1,  s_2 = \langle \sigma_1,\sigma_2 \rangle, \ldots , s_r = \langle \sigma_1, \langle \sigma_2,\ldots,\sigma_r \rangle \rangle
-~~~~~~~~~~~~~~^
-
- --- 
-
-(\sigma_1\,+\sigma_2-2)^{2}\,=\,2(\sigma_1\,-\sigma_2)^2
-local variable 'expr' referenced before assignment
-
- --- 
-
 S_p=( \begin{array}{ll}             r_p & t'_p \\              t_p & r'_p                  \end{array}     )
 I expected something else here
 S_p=( \begin{array}{ll}             r_p & t'_p \\              t_p & r'_p                  \end{array}     )
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-
- --- 
-
-S=r_p+t'_p\frac{1}{1-S_0 r'_p} S_0 t_p
-'NoneType' object is not subscriptable
 
  --- 
 
@@ -780,11 +647,6 @@ I don't understand what's here
 I expected one of these: <INVALID> here
 \sum_{r\ge 0} \langle S_{i+r}^z S_{i}^z\rangle = \langle (S_{i}^z)^2\rangle\sum_{r\ge 0} e^{-\frac{r}{\xi}}=\frac{\langle (S_{i}^z)^2\rangle}{1-e^{-1/\xi}}\,
 ~~~~~~~~~~~~^
-
- --- 
-
-\tau_K = \frac{1+a^2}{a}\frac{1}{\gamma \mu_0 H_K}
-'NoneType' object has no attribute 'func_arg'
 
  --- 
 
@@ -853,11 +715,6 @@ missing '{' at 'a'
  --- 
 
 \vec{v_1}=-{\mathbf F} \vec{v_1}
-local variable 'expr' referenced before assignment
-
- --- 
-
-V=\nabla S/m
 local variable 'expr' referenced before assignment
 
  --- 
