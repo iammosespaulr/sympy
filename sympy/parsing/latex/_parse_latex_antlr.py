@@ -614,7 +614,7 @@ def convert_func(func):
                 elif func.subexpr().atom():
                     base = convert_atom(func.subexpr().atom())
             elif name == "log":
-                base = 10
+                base = sympy.E
             elif name == "ln":
                 base = sympy.E
             expr = sympy.log(arg, base, evaluate=False)
