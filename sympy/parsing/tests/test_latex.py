@@ -84,10 +84,10 @@ GOOD_PAIRS = [
     ("\\left(  x + y\\right ) z", _Mul(_Add(x, y), z)),
     ("\\left(x + y\\right) z", _Mul(_Add(x, y), z)),
     ("\\left\\{x + y\\right\\} z", _Mul(_Add(x, y), z)),
-    ("1+1", Add(1, 1, evaluate=False)),
-    ("0+1", Add(0, 1, evaluate=False)),
-    ("1*2", Mul(1, 2, evaluate=False)),
-    ("0*1", Mul(0, 1, evaluate=False)),
+    ("1+1", _Add(1, 1)),
+    ("0+1", _Add(0, 1)),
+    ("1*2", _Mul(1, 2)),
+    ("0*1", _Mul(0, 1)),
     ("\\sin \\theta", sin(theta)),
     ("\\sin(\\theta)", sin(theta)),
     ("\\sin^{-1} a", asin(a)),
@@ -191,6 +191,8 @@ GOOD_PAIRS = [
     ("\\log_{a} x", _log(x, a)),
     ("\\log_{11} x", _log(x, 11)),
     ("\\log_{a^2} x", _log(x, _Pow(a, 2))),
+    ("\\log_2 x", _log(x, 2)),
+    ("\\log_a x", _log(x, a)),
     ("[x]", x),
     ("[a + b]", _Add(a, b)),
     ("\\frac{d}{dx} [ \\tan x ]", Derivative(tan(x), x)),
@@ -220,8 +222,7 @@ def test_parseable():
 
 # At time of migration from latex2sympy, should work but doesn't
 FAILING_PAIRS = [
-    ("\\log_2 x", _log(x, 2)),
-    ("\\log_a x", _log(x, a)),
+    # To Add Failing Pairs
 ]
 @XFAIL #I've Fixed this issue
 def test_failing_parseable():
