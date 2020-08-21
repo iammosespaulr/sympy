@@ -255,8 +255,6 @@ BAD_STRINGS = [
     "((((((((((((((((()))))))))))))))))",
     "-",
     "\\frac{d}{dx} + \\frac{d}{dt}",
-    "f(x,,y)",
-    "f(x,y,",
     "\\sin^x",
     "\\cos^2",
     "@",
@@ -275,6 +273,7 @@ def test_not_parseable():
     for latex_str in BAD_STRINGS:
         with raises(LaTeXParsingError):
             parse_latex(latex_str)
+            print(latex_str)
 
 # At time of migration from latex2sympy, should fail but doesn't
 FAILING_BAD_STRINGS = [

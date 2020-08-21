@@ -367,14 +367,14 @@ comp_nofunc:
 //| delta;
 
 group:
-	L_PAREN expr R_PAREN
-	| L_BRACKET expr R_BRACKET
-	| L_BRACE expr R_BRACE
-	| L_BRACE_LITERAL expr R_BRACE_LITERAL
-	| L_BRACE_LITERAL expr PERIOD
-	| PERIOD expr R_BRACE_LITERAL
-	| L_PAREN expr PERIOD
-	| PERIOD expr R_PAREN;
+	L_PAREN (expr | array_elements) R_PAREN
+	| L_BRACKET (expr | array_elements) R_BRACKET
+	| L_BRACE (expr | array_elements) R_BRACE
+	| L_BRACE_LITERAL (expr | array_elements) R_BRACE_LITERAL
+	| L_BRACE_LITERAL (expr | array_elements) PERIOD
+	| PERIOD (expr | array_elements) R_BRACE_LITERAL
+	| L_PAREN (expr | array_elements) PERIOD
+	| PERIOD (expr | array_elements) R_PAREN;
 
 abs_group: BAR expr BAR;
 
@@ -399,9 +399,10 @@ angularunit: (NUMBER | LETTER) CARET L_BRACE CIRC R_BRACE;
 
 preprime:
 	(LETTER | SYMBOL) (
-		(CARET L_BRACE PRIME* R_BRACE)
-		| '\''*
-		| '’'*
+		(CARET L_BRACE PRIME R_BRACE)
+		| (CARET PRIME)
+		| '\''
+		| '’'
 	);
 prime: preprime (L_PAREN expr R_PAREN)?;
 

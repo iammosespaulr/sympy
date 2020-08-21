@@ -545,8 +545,8 @@ def convert_frac(frac):
                 ntop = upper_text[9]
                 upper_text = upper_text.replace("^" + ntop, '', 1)
         ntop = parse_latex(ntop)
-        print("Upper:", upper_text)
-        print("ntop :", ntop)
+        #print("Upper:", upper_text)
+        #print("ntop :", ntop)
 
         expr_top = None
         if diff_op and upper_text.startswith('d'):
@@ -555,7 +555,7 @@ def convert_frac(frac):
             expr_top = sympy.Function(parse_latex(upper_text[1:]))(wrt)
         if partial_op and upper_text.startswith('\\partial'):
             expr_top = sympy.Function(parse_latex(upper_text[8:]))(wrt)
-        print("expr_top: ", expr_top)
+        #print("expr_top: ", expr_top)
         if expr_top:
             return sympy.Derivative(expr_top, (wrt, ntop))
 
