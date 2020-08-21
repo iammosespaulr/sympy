@@ -265,11 +265,21 @@ fragment FLOAT: ([0-9]* [.][0-9]+)
 	| ([0-9]* [.]);
 NUMBER: (DIGIT | FLOAT);
 
+DAYS: [0-3][0-9];
+MONTH: [0-1][0-9];
+YEAR: [0-9][0-9][0-9][0-9];
+
 DATE: (
-		[0-3][0-9]WS_CHAR*? [.]WS_CHAR*? [0-3][0-9]WS_CHAR*? [.]WS_CHAR*? [0-9][0-9][0-9][0-9]
+		(
+			(MONTH WS_CHAR*? [.] WS_CHAR*? DAYS WS_CHAR*?)
+			| (DAYS WS_CHAR*? [.] WS_CHAR*? MONTH WS_CHAR*?)
+		) [.] WS_CHAR*? YEAR
 	)
 	| (
-		[0-9][0-9][0-9][0-9]WS_CHAR*? [.]WS_CHAR*? [0-3][0-9]WS_CHAR*? [.]WS_CHAR*? [0-3][0-9]
+		YEAR WS_CHAR*? [.] (
+			(WS_CHAR*? MONTH WS_CHAR*? [.] WS_CHAR*? DAYS)
+			| (WS_CHAR*? DAYS WS_CHAR*? [.] WS_CHAR*? MONTH)
+		)
 	);
 
 EQUAL: (('&' WS_CHAR*?)? '=') | ('=' (WS_CHAR*? '&')?);
@@ -389,7 +399,10 @@ atom: (LETTER | SYMBOL) subexpr?
 	| ddot
 	| angularunit
 	| bra
-	| ket;
+	| ket
+	| date;
+
+date: DATE;
 
 bra: L_ANGLE expr (R_BAR | BAR);
 

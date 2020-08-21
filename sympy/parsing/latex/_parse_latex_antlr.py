@@ -8,6 +8,8 @@ from sympy.printing.str import StrPrinter
 from sympy.physics.quantum.state import Bra, Ket
 from sympy import MutableDenseMatrix
 from .errors import LaTeXParsingError
+from dateutil import parser
+import datetime
 
 
 LaTeXParser = LaTeXLexer = MathErrorListener = None
@@ -262,6 +264,8 @@ def convert_postfix_list(arr, i=0):
             # multiply by next
             return sympy.Mul(
                 res, convert_postfix_list(arr, i + 1), evaluate=False)
+    elif isinstance(res, datetime.datetime):
+        return res
     else:  # must be derivative
         wrt = res[0]
         if i == len(arr) - 1:
@@ -456,6 +460,8 @@ def convert_atom(atom):
     elif atom.ket():
         val = convert_expr(atom.ket().expr())
         return Ket(val)
+    elif atom.date():
+        return parser.parse(atom.date().DATE().getText().replace('.','-'))
 
 def rule2text(ctx):
     stream = ctx.start.getInputStream()
