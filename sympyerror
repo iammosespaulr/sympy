@@ -1,8 +1,3 @@
-1- \varepsilon \leq V_j(t) \leq 1+\varepsilon
-Can only compare inequalities with Expr
-
- --- 
-
 [\alpha,\psi]=\lambda \psi,~~~\lambda\geq 0
 'NoneType' object has no attribute 'additive'
 
