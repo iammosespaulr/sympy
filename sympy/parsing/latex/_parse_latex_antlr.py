@@ -514,8 +514,6 @@ def rule2text(ctx):
 def convert_frac(frac):
     diff_op = False
     partial_op = False
-    lower_itv = frac.lower.getSourceInterval()
-    lower_itv_len = lower_itv[1] - lower_itv[0] + 1
     if (frac.lower.start == frac.lower.stop
             and frac.lower.start.type == LaTeXLexer.DIFFERENTIAL and frac.lower.start.text[0] == 'd'):
         wrt = get_differential_var_str(frac.lower.start.text)
