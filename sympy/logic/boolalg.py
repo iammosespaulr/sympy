@@ -685,12 +685,12 @@ class And(LatticeOp, BooleanFunction):
         args = LatticeOp._new_args_filter(args, And)
         newargs = []
         rel = set()
-        for x in ordered(args):
+        for x in args:
             if x.is_Relational:
-                c = x.canonical
+                c = x
                 if c in rel:
                     continue
-                elif c.negated.canonical in rel:
+                elif c.negated in rel:
                     return [S.false]
                 else:
                     rel.add(c)

@@ -1,3 +1,4 @@
+# coding=utf-8
 # Ported from latex2sympy by @augustt198
 # https://github.com/augustt198/latex2sympy
 # See license in LICENSE.txt
@@ -7,6 +8,7 @@ from sympy.external import import_module
 from sympy.printing.str import StrPrinter
 from sympy.physics.quantum.state import Bra, Ket
 from sympy import MutableDenseMatrix
+from sympy.logic.boolalg import And
 from .errors import LaTeXParsingError
 from dateutil import parser
 import datetime
@@ -122,16 +124,52 @@ def convert_relation(rel):
         else:
             pass
     if rel.LT():
+        if isinstance(lh, sympy.Rel):
+            nw = lh.args[-1]
+            return And(lh, sympy.StrictLessThan(nw, rh))
+        if isinstance(lh, And):
+            nw = lh.args[-1].args[-1]
+            return lh & sympy.StrictLessThan(nw, rh)
         return sympy.StrictLessThan(lh, rh)
     elif rel.LTE():
+        if isinstance(lh, sympy.Rel):
+            nw = lh.args[-1]
+            return And(lh, sympy.LessThan(nw, rh))
+        if isinstance(lh, And):
+            nw = lh.args[-1].args[-1]
+            return lh & sympy.LessThan(nw, rh)
         return sympy.LessThan(lh, rh)
     elif rel.GT():
+        if isinstance(lh, sympy.Rel):
+            nw = lh.args[-1]
+            return And(lh, sympy.StrictGreaterThan(nw, rh))
+        if isinstance(lh, And):
+            nw = lh.args[-1].args[-1]
+            return lh & sympy.StrictGreaterThan(nw, rh)
         return sympy.StrictGreaterThan(lh, rh)
     elif rel.GTE():
+        if isinstance(lh, sympy.Rel):
+            nw = lh.args[-1]
+            return And(lh, sympy.GreaterThan(nw, rh))
+        if isinstance(lh, And):
+            nw = lh.args[-1].args[-1]
+            return lh & sympy.GreaterThan(nw, rh)
         return sympy.GreaterThan(lh, rh)
     elif rel.EQUAL():
+        if isinstance(lh, sympy.Rel):
+            nw = lh.args[-1]
+            return And(lh, sympy.Eq(nw, rh))
+        if isinstance(lh, And):
+            nw = lh.args[-1].args[-1]
+            return lh & sympy.Eq(nw, rh)
         return sympy.Eq(lh, rh)
     elif rel.NEQ():
+        if isinstance(lh, sympy.Rel):
+            nw = lh.args[-1]
+            return And(lh, sympy.Ne(nw, rh))
+        if isinstance(lh, And):
+            nw = lh.args[-1].args[-1]
+            return lh & sympy.Ne(nw, rh)
         return sympy.Ne(lh, rh)
 
 def convert_expr(expr):
@@ -621,9 +659,9 @@ def convert_func(func):
             elif name == "ln":
                 base = sympy.E
             expr = sympy.log(arg, base, evaluate=False)
-        
+
         if name == "Gamma":
-            a = arg                
+            a = arg
             if func.func_arg().func_arg():
                 x = convert_func_arg(func.func_arg().func_arg())
                 expr = sympy.uppergamma(a, x, evaluate=False)
@@ -803,7 +841,7 @@ def get_differential_var_str(text):
     #print("Text: ", text, '\\partial' in text)
     if '\\partial' in text:
         text = text[text.index('\\partial', 0)+8:]
-    else:    
+    else:
         for i in range(1, len(text)):
             c = text[i]
             if not (c == " " or c == "\r" or c == "\n" or c == "\t"):
