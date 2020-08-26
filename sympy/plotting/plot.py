@@ -1335,6 +1335,7 @@ class MatplotlibBackend(BaseBackend):
 
     def save(self, path):
         self.process_series()
+        self.plt.margins(0,0)
         self.fig.savefig(path)
 
     def close(self):
