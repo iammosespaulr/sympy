@@ -1335,8 +1335,7 @@ class MatplotlibBackend(BaseBackend):
 
     def save(self, path):
         self.process_series()
-        self.plt.margins(0,0)
-        self.fig.savefig(path)
+        self.fig.savefig(path, transparent = True, bbox_inches = 'tight', pad_inches = 0)
 
     def close(self):
         self.plt.close(self.fig)
