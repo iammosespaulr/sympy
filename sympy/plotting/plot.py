@@ -1335,6 +1335,7 @@ class MatplotlibBackend(BaseBackend):
 
     def save(self, path):
         self.process_series()
+        self.plt.axis("equal")
         self.fig.savefig(path, transparent = True, bbox_inches = 'tight', pad_inches = 0)
 
     def close(self):
