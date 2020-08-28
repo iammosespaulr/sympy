@@ -44,8 +44,7 @@ class ImplicitSeries(BaseSeries):
     is_implicit = True
 
     def __init__(self, expr, var_start_end_x, var_start_end_y,
-            has_equality, use_interval_math, depth, nb_of_points,
-            line_color):
+            has_equality, use_interval_math, depth, nb_of_points):
         super(ImplicitSeries, self).__init__()
         self.expr = sympify(expr)
         self.var_x = sympify(var_start_end_x[0])
@@ -60,7 +59,6 @@ class ImplicitSeries(BaseSeries):
         self.nb_of_points = nb_of_points
         self.use_interval_math = use_interval_math
         self.depth = 4 + depth
-        self.line_color = line_color
 
     def __str__(self):
         return ('Implicit equation: %s for '
@@ -410,7 +408,7 @@ def plot_implicit(expr, x_var=None, y_var=None, adaptive=True, depth=0,
 
     series_argument = ImplicitSeries(expr, var_start_end_x, var_start_end_y,
                                     has_equality, adaptive, depth,
-                                    points, line_color)
+                                    points)
 
     #set the x and y limits
     kwargs['xlim'] = tuple(float(x) for x in var_start_end_x[1:])
