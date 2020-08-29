@@ -217,7 +217,7 @@ class lambdify(object):
                                                in str(e)):
                 self.lambda_func = experimental_lambdify(self.args, self.expr,
                                                          use_evalf=True,
-                                                         use_python_math=True)
+                                                         use_python_cmath=True)
                 result = self.lambda_func(args.real)
                 return result
             else:
@@ -246,7 +246,7 @@ def experimental_lambdify(*args, **kwargs):
 
 class Lambdifier(object):
     def __init__(self, args, expr, print_lambda=False, use_evalf=False,
-                 float_wrap_evalf=False, complex_wrap_evalf=False,
+                 float_wrap_evalf=False, complex_wrap_evalf=True,
                  use_np=False, use_python_math=False, use_python_cmath=False,
                  use_interval=False):
 
