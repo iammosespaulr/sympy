@@ -32,6 +32,7 @@ from sympy.core.function import arity
 from sympy.core.compatibility import Callable
 from sympy.utilities.iterables import is_sequence
 from .experimental_lambdify import (vectorized_lambdify, lambdify)
+from sympy.printing import latex
 
 # N.B.
 # When changing the minimum module version for matplotlib, please change
@@ -147,7 +148,7 @@ class Plot(object):
     def __init__(self, *args,
         title=None, xlabel=None, ylabel=None, aspect_ratio='auto',
         xlim=None, ylim=None, axis_center='auto', axis=True,
-        xscale='linear', yscale='linear', legend=False, autoscale=True,
+        xscale='linear', yscale='linear', legend=True, autoscale=True,
         margin=0, annotations=None, markers=None, rectangles=None,
         fill=None, backend='default', **kwargs):
         super(Plot, self).__init__()
@@ -597,7 +598,10 @@ class LineOver1DRangeSeries(Line2DBaseSeries):
     def __init__(self, expr, var_start_end, **kwargs):
         super(LineOver1DRangeSeries, self).__init__()
         self.expr = sympify(expr)
-        self.label = kwargs.get('label', None) or str(self.expr)
+        try:
+            self.label = kwargs.get('label', None) or f"${latex(self.expr)}$"
+        except:
+            self.label = kwargs.get('label', None)
         self.var = sympify(var_start_end[0])
         self.start = float(var_start_end[1])
         self.end = float(var_start_end[2])
@@ -718,8 +722,11 @@ class Parametric2DLineSeries(Line2DBaseSeries):
         super(Parametric2DLineSeries, self).__init__()
         self.expr_x = sympify(expr_x)
         self.expr_y = sympify(expr_y)
-        self.label = kwargs.get('label', None) or \
-                            "(%s, %s)" % (str(self.expr_x), str(self.expr_y))
+        try:
+            self.label = kwargs.get('label', None) or \
+                            f"${latex(self.expr_x)}, {self.expr_y}$"
+        except:
+            self.label = kwargs.get('label', None)
         self.var = sympify(var_start_end[0])
         self.start = float(var_start_end[1])
         self.end = float(var_start_end[2])
@@ -851,8 +858,11 @@ class Parametric3DLineSeries(Line3DBaseSeries):
         self.expr_x = sympify(expr_x)
         self.expr_y = sympify(expr_y)
         self.expr_z = sympify(expr_z)
-        self.label = kwargs.get('label', None) or \
-                        "(%s, %s)" % (str(self.expr_x), str(self.expr_y))
+        try:
+            self.label = kwargs.get('label', None) or \
+                        f"${latex(self.expr_x)}, {self.expr_y}$"
+        except:
+            self.label = kwargs.get('label', None)
         self.var = sympify(var_start_end[0])
         self.start = float(var_start_end[1])
         self.end = float(var_start_end[2])
@@ -1174,7 +1184,13 @@ class MatplotlibBackend(BaseBackend):
                 if len(points) == 2:
                     # interval math plotting
                     x, y = _matplotlib_list(points[0])
-                    ax.fill(x, y, edgecolor='None')
+                    if hasattr(s, 'label'):
+                        try:
+                            ax.fill(x, y, edgecolor='None', label=s.label)
+                        except:
+                            pass
+                    else:
+                        ax.fill(x, y, edgecolor='None')
                 else:
                     # use contourf or contour depending on whether it is
                     # an inequality or equality.
@@ -1194,7 +1210,7 @@ class MatplotlibBackend(BaseBackend):
 
             # Customise the collections with the corresponding per-series
             # options.
-            if hasattr(s, 'label'):
+            if hasattr(s, 'label') and not s.is_implicit:
                 collection.set_label(s.label)
             if s.is_line and s.line_color:
                 if isinstance(s.line_color, (float, int)) or isinstance(s.line_color, Callable):

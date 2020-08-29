@@ -36,6 +36,7 @@ from sympy.logic.boolalg import BooleanFunction
 from sympy.polys.polyutils import _sort_gens
 from sympy.utilities.decorator import doctest_depends_on
 from sympy.utilities.iterables import flatten
+from sympy.printing import latex
 import warnings
 
 
@@ -59,6 +60,10 @@ class ImplicitSeries(BaseSeries):
         self.nb_of_points = nb_of_points
         self.use_interval_math = use_interval_math
         self.depth = 4 + depth
+        try:
+            self.label = f"${latex(self.expr)}$"
+        except:
+            pass
 
     def __str__(self):
         return ('Implicit equation: %s for '
