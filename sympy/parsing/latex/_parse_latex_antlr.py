@@ -104,6 +104,8 @@ def convert_relation(rel):
     if any(isinstance(x, (sympy.MutableDenseMatrix, tuple, sympy.ImmutableMatrix)) for x in (lh, rh)) and not all(isinstance(x, (sympy.MutableDenseMatrix, tuple, sympy.ImmutableMatrix)) for x in (lh, rh)):
         l = sympy.Symbol('l')
         if checkassignmentvseq(lh, rh):
+            if isinstance(lh, sympy.Function):
+                return rh
             val = tuple([x.subs(l, rh) for x in sympy.solve(sympy.Eq(lh, l), lh.free_symbols)])
             if len(val) > 1:
                 return val

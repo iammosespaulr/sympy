@@ -43,6 +43,7 @@ IGNORE:
 		| '\\"'
 		| '\\('
 		| '\\='
+		| '&'
 	) -> skip;
 
 ADD: '+';
@@ -439,7 +440,7 @@ TEXT:
 array:
 	BEGIN_ARR array_elements (('\\\\') array_elements)*? END_ARR;
 
-array_elements: (relation) (('&' | ',')? (relation))*?;
+array_elements: (relation) (('&' | (',' ('&')?))? (relation))*?;
 
 frac:
 	CMD_FRAC L_BRACE upper = expr R_BRACE L_BRACE lower = expr R_BRACE;
