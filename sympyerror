@@ -175,14 +175,14 @@ D(x_p, x_q) \leq \max\{d(x_p,x_u),d(x_u,x_q)\}
 E(z)=\{\begin{array}{ll} 0\,, & z=0^{(0)},\\\infty\,, & z=0^{(1)}.\end{array}
 I expected something else here
 E(z)=\{\begin{array}{ll} 0\,, & z=0^{(0)},\\\infty\,, & z=0^{(1)}.\end{array}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
 E(z)=\{\begin{array}{ll} 1+\dfrac{1}{z}\,, &z\!\to\!\infty^{(0)},\\[6pt] \dfrac1c(1-\dfrac{1}{z})\,, & z\!\to\!\infty^{(1)}.\end{array}
 I expected something else here
 E(z)=\{\begin{array}{ll} 1+\dfrac{1}{z}\,, &z\!\to\!\infty^{(0)},\\[6pt] \dfrac1c(1-\dfrac{1}{z})\,, & z\!\to\!\infty^{(1)}.\end{array}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
