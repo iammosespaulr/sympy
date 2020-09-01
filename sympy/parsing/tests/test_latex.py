@@ -5,8 +5,8 @@ from sympy import (
     Symbol, Mul, Add, Eq, Abs, sin, asin, cos, Pow,
     csc, sec, Limit, oo, Derivative, Integral, factorial,
     sqrt, root, StrictLessThan, LessThan, StrictGreaterThan,
-    GreaterThan, Sum, Product, E, log, tan, Function, binomial, exp,
-    Unequality,
+    GreaterThan, Sum, Product, E, log, tan, Function, binomial, exp, pi,
+    Unequality
 )
 from sympy.abc import x, y, z, a, b, c, t, k, n
 antlr4 = import_module("antlr4")
