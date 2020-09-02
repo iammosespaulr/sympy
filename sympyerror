@@ -323,9 +323,9 @@ I expected one of these: '|' '\right|' here
  --- 
 
 \langle\mathcal D\rangle^2\Delta\psi+i\langle\mathcal D\rangle\frac{\partial\psi}{\partial t}=(\frac{\Phi}{2m}-\langle\mathcal D\rangle[\Delta\ln\psi]_0 \delta\mathcal D (t))\psi
-I expected one of these: '|' '\right|' here
+missing '{' at 'D'
 \langle\mathcal D\rangle^2\Delta\psi+i\langle\mathcal D\rangle\frac{\partial\psi}{\partial t}=(\frac{\Phi}{2m}-\langle\mathcal D\rangle[\Delta\ln\psi]_0 \delta\mathcal D (t))\psi
-~~~~~~~~~~~~~~~~~^
+~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -371,17 +371,38 @@ I expected one of these: '|' '\right|' here
 
  --- 
 
+\mathcal D^2\Delta\psi+i\mathcal D\frac{\partial}{\partial t}\psi-\frac{\Phi}{2m}\psi=0
+missing '{' at 'D'
+\mathcal D^2\Delta\psi+i\mathcal D\frac{\partial}{\partial t}\psi-\frac{\Phi}{2m}\psi=0
+~~~~~~~~~^
+
+ --- 
+
 \mathcal D\Delta\psi+i\frac{\partial\psi}{\partial t}=(\frac{\Phi}{2m\langle\mathcal D\rangle}+\delta\mathcal D(\nabla\ln\psi)^2 )\psi
-I expected something else here
+missing '{' at 'D'
 \mathcal D\Delta\psi+i\frac{\partial\psi}{\partial t}=(\frac{\Phi}{2m\langle\mathcal D\rangle}+\delta\mathcal D(\nabla\ln\psi)^2 )\psi
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+~~~~~~~~~^
 
  --- 
 
 \mathcal D=\hbar/2m
-I expected something else here
+missing '{' at 'D'
 \mathcal D=\hbar/2m
-~~~~~~~~~~~^
+~~~~~~~~~^
+
+ --- 
+
+\mathcal D(t,\tau)=\mathcal D '(t)\tau^{(2/D)-1}
+missing '{' at 'D'
+\mathcal D(t,\tau)=\mathcal D '(t)\tau^{(2/D)-1}
+~~~~~~~~~^
+
+ --- 
+
+\mathcal V =-2i\mathcal D \nabla(\ln\psi)
+missing '{' at 'V'
+\mathcal V =-2i\mathcal D \nabla(\ln\psi)
+~~~~~~~~~^
 
  --- 
 

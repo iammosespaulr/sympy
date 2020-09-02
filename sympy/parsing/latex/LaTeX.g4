@@ -429,7 +429,7 @@ determinant:
 		END_ARR
 	)? R_BAR;
 
-mathit: CMD_MATHIT L_BRACE mathit_text R_BRACE;
+mathit: (CMD_MATHIT | '\\mathcal' | '\\mathscr') L_BRACE mathit_text R_BRACE;
 mathit_text: (NUMBER | LETTER)+;
 
 TEXT:
