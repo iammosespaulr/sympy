@@ -36,9 +36,8 @@ import re
 # https://docs.mathjax.org/en/latest/tex.html#supported-latex-commands
 # This variable only contains those functions which sympy uses.
 accepted_latex_functions = ['sin', 'cos', 'tan', 'csc', 'sec', 'cot',
-                            'sinh', 'cosh', 'tanh', 'csch', 'sech', 'coth',
-                            'arcsin', 'arccos', 'arctan', 'arccsc', 'arcsec', 'arccot',
-                            'arsinh', 'arcosh', 'artanh', 'arcsch', 'arsech', 'arcoth',
+                            'sinh', 'cosh', 'tanh', 'coth',
+                            'arcsin', 'arccos', 'arctan',
                             'sqrt', 'ln', 'log', 're', 'im', 'frac', 'root',
                             'arg',
                             ]
