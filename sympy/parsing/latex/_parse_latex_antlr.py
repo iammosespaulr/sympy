@@ -627,12 +627,22 @@ def convert_delta(delta):
 
 def convert_func(func):
     if func.func_normal():
+        if func.func_normal().operation():
+            if func.func_normal().operation().L_BRACE():
+                if func.func_normal().operation().SYMBOL():
+                    name = rule2text(func.func_normal().operation())[15:-1]
+                elif func.func_normal().operation().func_normal():
+                    name = rule2text(func.func_normal().operation())[15:-1]
+                else:
+                    name = rule2text(func.func_normal().operation())[14:-1]
+            else:
+                name = rule2text(func.func_normal().operation())[13:]
+        else:
+            name = func.func_normal().start.text[1:]
         if func.L_PAREN():  # function called with parenthesis
             arg = convert_func_arg(func.func_arg())
         else:
             arg = convert_func_arg(func.func_arg_noparens())
-
-        name = func.func_normal().start.text[1:]
 
         # change arc<trig> -> a<trig>
         if name in ["arcsin", "arccos", "arctan", "arccsc", "arcsec", "arccot"]:
@@ -651,17 +661,24 @@ def convert_func(func):
                     base = convert_expr(func.subexpr().expr())
                 elif func.subexpr().atom():
                     base = convert_atom(func.subexpr().atom())
+                else:
+                    base = sympy.E
             elif name == "log":
                 base = sympy.E
             elif name == "ln":
+                base = sympy.E
+            else:
                 base = sympy.E
             expr = sympy.log(arg, base, evaluate=False)
 
         if name == "Gamma":
             a = arg
-            if func.func_arg().func_arg():
-                x = convert_func_arg(func.func_arg().func_arg())
-                expr = sympy.uppergamma(a, x, evaluate=False)
+            if func.func_arg():
+                if func.func_arg().func_arg():
+                    x = convert_func_arg(func.func_arg().func_arg())
+                    expr = sympy.uppergamma(a, x, evaluate=False)
+                else:
+                    expr = sympy.gamma(a, evaluate=False)
             else:
                 def _gamma(x):
                     return sympy.gamma(x, evaluate=False)
@@ -685,11 +702,12 @@ def convert_func(func):
 
         if name == "zeta":
             s = arg
-            if func.func_arg().func_arg():
-                a = convert_func_arg(func.func_arg().func_arg())
-                expr = sympy.zeta(s, a, evaluate=False)
-            else:
-                expr = sympy.zeta(s, evaluate=False)
+            if func.func_arg():
+                if func.func_arg().func_arg():
+                    a = convert_func_arg(func.func_arg().func_arg())
+                    expr = sympy.zeta(s, a, evaluate=False)
+                else:
+                    expr = sympy.zeta(s, evaluate=False)
 
         func_pow = None
         should_pow = True

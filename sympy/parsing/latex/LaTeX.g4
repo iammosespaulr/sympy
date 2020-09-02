@@ -44,17 +44,17 @@ IGNORE:
 		| '\\('
 		| '\\='
 		| '&'
-        | '\\mathcal'
-        | '\\mathscr'
-        | '\\mathit'
-        | '\\mathnormal'
-        | '\\mathrm'
-        | '\\mathbf'
-        | '\\mathsf'
-        | '\\mathtt'
-        | '\\mathcal'
-        | '\\mathfrak'
-        | '\\tiny'
+		| '\\mathcal'
+		| '\\mathscr'
+		| '\\mathit'
+		| '\\mathnormal'
+		| '\\mathrm'
+		| '\\mathbf'
+		| '\\mathsf'
+		| '\\mathtt'
+		| '\\mathcal'
+		| '\\mathfrak'
+		| '\\tiny'
 	) -> skip;
 
 ADD: '+';
@@ -143,6 +143,8 @@ SIGMA: '\\Sigma';
 //LOWER_SIGMA: '\\sigma'; 
 PI: '\\Pi';
 //ZETA: '\\zeta';
+
+OP_NAME: '\\operatorname';
 
 BEGIN_ARR:
 	'\\begin' L_BRACE (LETTER | '*')+ R_BRACE (
@@ -411,6 +413,12 @@ atom: (LETTER | SYMBOL) subexpr?
 	| ket
 	| date;
 
+operation:
+	OP_NAME (
+		L_BRACE ((NUMBER | LETTER)+ | SYMBOL | func_normal) R_BRACE
+		| (NUMBER | LETTER | SYMBOL | func_normal)
+	);
+
 date: DATE;
 
 bra: L_ANGLE expr (R_BAR | BAR);
@@ -489,7 +497,8 @@ func_normal:
 	| FUNC_ARCOTH
 	//| FUNC_GAMMA | LOWER_GAMMA | ZETA | NABLA | DELTA | LOWER_SIGMA
 	| VEC
-	| HAT;
+	| HAT
+	| operation;
 
 func:
 	func_normal (subexpr? supexpr? | supexpr? subexpr?) (
