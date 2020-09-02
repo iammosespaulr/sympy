@@ -44,6 +44,17 @@ IGNORE:
 		| '\\('
 		| '\\='
 		| '&'
+        | '\\mathcal'
+        | '\\mathscr'
+        | '\\mathit'
+        | '\\mathnormal'
+        | '\\mathrm'
+        | '\\mathbf'
+        | '\\mathsf'
+        | '\\mathtt'
+        | '\\mathcal'
+        | '\\mathfrak'
+        | '\\tiny'
 	) -> skip;
 
 ADD: '+';
@@ -217,7 +228,7 @@ VEE: '\\vee';
 
 SMILE: '\\smile';
 FROWN: '\\frown';
-MATH_BB: '\\mathbb';
+MATH_BB: '\\mathbb' -> skip;
 STACK_REL: '\\stackrel';
 IM: '\\Im';
 RE: '\\Re';
@@ -235,8 +246,6 @@ CMD_DIV: '\\div';
 CMD_FRAC: ('\\frac' | '\\tfrac' | '\\dfrac');
 
 CMD_BINOM: ('\\binom' | '\\dbinom' | '\\tbinom');
-
-CMD_MATHIT: '\\mathit';
 
 UNDERSCORE: '_';
 CARET: '^';
@@ -394,7 +403,6 @@ atom: (LETTER | SYMBOL) subexpr?
 	| DIFFERENTIAL
 	| determinant
 	| array
-	| mathit
 	| prime
 	| dot
 	| ddot
@@ -428,9 +436,6 @@ determinant:
 	L_BAR (BEGIN_ARR)? array_elements (('\\\\') array_elements)*? (
 		END_ARR
 	)? R_BAR;
-
-mathit: (CMD_MATHIT | '\\mathcal' | '\\mathscr') L_BRACE mathit_text R_BRACE;
-mathit_text: (NUMBER | LETTER)+;
 
 TEXT:
 	'\\text' (WS)*? L_BRACE (WS)*? (NUMBER | LETTER)+ (WS)*? R_BRACE (

@@ -485,9 +485,6 @@ def convert_atom(atom):
         text = rule2text(atom.angularunit())
         val = sympy.parse_expr(text.split('^')[0])
         return sympy.rad(val)
-    elif atom.mathit():
-        text = rule2text(atom.mathit().mathit_text())
-        return sympy.Symbol(text)
     elif atom.array():
         array = tuple([list(map(convert_relation, x.relation())) for x in atom.array().array_elements()])
         return array
