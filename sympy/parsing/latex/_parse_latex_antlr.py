@@ -728,9 +728,9 @@ def convert_func(func):
             expr = sympy.Pow(expr, func_pow, evaluate=False)
 
         return expr
-    elif func.LETTER() or func.SYMBOL():
-        if func.LETTER():
-            fname = func.LETTER().getText()
+    elif func.T_7() or func.SYMBOL():
+        if func.T_7():
+            fname = func.T_7().getText()
         elif func.SYMBOL():
             fname = func.SYMBOL().getText()[1:]
         fname = str(fname)  # can't be unicode

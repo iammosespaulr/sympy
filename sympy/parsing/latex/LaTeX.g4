@@ -270,6 +270,7 @@ DIFFERENTIAL:
 PARTIAL: '\\partial';
 
 LETTER: [a-zA-Z];
+
 fragment DIGIT: [0-9]+;
 //Real number as defined in CFITSIO Lexical Parser
 fragment FLOAT: ([0-9]* [.][0-9]+)
@@ -505,7 +506,7 @@ func:
 		L_PAREN func_arg R_PAREN
 		| func_arg_noparens
 	)
-	| (LETTER | SYMBOL) subexpr? // e.g. f(x)
+	| (('g' | 'f') | SYMBOL) subexpr? // e.g. f(x)
 	L_PAREN args R_PAREN
 	| FUNC_INT (subexpr supexpr | supexpr subexpr)? (
 		additive? DIFFERENTIAL
