@@ -735,11 +735,26 @@ def convert_func(func):
             expr = sympy.Pow(expr, func_pow, evaluate=False)
 
         return expr
-    elif func.LETTER() or func.SYMBOL():
-        if func.LETTER():
-            fname = func.LETTER().getText()
-        elif func.SYMBOL():
+    elif func.FUNC_INT():
+        return handle_integral(func)
+    elif func.FUNC_SQRT():
+        expr = convert_expr(func.base)
+        if func.root:
+            r = convert_expr(func.root)
+            return sympy.root(expr, r)
+        else:
+            return sympy.sqrt(expr)
+    elif func.FUNC_SUM():
+        return handle_sum_or_prod(func, "summation")
+    elif func.FUNC_PROD():
+        return handle_sum_or_prod(func, "product")
+    elif func.FUNC_LIM():
+        return handle_limit(func)
+    else:
+        if func.SYMBOL():
             fname = func.SYMBOL().getText()[1:]
+        else:
+            fname = rule2text(func)[0]
         fname = str(fname)  # can't be unicode
         if func.subexpr():
             subscript = None
@@ -756,21 +771,6 @@ def convert_func(func):
             input_args = input_args.args()
         output_args.append(convert_expr(input_args.expr()))
         return sympy.Function(fname)(*output_args)
-    elif func.FUNC_INT():
-        return handle_integral(func)
-    elif func.FUNC_SQRT():
-        expr = convert_expr(func.base)
-        if func.root:
-            r = convert_expr(func.root)
-            return sympy.root(expr, r)
-        else:
-            return sympy.sqrt(expr)
-    elif func.FUNC_SUM():
-        return handle_sum_or_prod(func, "summation")
-    elif func.FUNC_PROD():
-        return handle_sum_or_prod(func, "product")
-    elif func.FUNC_LIM():
-        return handle_limit(func)
 
 
 def convert_func_arg(arg):
