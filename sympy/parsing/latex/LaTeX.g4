@@ -375,6 +375,7 @@ comp:
 	group
 	| abs_group
 	| func
+	| func_multi
 	| atom
 	| frac
 	| binom
@@ -512,13 +513,38 @@ func:
 	| (LETTER | SYMBOL) subexpr? // e.g. f(x)
 	L_PAREN args R_PAREN
 	| FUNC_INT (subexpr supexpr | supexpr subexpr)? (
-		additive? DIFFERENTIAL
+		(additive? DIFFERENTIAL)
 		| frac
 		| additive
 	)
 	| FUNC_SQRT (L_BRACKET root = expr R_BRACKET)? L_BRACE base = expr R_BRACE
 	| (FUNC_SUM | FUNC_PROD) (subeq supexpr | supexpr subeq) mp
 	| FUNC_LIM limit_sub mp;
+
+func_multi:
+	(
+		FUNC_IINT (subexpr supexpr | supexpr subexpr)? (
+			(additive? DIFFERENTIAL DIFFERENTIAL)
+			| frac
+			| additive
+		)
+	)
+	| (
+		FUNC_IIINT (subexpr supexpr | supexpr subexpr)? (
+			(additive? DIFFERENTIAL DIFFERENTIAL DIFFERENTIAL)
+			| frac
+			| additive
+		)
+	)
+	| (
+		FUNC_IIIINT (subexpr supexpr | supexpr subexpr)? (
+			(
+				additive? DIFFERENTIAL DIFFERENTIAL DIFFERENTIAL DIFFERENTIAL
+			)
+			| frac
+			| additive
+		)
+	);
 
 args: (expr ',' args) | expr;
 
