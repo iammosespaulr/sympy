@@ -94,6 +94,10 @@ LIM_APPROACH_SYM:
 	| '\\Longrightarrow';
 
 FUNC_INT: '\\int';
+FUNC_IINT: '\\iint';
+FUNC_IIINT: '\\iiint';
+FUNC_IIIINT: '\\iiiint';
+
 FUNC_SUM: ('\\sum' | SIGMA);
 FUNC_PROD: ('\\prod' | PI);
 
