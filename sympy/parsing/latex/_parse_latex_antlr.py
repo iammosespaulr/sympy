@@ -830,8 +830,9 @@ def handle_integral_multi(func):
     int_var = None
     if func.DIFFERENTIAL():
         int_var = list(map(get_differential_var, func.DIFFERENTIAL()))
-        #print(int_var)
+        #print("diff int_var:", int_var)
     else:
+        #print(integrand.atoms(sympy.Symbol))
         for sym in integrand.atoms(sympy.Symbol):
             s = str(sym)
             if len(s) > 1 and s[0] == 'd':
@@ -839,9 +840,20 @@ def handle_integral_multi(func):
                     int_var = sympy.Symbol(s[2:])
                 else:
                     int_var = sympy.Symbol(s[1:])
+                #print("int_var:", int_var)
+                #print("sym:", s)
                 int_sym = sym
         if int_var:
+            #print('preintegrand:', integrand)
             integrand = integrand.subs(int_sym, 1)
+            #print('postintegrand:', integrand)
+        elif len(integrand.atoms(sympy.Symbol)) == 1:
+            if func.FUNC_IINT():
+                int_var = [sympy.Symbol(str(*integrand.atoms(sympy.Symbol)))]*2
+            if func.FUNC_IIINT():
+                int_var = [sympy.Symbol(str(*integrand.atoms(sympy.Symbol)))]*3
+            if func.FUNC_IIIINT():
+                int_var = [sympy.Symbol(str(*integrand.atoms(sympy.Symbol)))]*4
         else:
             # Assume dx by default
             int_var = sympy.Symbol('x')
@@ -855,9 +867,15 @@ def handle_integral_multi(func):
             upper = convert_atom(func.supexpr().atom())
         else:
             upper = convert_expr(func.supexpr().expr())
-        return sympy.Integral(integrand, (int_var, lower, upper))
+        if isinstance(int_var, list):
+            return sympy.Integral(integrand, *[(i, lower, upper) for i in int_var])
+        else:
+            return sympy.Integral(integrand, (int_var, lower, upper))
     else:
-        return sympy.Integral(integrand, *int_var)
+        if isinstance(int_var, list):
+            return sympy.Integral(integrand, *int_var)
+        else:
+            return sympy.Integral(integrand, int_var)
 
 
 def handle_sum_or_prod(func, name):
