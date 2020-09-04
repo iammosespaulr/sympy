@@ -400,7 +400,7 @@ def plot_implicit(expr, x_var=None, y_var=None, adaptive=True, depth=0,
     x = var_start_end_x[0]
     if len(xyvar) != 2:
         if x in undeclared or not undeclared:
-            xyvar.append(Dummy('f(%s)' % x.name))
+            xyvar.append(Dummy('$f(%s)$' % x.name))
         else:
             xyvar.append(undeclared.pop())
     var_start_end_y = _range_tuple(xyvar[1])

@@ -1651,8 +1651,12 @@ def plot(*args, **kwargs):
                     'The same variable should be used in all '
                     'univariate expressions being plotted.')
     x = free.pop() if free else Symbol('x')
-    kwargs.setdefault('xlabel', x.name)
-    kwargs.setdefault('ylabel', 'f(%s)' % x.name)
+    try:
+        kwargs.setdefault('xlabel', '$%s$' % x.name)
+        kwargs.setdefault('ylabel', '$f(%s)$' % x.name)
+    except:
+        kwargs.setdefault('xlabel', x.name)
+        kwargs.setdefault('ylabel', 'f(%s)' % x.name)
     show = kwargs.pop('show', True)
     series = []
     plot_expr = check_arguments(args, 1, 1)
