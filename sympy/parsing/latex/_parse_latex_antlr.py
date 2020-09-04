@@ -312,7 +312,13 @@ def convert_postfix_list(arr, i=0):
             raise LaTeXParsingError("Expected expression for derivative")
         else:
             expr = convert_postfix_list(arr, i + 1)
-            return sympy.Derivative(expr, wrt)
+            #print("Postfix expr", expr)
+            #print("Postfix wrt", wrt)
+            #print("Postfix Res", res)
+            if len(res) == 2:
+                return sympy.Derivative(expr, (wrt, res[1]))
+            else:
+                return sympy.Derivative(expr, wrt)
 
 
 def do_subs(expr, at):
@@ -598,11 +604,20 @@ def convert_frac(frac):
 
         expr_top = None
         if diff_op and upper_text.startswith('d'):
-            expr_top = parse_latex(upper_text[1:])
+            if upper_text[1:].strip():
+                expr_top = parse_latex(upper_text[1:])
+            else:
+                return [wrt, ntop]
         if partial_op and upper_text.startswith('d'):
-            expr_top = sympy.Function(parse_latex(upper_text[1:]))(wrt)
+            if upper_text[1:].strip():
+                expr_top = parse_latex(upper_text[1:])
+            else:
+                return [wrt, ntop]
         if partial_op and upper_text.startswith('\\partial'):
-            expr_top = sympy.Function(parse_latex(upper_text[8:]))(wrt)
+            if upper_text[8:].strip():
+                expr_top = parse_latex(upper_text[8:])
+            else:
+                return [wrt, ntop]
         #print("expr_top: ", expr_top)
         if expr_top:
             return sympy.Derivative(expr_top, (wrt, ntop))

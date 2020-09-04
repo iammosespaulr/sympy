@@ -48,7 +48,7 @@ I don't understand what's here
 \begin{cases}\langle|\partial _x \vec{S}|^2\rangle\!&=[1-\langle \phi_a^2 \rangle ]  (\partial _x\vec{n})^2 + \sum_{a} \langle( \partial_x \phi_a )^2 \rangle \\\langle(S^z)^2 \rangle \!&= [1-3\langle \phi_a^2\rangle] ( n^z)^2 + \langle \phi_a^2\rangle\,.\end{cases}
 I expected something else here
 \begin{cases}\langle|\partial _x \vec{S}|^2\rangle\!&=[1-\langle \phi_a^2 \rangle ]  (\partial _x\vec{n})^2 + \sum_{a} \langle( \partial_x \phi_a )^2 \rangle \\\langle(S^z)^2 \rangle \!&= [1-3\langle \phi_a^2\rangle] ( n^z)^2 + \langle \phi_a^2\rangle\,.\end{cases}
-~~~~~~~~~~~~~~~~~~~~~^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -76,7 +76,7 @@ I expected something else here
 \begin{split} \mathcal{H}&=-JN + \frac{J}{2} \int[1-\frac{\phi_1^2 + \phi_2^2}{2} ]|\partial _x \vec{n}|^2 dx \\&+ \sum_{a}  \frac{J}{2} \int ( \partial_x \phi_a )^2 dx\\&-D \int[( n^z)^2(1-3 \frac{\phi_1^2 + \phi_2^2}{2} ) +  \frac{\phi_1^2 + \phi_2^2}{2}  ] dx\\&=-JN + \frac{J}{2} \int|\partial _x \vec{n}|^2 dx -D\int ( n^z)^2 dx \\&+ \sum_{a}  \frac{J}{2} \int ( \partial_x \phi_a )^2 dx \\&+\sum_a \int [ \frac{3D}{2} (n^z)^2-\frac{D}{2}-\frac{J}{2} |\partial _x \vec{n}|^2]\phi_a^2 dx\,.\end{split}
 I expected something else here
 \begin{split} \mathcal{H}&=-JN + \frac{J}{2} \int[1-\frac{\phi_1^2 + \phi_2^2}{2} ]|\partial _x \vec{n}|^2 dx \\&+ \sum_{a}  \frac{J}{2} \int ( \partial_x \phi_a )^2 dx\\&-D \int[( n^z)^2(1-3 \frac{\phi_1^2 + \phi_2^2}{2} ) +  \frac{\phi_1^2 + \phi_2^2}{2}  ] dx\\&=-JN + \frac{J}{2} \int|\partial _x \vec{n}|^2 dx -D\int ( n^z)^2 dx \\&+ \sum_{a}  \frac{J}{2} \int ( \partial_x \phi_a )^2 dx \\&+\sum_a \int [ \frac{3D}{2} (n^z)^2-\frac{D}{2}-\frac{J}{2} |\partial _x \vec{n}|^2]\phi_a^2 dx\,.\end{split}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -90,7 +90,7 @@ I expected something else here
 \begin{split} |\partial _x \vec{S}|^2&=(1-\phi^2) (\partial _x\vec{n})^2 + \sum_{a} ( \partial_x \phi_a )^2+ \sum_{ab} c_a c_b\phi_a\phi_b \\&+2 \sqrt{1-\phi^2}\sum_{a} \partial_x \phi_a c_a-2\partial _x\sqrt{1-\phi^2}\sum_a c_a \phi_a\\&+( \partial _x\sqrt{1-\phi^2})^2  \,.\end{split}
 I expected something else here
 \begin{split} |\partial _x \vec{S}|^2&=(1-\phi^2) (\partial _x\vec{n})^2 + \sum_{a} ( \partial_x \phi_a )^2+ \sum_{ab} c_a c_b\phi_a\phi_b \\&+2 \sqrt{1-\phi^2}\sum_{a} \partial_x \phi_a c_a-2\partial _x\sqrt{1-\phi^2}\sum_a c_a \phi_a\\&+( \partial _x\sqrt{1-\phi^2})^2  \,.\end{split}
-~~~~~~~~~~~~~~~^
+~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -208,14 +208,14 @@ I don't understand what's here
  --- 
 
 \frac{\hat d}{dt}=\frac {\partial}{\partial t}+\mathcal V \nabla-i\mathcal D \Delta
-I expected something else here
-\frac{\hat d}{dt}=\frac {\partial}{\partial t}+\mathcal V \nabla-i\mathcal D \Delta
-~~~~~~~~~~~~~~~~~~~~~~~~~^
+local variable 'expr' referenced before assignment
 
  --- 
 
 \frac{\hat d}{dt}\mathcal V \equiv (\frac{\partial}{\partial t}+\mathcal V \nabla-i\mathcal D \Delta) \mathcal V = -\frac 1{m}\nabla\Phi
-local variable 'expr' referenced before assignment
+I don't understand what's here
+\frac{\hat d}{dt}\mathcal V \equiv (\frac{\partial}{\partial t}+\mathcal V \nabla-i\mathcal D \Delta) \mathcal V = -\frac 1{m}\nabla\Phi
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -237,11 +237,6 @@ full: 2(n+1);~~~~~simple: j
 I don't understand what's here
 \gamma_{\rm EIT} =\frac{\Omega_{\rm c}^2}{\sqrt{\gamma_{12}\gamma_{2}}}\frac{1}{\sqrt{\rm OD}}~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-
- --- 
-
-g(r)=f(r)+\frac{1}{2}\frac{\partial f(r)}{\partial r}r
-expecting string or Symbol for name
 
  --- 
 
@@ -435,23 +430,19 @@ I don't understand what's here
  --- 
 
 \partial_i X_w = \begin{cases} X_{s_iw} & \text{if $s_iw < w$,} \\ 0 &  \text{otherwise.} \end{cases}
-I expected something else here
-\partial_i X_w = \begin{cases} X_{s_iw} & \text{if $s_iw < w$,} \\ 0 &  \text{otherwise.} \end{cases}
-^
+'NoneType' object is not subscriptable
 
  --- 
 
 \partial _x \vec{e}_a = -c_a \vec{n}+ f_{ab}\vec{e}_b
-I expected something else here
-\partial _x \vec{e}_a = -c_a \vec{n}+ f_{ab}\vec{e}_b
-^
+'NoneType' object is not subscriptable
 
  --- 
 
 (\partial_z+{\cal A}_z) \psi=0
 I expected something else here
 (\partial_z+{\cal A}_z) \psi=0
-~^
+~~~~~~~~~^
 
  --- 
 

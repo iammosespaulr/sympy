@@ -408,6 +408,7 @@ abs_group: BAR expr BAR;
 atom: (LETTER | SYMBOL) subexpr?
 	| NUMBER
 	| DIFFERENTIAL
+	| PARTIAL
 	| determinant
 	| array
 	| prime
