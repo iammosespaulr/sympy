@@ -55,6 +55,7 @@ IGNORE:
 		| '\\mathcal'
 		| '\\mathfrak'
 		| '\\tiny'
+		| '\\boldsymbol'
 	) -> skip;
 
 ADD: '+';
@@ -421,7 +422,11 @@ atom: (LETTER | SYMBOL) subexpr?
 
 operation:
 	OP_NAME (
-		L_BRACE ((NUMBER | LETTER)+ | SYMBOL | func_normal) R_BRACE
+		L_BRACE (
+			DIFFERENTIAL? (NUMBER | LETTER)+
+			| SYMBOL
+			| func_normal
+		) R_BRACE
 		| (NUMBER | LETTER | SYMBOL | func_normal)
 	);
 
