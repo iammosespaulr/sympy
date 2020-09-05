@@ -318,30 +318,30 @@ I expected one of these: '|' '\right|' here
  --- 
 
 \langle\mathcal D\rangle^2\Delta\psi+i\langle\mathcal D\rangle\frac{\partial\psi}{\partial t}=(\frac{\Phi}{2m}-\langle\mathcal D\rangle[\Delta\ln\psi]_0 \delta\mathcal D (t))\psi
-I expected one of these: '|' '\right|' here
+I expected something else here
 \langle\mathcal D\rangle^2\Delta\psi+i\langle\mathcal D\rangle\frac{\partial\psi}{\partial t}=(\frac{\Phi}{2m}-\langle\mathcal D\rangle[\Delta\ln\psi]_0 \delta\mathcal D (t))\psi
 ~~~~~~~~~~~~~~~~~^
 
  --- 
 
 \langle \phi_a\phi_b \rangle = \delta_{ab} \langle \phi_a^2 \rangle
-I expected one of these: '|' '\right|' here
+I expected something else here
 \langle \phi_a\phi_b \rangle = \delta_{ab} \langle \phi_a^2 \rangle
 ~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
 \langle S_{i+r}^z S_{i}^z\rangle = \langle (S_{i}^z)^2\rangle e^{-\frac{r}{\xi}}
-I expected one of these: '|' '\right|' here
+I expected something else here
 \langle S_{i+r}^z S_{i}^z\rangle = \langle (S_{i}^z)^2\rangle e^{-\frac{r}{\xi}}
 ~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
 \langle\sum_{ab} \phi_a \phi_b e^z_a e^z_b\rangle = \langle \phi_a^2\rangle\sum_{a} (e^z_a)^2= \langle \phi_a^2\rangle [1-( n^z)^2 ]\,;
-I expected one of these: <INVALID> here
+I don't understand what's here
 \langle\sum_{ab} \phi_a \phi_b e^z_a e^z_b\rangle = \langle \phi_a^2\rangle\sum_{a} (e^z_a)^2= \langle \phi_a^2\rangle [1-( n^z)^2 ]\,;
-~~~~~~~~~~~~~~~^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 
  --- 
 
@@ -402,7 +402,7 @@ I expected one of these: '}' here
  --- 
 
 \mu(\omega) = \sum_{sk} J_{k}^{s}(\omega)  \propto\sum_s\frac{1}{k_s} | M(s,k_s)|^2
-I expected one of these: <INVALID> here
+I expected something else here
 \mu(\omega) = \sum_{sk} J_{k}^{s}(\omega)  \propto\sum_s\frac{1}{k_s} | M(s,k_s)|^2
 ~~~~~~~~~~~~~~~~~~~~~~^
 
@@ -559,7 +559,7 @@ r_{left} \ne r_{right} \mbox{but}  R_{left}=R_{right}
  --- 
 
 {\rm d} P^{(\beta )}_{\langle S\rangle}(S)=p^{(\beta )}_{\langle S\rangle}(S)\, {\rm d} \mu _{\beta }(S)
-I expected one of these: '|' '\right|' here
+I expected something else here
 {\rm d} P^{(\beta )}_{\langle S\rangle}(S)=p^{(\beta )}_{\langle S\rangle}(S)\, {\rm d} \mu _{\beta }(S)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 

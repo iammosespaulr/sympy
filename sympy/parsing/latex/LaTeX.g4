@@ -433,12 +433,9 @@ ket: (L_BAR | BAR) expr R_ANGLE;
 
 angularunit: (NUMBER | LETTER) CARET L_BRACE CIRC R_BRACE;
 
-preprime:
-	(LETTER | SYMBOL) (
-		(CARET L_BRACE PRIME R_BRACE)
-		| (CARET PRIME)
-		| '\''
-		| '’'
+preprime: (LETTER | SYMBOL) (
+		('\'' | '’')*
+		| ((CARET L_BRACE PRIME* R_BRACE) | (CARET PRIME))
 	);
 prime: preprime (L_PAREN expr R_PAREN)?;
 

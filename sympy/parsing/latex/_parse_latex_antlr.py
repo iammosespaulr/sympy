@@ -468,6 +468,7 @@ def convert_atom(atom):
             #func = sympy.Function(sympy.Symbol(atom.prime().preprime().LETTER().getText()))('t')
             #return func.diff(sympy.Symbol('t'), 1)
             return sympy.Symbol(rule2text(atom.prime().preprime()))
+            #val = 't'
         text = rule2text(atom.prime())
         funcv = text.split('^')[0]
         if funcv == text:
