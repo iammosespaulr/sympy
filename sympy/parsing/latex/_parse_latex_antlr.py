@@ -693,6 +693,10 @@ def convert_func(func):
             else:
                 base = sympy.E
             expr = sympy.log(arg, base, evaluate=False)
+        
+        if name == "det" or name == "determinant":
+            # return sympy.Determinant(arg)
+            return arg.det()
 
         if name == "Gamma":
             a = arg
