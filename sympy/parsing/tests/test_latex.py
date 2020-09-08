@@ -225,6 +225,7 @@ GOOD_PAIRS = [
 def test_parseable():
     from sympy.parsing.latex import parse_latex
     for latex_str, sympy_expr in GOOD_PAIRS:
+        print(sympy_expr, latex_str)
         assert parse_latex(latex_str) == sympy_expr, latex_str
 
 # At time of migration from latex2sympy, should work but doesn't

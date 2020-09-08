@@ -19,7 +19,7 @@ import sys
 def serializedATN():
     with StringIO() as buf:
         buf.write(u"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3")
-        buf.write(u"\u00c7\u02d9\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6")
+        buf.write(u"\u00c9\u02d9\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6")
         buf.write(u"\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4")
         buf.write(u"\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t")
         buf.write(u"\22\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27")
@@ -88,30 +88,30 @@ def serializedATN():
         buf.write(u"\61\3\62\3\62\3\62\3\62\3\62\3\62\5\u01bf\u01cd\u01dd")
         buf.write(u"\b\4\n\f\16 \"\63\2\4\6\b\n\f\16\20\22\24\26\30\32\34")
         buf.write(u"\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`b\2\13")
-        buf.write(u"\4\2\u00b7\u00ba\u00bd\u00be\3\2\25\26\5\2\27\30\u00a7")
-        buf.write(u"\u00a9\u00ae\u00ae\4\2\u00b1\u00b1\u00c6\u00c6\3\2\u00b1")
-        buf.write(u"\u00b2\3\2#$\4\2##%%\3\2\3\4\3\2\60\61\2\u0344\2d\3\2")
-        buf.write(u"\2\2\4f\3\2\2\2\6q\3\2\2\2\bu\3\2\2\2\nw\3\2\2\2\f\u0082")
-        buf.write(u"\3\2\2\2\16\u008d\3\2\2\2\20\u009f\3\2\2\2\22\u00aa\3")
-        buf.write(u"\2\2\2\24\u00ac\3\2\2\2\26\u00b3\3\2\2\2\30\u00bc\3\2")
-        buf.write(u"\2\2\32\u00be\3\2\2\2\34\u00c6\3\2\2\2\36\u00ce\3\2\2")
-        buf.write(u"\2 \u00d6\3\2\2\2\"\u00ea\3\2\2\2$\u0107\3\2\2\2&\u0110")
-        buf.write(u"\3\2\2\2(\u014a\3\2\2\2*\u014c\3\2\2\2,\u0160\3\2\2\2")
-        buf.write(u".\u0162\3\2\2\2\60\u0179\3\2\2\2\62\u017b\3\2\2\2\64")
-        buf.write(u"\u017f\3\2\2\2\66\u0183\3\2\2\28\u0189\3\2\2\2:\u019f")
-        buf.write(u"\3\2\2\2<\u01a6\3\2\2\2>\u01ae\3\2\2\2@\u01b6\3\2\2\2")
-        buf.write(u"B\u01c7\3\2\2\2D\u01d2\3\2\2\2F\u01e0\3\2\2\2H\u01e8")
-        buf.write(u"\3\2\2\2J\u01f0\3\2\2\2L\u01f4\3\2\2\2N\u0216\3\2\2\2")
-        buf.write(u"P\u0261\3\2\2\2R\u029c\3\2\2\2T\u02a3\3\2\2\2V\u02a6")
-        buf.write(u"\3\2\2\2X\u02ba\3\2\2\2Z\u02bc\3\2\2\2\\\u02be\3\2\2")
-        buf.write(u"\2^\u02c6\3\2\2\2`\u02ce\3\2\2\2b\u02d3\3\2\2\2de\5\4")
-        buf.write(u"\3\2e\3\3\2\2\2fg\b\3\1\2gh\5\b\5\2hn\3\2\2\2ij\f\4\2")
-        buf.write(u"\2jk\t\2\2\2km\5\4\3\5li\3\2\2\2mp\3\2\2\2nl\3\2\2\2")
-        buf.write(u"no\3\2\2\2o\5\3\2\2\2pn\3\2\2\2qr\5\b\5\2rs\7\u00b7\2")
-        buf.write(u"\2st\5\b\5\2t\7\3\2\2\2uv\5\n\6\2v\t\3\2\2\2wx\b\6\1")
-        buf.write(u"\2xy\5\f\7\2y\177\3\2\2\2z{\f\4\2\2{|\t\3\2\2|~\5\n\6")
-        buf.write(u"\5}z\3\2\2\2~\u0081\3\2\2\2\177}\3\2\2\2\177\u0080\3")
-        buf.write(u"\2\2\2\u0080\13\3\2\2\2\u0081\177\3\2\2\2\u0082\u0083")
+        buf.write(u"\4\2\u00b9\u00bc\u00bf\u00c0\3\2\25\26\5\2\27\30\u00a7")
+        buf.write(u"\u00a9\u00ae\u00ae\4\2\u00b1\u00b1\u00c8\u00c8\4\2\u00b1")
+        buf.write(u"\u00b1\u00b4\u00b4\3\2#$\4\2##%%\3\2\3\4\3\2\60\61\2")
+        buf.write(u"\u0344\2d\3\2\2\2\4f\3\2\2\2\6q\3\2\2\2\bu\3\2\2\2\n")
+        buf.write(u"w\3\2\2\2\f\u0082\3\2\2\2\16\u008d\3\2\2\2\20\u009f\3")
+        buf.write(u"\2\2\2\22\u00aa\3\2\2\2\24\u00ac\3\2\2\2\26\u00b3\3\2")
+        buf.write(u"\2\2\30\u00bc\3\2\2\2\32\u00be\3\2\2\2\34\u00c6\3\2\2")
+        buf.write(u"\2\36\u00ce\3\2\2\2 \u00d6\3\2\2\2\"\u00ea\3\2\2\2$\u0107")
+        buf.write(u"\3\2\2\2&\u0110\3\2\2\2(\u014a\3\2\2\2*\u014c\3\2\2\2")
+        buf.write(u",\u0160\3\2\2\2.\u0162\3\2\2\2\60\u0179\3\2\2\2\62\u017b")
+        buf.write(u"\3\2\2\2\64\u017f\3\2\2\2\66\u0183\3\2\2\28\u0189\3\2")
+        buf.write(u"\2\2:\u019f\3\2\2\2<\u01a6\3\2\2\2>\u01ae\3\2\2\2@\u01b6")
+        buf.write(u"\3\2\2\2B\u01c7\3\2\2\2D\u01d2\3\2\2\2F\u01e0\3\2\2\2")
+        buf.write(u"H\u01e8\3\2\2\2J\u01f0\3\2\2\2L\u01f4\3\2\2\2N\u0216")
+        buf.write(u"\3\2\2\2P\u0261\3\2\2\2R\u029c\3\2\2\2T\u02a3\3\2\2\2")
+        buf.write(u"V\u02a6\3\2\2\2X\u02ba\3\2\2\2Z\u02bc\3\2\2\2\\\u02be")
+        buf.write(u"\3\2\2\2^\u02c6\3\2\2\2`\u02ce\3\2\2\2b\u02d3\3\2\2\2")
+        buf.write(u"de\5\4\3\2e\3\3\2\2\2fg\b\3\1\2gh\5\b\5\2hn\3\2\2\2i")
+        buf.write(u"j\f\4\2\2jk\t\2\2\2km\5\4\3\5li\3\2\2\2mp\3\2\2\2nl\3")
+        buf.write(u"\2\2\2no\3\2\2\2o\5\3\2\2\2pn\3\2\2\2qr\5\b\5\2rs\7\u00b9")
+        buf.write(u"\2\2st\5\b\5\2t\7\3\2\2\2uv\5\n\6\2v\t\3\2\2\2wx\b\6")
+        buf.write(u"\1\2xy\5\f\7\2y\177\3\2\2\2z{\f\4\2\2{|\t\3\2\2|~\5\n")
+        buf.write(u"\6\5}z\3\2\2\2~\u0081\3\2\2\2\177}\3\2\2\2\177\u0080")
+        buf.write(u"\3\2\2\2\u0080\13\3\2\2\2\u0081\177\3\2\2\2\u0082\u0083")
         buf.write(u"\b\7\1\2\u0083\u0084\5\20\t\2\u0084\u008a\3\2\2\2\u0085")
         buf.write(u"\u0086\f\4\2\2\u0086\u0087\t\4\2\2\u0087\u0089\5\f\7")
         buf.write(u"\5\u0088\u0085\3\2\2\2\u0089\u008c\3\2\2\2\u008a\u0088")
@@ -135,7 +135,7 @@ def serializedATN():
         buf.write(u"\u00b0\3\2\2\2\u00b3\u00b7\5\"\22\2\u00b4\u00b6\5\30")
         buf.write(u"\r\2\u00b5\u00b4\3\2\2\2\u00b6\u00b9\3\2\2\2\u00b7\u00b5")
         buf.write(u"\3\2\2\2\u00b7\u00b8\3\2\2\2\u00b8\27\3\2\2\2\u00b9\u00b7")
-        buf.write(u"\3\2\2\2\u00ba\u00bd\7\u00c5\2\2\u00bb\u00bd\5\32\16")
+        buf.write(u"\3\2\2\2\u00ba\u00bd\7\u00c7\2\2\u00bb\u00bd\5\32\16")
         buf.write(u"\2\u00bc\u00ba\3\2\2\2\u00bc\u00bb\3\2\2\2\u00bd\31\3")
         buf.write(u"\2\2\2\u00be\u00c4\7#\2\2\u00bf\u00c5\5\36\20\2\u00c0")
         buf.write(u"\u00c5\5\34\17\2\u00c1\u00c2\5\36\20\2\u00c2\u00c3\5")
@@ -207,7 +207,7 @@ def serializedATN():
         buf.write(u")\3\2\2\2\u014c\u014d\7#\2\2\u014d\u014e\5\b\5\2\u014e")
         buf.write(u"\u014f\7#\2\2\u014f+\3\2\2\2\u0150\u0152\t\5\2\2\u0151")
         buf.write(u"\u0153\5\\/\2\u0152\u0151\3\2\2\2\u0152\u0153\3\2\2\2")
-        buf.write(u"\u0153\u0161\3\2\2\2\u0154\u0161\7\u00b2\2\2\u0155\u0161")
+        buf.write(u"\u0153\u0161\3\2\2\2\u0154\u0161\7\u00b4\2\2\u0155\u0161")
         buf.write(u"\7\u00af\2\2\u0156\u0161\7\u00b0\2\2\u0157\u0161\5@!")
         buf.write(u"\2\u0158\u0161\5B\"\2\u0159\u0161\5:\36\2\u015a\u0161")
         buf.write(u"\5<\37\2\u015b\u0161\5> \2\u015c\u0161\5\66\34\2\u015d")
@@ -222,14 +222,14 @@ def serializedATN():
         buf.write(u"\u0166\3\2\2\2\u0166\u0168\3\2\2\2\u0167\u0169\t\6\2")
         buf.write(u"\2\u0168\u0167\3\2\2\2\u0169\u016a\3\2\2\2\u016a\u0168")
         buf.write(u"\3\2\2\2\u016a\u016b\3\2\2\2\u016b\u016f\3\2\2\2\u016c")
-        buf.write(u"\u016f\7\u00c6\2\2\u016d\u016f\5N(\2\u016e\u0165\3\2")
+        buf.write(u"\u016f\7\u00c8\2\2\u016d\u016f\5N(\2\u016e\u0165\3\2")
         buf.write(u"\2\2\u016e\u016c\3\2\2\2\u016e\u016d\3\2\2\2\u016f\u0170")
-        buf.write(u"\3\2\2\2\u0170\u0178\7\36\2\2\u0171\u0176\7\u00b2\2\2")
-        buf.write(u"\u0172\u0176\7\u00b1\2\2\u0173\u0176\7\u00c6\2\2\u0174")
+        buf.write(u"\3\2\2\2\u0170\u0178\7\36\2\2\u0171\u0176\7\u00b4\2\2")
+        buf.write(u"\u0172\u0176\7\u00b1\2\2\u0173\u0176\7\u00c8\2\2\u0174")
         buf.write(u"\u0176\5N(\2\u0175\u0171\3\2\2\2\u0175\u0172\3\2\2\2")
         buf.write(u"\u0175\u0173\3\2\2\2\u0175\u0174\3\2\2\2\u0176\u0178")
         buf.write(u"\3\2\2\2\u0177\u0163\3\2\2\2\u0177\u0175\3\2\2\2\u0178")
-        buf.write(u"/\3\2\2\2\u0179\u017a\7\u00b6\2\2\u017a\61\3\2\2\2\u017b")
+        buf.write(u"/\3\2\2\2\u0179\u017a\7\u00b8\2\2\u017a\61\3\2\2\2\u017b")
         buf.write(u"\u017c\7&\2\2\u017c\u017d\5\b\5\2\u017d\u017e\t\7\2\2")
         buf.write(u"\u017e\63\3\2\2\2\u017f\u0180\t\b\2\2\u0180\u0181\5\b")
         buf.write(u"\5\2\u0181\u0182\7\'\2\2\u0182\65\3\2\2\2\u0183\u0184")
@@ -457,10 +457,11 @@ class LaTeXParser ( Parser ):
                      u"'\\cdot'", u"'\\div'", u"<INVALID>", u"<INVALID>",
                      u"'_'", u"'^'", u"':'", u"<INVALID>", u"'\\partial'",
                      u"<INVALID>", u"<INVALID>", u"<INVALID>", u"<INVALID>",
-                     u"<INVALID>", u"<INVALID>", u"<INVALID>", u"'\\neq'",
-                     u"'<'", u"<INVALID>", u"'\\leqq'", u"'\\leqslant'",
-                     u"'>'", u"<INVALID>", u"'\\geqq'", u"'\\geqslant'",
-                     u"'\\ll'", u"'\\gg'", u"'\\lll'", u"'\\ggg'", u"'!'" ]
+                     u"<INVALID>", u"<INVALID>", u"<INVALID>", u"<INVALID>",
+                     u"<INVALID>", u"'\\neq'", u"'<'", u"<INVALID>", u"'\\leqq'",
+                     u"'\\leqslant'", u"'>'", u"<INVALID>", u"'\\geqq'",
+                     u"'\\geqslant'", u"'\\ll'", u"'\\gg'", u"'\\lll'",
+                     u"'\\ggg'", u"'!'" ]
 
     symbolicNames = [ u"<INVALID>", u"<INVALID>", u"<INVALID>", u"<INVALID>",
                       u"<INVALID>", u"<INVALID>", u"<INVALID>", u"WS", u"THINSPACE",
@@ -501,10 +502,11 @@ class LaTeXParser ( Parser ):
                       u"FUNC_SQRT", u"LONG_DIV", u"CMD_TIMES", u"CMD_CDOT",
                       u"CMD_DIV", u"CMD_FRAC", u"CMD_BINOM", u"UNDERSCORE",
                       u"CARET", u"COLON", u"DIFFERENTIAL", u"PARTIAL", u"LETTER",
-                      u"NUMBER", u"DAYS", u"MONTH", u"YEAR", u"DATE", u"EQUAL",
-                      u"NEQ", u"LT", u"LTE", u"LTE_Q", u"LTE_S", u"GT",
-                      u"GTE", u"GTE_Q", u"GTE_S", u"LL", u"GG", u"LLL",
-                      u"GGG", u"BANG", u"SYMBOL", u"TEXT" ]
+                      u"TEXT_STUFF", u"LETTERS_ALL_LANG", u"NUMBER", u"DAYS",
+                      u"MONTH", u"YEAR", u"DATE", u"EQUAL", u"NEQ", u"LT",
+                      u"LTE", u"LTE_Q", u"LTE_S", u"GT", u"GTE", u"GTE_Q",
+                      u"GTE_S", u"LL", u"GG", u"LLL", u"GGG", u"BANG", u"SYMBOL",
+                      u"TEXT" ]
 
     RULE_math = 0
     RULE_relation = 1
@@ -744,28 +746,30 @@ class LaTeXParser ( Parser ):
     DIFFERENTIAL=173
     PARTIAL=174
     LETTER=175
-    NUMBER=176
-    DAYS=177
-    MONTH=178
-    YEAR=179
-    DATE=180
-    EQUAL=181
-    NEQ=182
-    LT=183
-    LTE=184
-    LTE_Q=185
-    LTE_S=186
-    GT=187
-    GTE=188
-    GTE_Q=189
-    GTE_S=190
-    LL=191
-    GG=192
-    LLL=193
-    GGG=194
-    BANG=195
-    SYMBOL=196
-    TEXT=197
+    TEXT_STUFF=176
+    LETTERS_ALL_LANG=177
+    NUMBER=178
+    DAYS=179
+    MONTH=180
+    YEAR=181
+    DATE=182
+    EQUAL=183
+    NEQ=184
+    LT=185
+    LTE=186
+    LTE_Q=187
+    LTE_S=188
+    GT=189
+    GTE=190
+    GTE_Q=191
+    GTE_S=192
+    LL=193
+    GG=194
+    LLL=195
+    GGG=196
+    BANG=197
+    SYMBOL=198
+    TEXT=199
 
     def __init__(self, input, output=sys.stdout):
         super(LaTeXParser, self).__init__(input, output=output)
@@ -878,7 +882,7 @@ class LaTeXParser ( Parser ):
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                     self.state = 104
                     _la = self._input.LA(1)
-                    if not(((((_la - 181)) & ~0x3f) == 0 and ((1 << (_la - 181)) & ((1 << (LaTeXParser.EQUAL - 181)) | (1 << (LaTeXParser.NEQ - 181)) | (1 << (LaTeXParser.LT - 181)) | (1 << (LaTeXParser.LTE - 181)) | (1 << (LaTeXParser.GT - 181)) | (1 << (LaTeXParser.GTE - 181)))) != 0)):
+                    if not(((((_la - 183)) & ~0x3f) == 0 and ((1 << (_la - 183)) & ((1 << (LaTeXParser.EQUAL - 183)) | (1 << (LaTeXParser.NEQ - 183)) | (1 << (LaTeXParser.LT - 183)) | (1 << (LaTeXParser.LTE - 183)) | (1 << (LaTeXParser.GT - 183)) | (1 << (LaTeXParser.GTE - 183)))) != 0)):
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
