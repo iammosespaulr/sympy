@@ -972,7 +972,7 @@ class MatrixSpecial(MatrixRequired):
         return klass._eval_eye(rows, cols)
 
     @classmethod
-    def jordan_block(kls, size=None, eigenvalue=None, **kwargs):
+    def jordan_block(kls, size=None, eigenvalue=None, *, band='upper', **kwargs):
         """Returns a Jordan block
 
         Parameters
@@ -1098,7 +1098,6 @@ class MatrixSpecial(MatrixRequired):
             ).warn()
 
         klass = kwargs.pop('cls', kls)
-        band = kwargs.pop('band', 'upper')
         rows = kwargs.pop('rows', None)
         cols = kwargs.pop('cols', None)
 
@@ -2562,8 +2561,8 @@ class MatrixArithmetic(MatrixRequired):
 
         raise TypeError('cannot add %s and %s' % (type(self), type(other)))
 
-    @call_highest_priority('__rdiv__')
-    def __div__(self, other):
+    @call_highest_priority('__rtruediv__')
+    def __truediv__(self, other):
         return self * (self.one / other)
 
     @call_highest_priority('__rmatmul__')
@@ -2842,10 +2841,6 @@ class MatrixArithmetic(MatrixRequired):
     @call_highest_priority('__rsub__')
     def __sub__(self, a):
         return self + (-a)
-
-    @call_highest_priority('__rtruediv__')
-    def __truediv__(self, other):
-        return self.__div__(other)
 
 
 class MatrixCommon(MatrixArithmetic, MatrixOperations, MatrixProperties,

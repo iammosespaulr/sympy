@@ -203,9 +203,7 @@ class BooleanAtom(Boolean):
     __rmul__ = _noop
     __pow__ = _noop
     __rpow__ = _noop
-    __rdiv__ = _noop
     __truediv__ = _noop
-    __div__ = _noop
     __rtruediv__ = _noop
     __mod__ = _noop
     __rmod__ = _noop
@@ -318,10 +316,8 @@ class BooleanTrue(BooleanAtom, metaclass=Singleton):
     sympy.logic.boolalg.BooleanFalse
 
     """
-    def __nonzero__(self):
+    def __bool__(self):
         return True
-
-    __bool__ = __nonzero__
 
     def __hash__(self):
         return hash(True)
@@ -388,10 +384,8 @@ class BooleanFalse(BooleanAtom, metaclass=Singleton):
     sympy.logic.boolalg.BooleanTrue
 
     """
-    def __nonzero__(self):
+    def __bool__(self):
         return False
-
-    __bool__ = __nonzero__
 
     def __hash__(self):
         return hash(False)
@@ -1051,9 +1045,8 @@ class Xor(BooleanFunction):
     x
 
     """
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args, remove_true=True, **kwargs):
         argset = set()
-        remove_true = kwargs.pop('remove_true', True)
         obj = super().__new__(cls, *args, **kwargs)
         for arg in obj._args:
             if isinstance(arg, Number) or arg in (True, False):
