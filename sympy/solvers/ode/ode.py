@@ -580,7 +580,7 @@ def dsolve(eq, func=None, hint="default", simplify=True,
         # changed to show the systems that haven't
         # been solved.
         try:
-            sol = dsolve_system(eq, funcs=func, ics=ics)
+            sol = dsolve_system(eq, funcs=func, ics=ics, doit=True)
             return sol[0] if len(sol) == 1 else sol
         except NotImplementedError:
             pass
@@ -833,7 +833,7 @@ def solve_ics(sols, funcs, constants, ics):
 
     return solved_constants[0]
 
-def classify_ode(eq, func=None, dict=False, ics=None, *, prep=True, **kwargs):
+def classify_ode(eq, func=None, dict=False, ics=None, *, prep=True, xi=None, eta=None, n=None, **kwargs):
     r"""
     Returns a tuple of possible :py:meth:`~sympy.solvers.ode.dsolve`
     classifications for an ODE.
@@ -978,9 +978,7 @@ def classify_ode(eq, func=None, dict=False, ics=None, *, prep=True, **kwargs):
     x = func.args[0]
     f = func.func
     y = Dummy('y')
-    xi = kwargs.get('xi')
-    eta = kwargs.get('eta')
-    terms = kwargs.get('n')
+    terms = n
 
     order = ode_order(eq, f(x))
     # hint:matchdict or hint:(tuple of matchdicts)
