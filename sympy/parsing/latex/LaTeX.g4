@@ -105,7 +105,6 @@ FUNC_PROD: ('\\prod' | PI);
 FUNC_EXP: '\\exp';
 FUNC_LOG: '\\log';
 FUNC_LN: '\\ln';
-
 FUNC_SIN: '\\sin';
 FUNC_COS: '\\cos';
 FUNC_TAN: '\\tan';
@@ -243,6 +242,11 @@ RE: '\\Re';
 MULTI_COL: '\\multicolumn';
 MULTI_ROW: '\\multirow';
 
+L_FLOOR: '\\lfloor';
+R_FLOOR: '\\rfloor';
+L_CEIL: '\\lceil';
+R_CEIL: '\\rceil';
+
 FUNC_SQRT: '\\sqrt';
 LONG_DIV: '\\longdiv';
 
@@ -307,12 +311,12 @@ EQUAL: (('&' WS_CHAR*?)? '=') | ('=' (WS_CHAR*? '&')?);
 NEQ: '\\neq';
 
 LT: '<';
-LTE: ('\\leq' | 'le' | LTE_Q | LTE_S);
+LTE: ('\\leq' | '\\le' | LTE_Q | LTE_S);
 LTE_Q: '\\leqq';
 LTE_S: '\\leqslant';
 
 GT: '>';
-GTE: ('\\geq' | 'ge' | GTE_Q | GTE_S);
+GTE: ('\\geq' | '\\ge' | GTE_Q | GTE_S);
 GTE_Q: '\\geqq';
 GTE_S: '\\geqslant';
 

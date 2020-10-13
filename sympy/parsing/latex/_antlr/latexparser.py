@@ -2516,6 +2516,14 @@ class LaTeXParser ( Parser ):
             return self.getTypedRuleContext(LaTeXParser.DateContext,0)
 
 
+        def bra(self):
+            return self.getTypedRuleContext(LaTeXParser.BraContext,0)
+
+
+        def ket(self):
+            return self.getTypedRuleContext(LaTeXParser.KetContext,0)
+
+
         def getRuleIndex(self):
             return LaTeXParser.RULE_atom
 

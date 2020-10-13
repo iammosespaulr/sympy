@@ -1,18 +1,20 @@
 import random
 
 import itertools
-from typing import Sequence as tSequence, Union as tUnion
+from typing import Sequence as tSequence, Union as tUnion, List as tList, Tuple as tTuple
 
 from sympy import (Matrix, MatrixSymbol, S, Indexed, Basic, Tuple, Range,
-                   Set, And, Eq, FiniteSet, ImmutableMatrix, Integer,
+                   Set, And, Eq, FiniteSet, ImmutableMatrix, Integer, igcd,
                    Lambda, Mul, Dummy, IndexedBase, Add, Interval, oo,
                    linsolve, eye, Or, Not, Intersection, factorial, Contains,
                    Union, Expr, Function, exp, cacheit, sqrt, pi, gamma,
                    Ge, Piecewise, Symbol, NonSquareMatrixError, EmptySet,
-                   ceiling, MatrixBase)
+                   ceiling, MatrixBase, ConditionSet, ones, zeros, Identity,
+                   Rational, Lt, Gt, Ne)
 from sympy.core.relational import Relational
 from sympy.logic.boolalg import Boolean
 from sympy.utilities.exceptions import SymPyDeprecationWarning
+from sympy.utilities.iterables import strongly_connected_components
 from sympy.stats.joint_rv import JointDistribution
 from sympy.stats.joint_rv_types import JointDistributionHandmade
 from sympy.stats.rv import (RandomIndexedSymbol, random_symbols, RandomSymbol,
@@ -514,25 +516,58 @@ class MarkovProcess(StochasticProcess):
             trans_probs = self.transition_probabilities(mat)
         elif isinstance(self, DiscreteMarkovChain):
             trans_probs = mat
-        condition=self.replace_with_index(condition)
-        given_condition=self.replace_with_index(given_condition)
-        new_given_condition=self.replace_with_index(new_given_condition)
+        condition = self.replace_with_index(condition)
+        given_condition = self.replace_with_index(given_condition)
+        new_given_condition = self.replace_with_index(new_given_condition)
 
         if isinstance(condition, Relational):
-            rv, states = (list(condition.atoms(RandomIndexedSymbol))[0], condition.as_set())
             if isinstance(new_given_condition, And):
                 gcs = new_given_condition.args
             else:
                 gcs = (new_given_condition, )
-            grvs = new_given_condition.atoms(RandomIndexedSymbol)
+            min_key_rv = list(new_given_condition.atoms(RandomIndexedSymbol))
+            rv = list(condition.atoms(RandomIndexedSymbol))
 
-            min_key_rv = None
-            for grv in grvs:
-                if grv.key <= rv.key:
-                    min_key_rv = grv
-            if min_key_rv == None:
+            if len(min_key_rv):
+                min_key_rv = min_key_rv[0]
+                for r in rv:
+                    if min_key_rv.key > r.key:
+                        return Probability(condition)
+            else:
+                min_key_rv = None
                 return Probability(condition)
 
+            if len(rv) > 1:
+                rv = rv[:2]
+                if rv[0].key < rv[1].key:
+                        rv[0], rv[1] = rv[1], rv[0]
+                s = Rational(0, 1)
+                n = len(self.state_space)
+
+                if isinstance(condition, Eq) or isinstance(condition, Ne):
+                    for i in range(0, n):
+                        s += self.probability(Eq(rv[0], i), Eq(rv[1], i)) * self.probability(Eq(rv[1], i), new_given_condition)
+                    return s if isinstance(condition, Eq) else 1 - s
+                else:
+                    upper = 0
+                    greater = False
+                    if isinstance(condition, Ge) or isinstance(condition, Lt):
+                        upper = 1
+                    if isinstance(condition, Gt) or isinstance(condition, Ge):
+                        greater = True
+
+                    for i in range(0, n):
+                        if i <= n//2:
+                            for j in range(0, i + upper):
+                                s += self.probability(Eq(rv[0], i), Eq(rv[1], j)) * self.probability(Eq(rv[1], j), new_given_condition)
+                        else:
+                            s += self.probability(Eq(rv[0], i), new_given_condition)
+                            for j in range(i + upper, n):
+                                s -= self.probability(Eq(rv[0], i), Eq(rv[1], j)) * self.probability(Eq(rv[1], j), new_given_condition)
+                    return s if greater else 1 - s
+
+            rv = rv[0]
+            states = condition.as_set()
             prob, gstate = dict(), None
             for gc in gcs:
                 if gc.has(min_key_rv):
@@ -755,6 +790,22 @@ class DiscreteMarkovChain(DiscreteTimeStochasticProcess, MarkovProcess):
     >>> E(Y[3], Eq(Y[1], cloudy))
     0.38*Cloudy + 0.36*Rainy + 0.26*Sunny
 
+    Probability of expressions with multiple RandomIndexedSymbols
+    can also be calculated provided there is only 1 RandomIndexedSymbol
+    in the given condition. It is always better to use Rational instead
+    of floating point numbers for the probabilities in the
+    transition matrix to avoid errors.
+
+    >>> from sympy import Gt, Le, Rational
+    >>> T = Matrix([[Rational(5, 10), Rational(3, 10), Rational(2, 10)], [Rational(2, 10), Rational(7, 10), Rational(1, 10)], [Rational(3, 10), Rational(3, 10), Rational(4, 10)]])
+    >>> Y = DiscreteMarkovChain("Y", [0, 1, 2], T)
+    >>> P(Eq(Y[3], Y[1]), Eq(Y[0], 0)).round(3)
+    0.409
+    >>> P(Gt(Y[3], Y[1]), Eq(Y[0], 0)).round(2)
+    0.36
+    >>> P(Le(Y[15], Y[10]), Eq(Y[8], 2)).round(7)
+    0.6963328
+
     There is limited support for arbitrarily sized states:
 
     >>> n = symbols('n', nonnegative=True, integer=True)
@@ -835,6 +886,134 @@ class DiscreteMarkovChain(DiscreteTimeStochasticProcess, MarkovProcess):
 
         return ImmutableMatrix(t2a)
 
+    def communication_classes(self) -> tList[tTuple[tList[Basic], Boolean, Integer]]:
+        """
+        Returns the list of communication classes that partition
+        the states of the markov chain.
+
+        A communication class is defined to be a set of states
+        such that every state in that set is reachable from
+        every other state in that set. Due to its properties
+        this forms a class in the mathematical sense.
+        Communication classes are also known as recurrence
+        classes.
+
+        Returns
+        =======
+
+        classes : List of Tuple of List, Boolean, Intger
+            The ``classes`` are a list of tuples. Each
+            tuple represents a single communication class
+            with its properties. The first element in the
+            tuple is the list of states in the class, the
+            second element is whether the class is recurrent
+            and the third element is the period of the
+            communication class.
+
+        Examples
+        ========
+
+        >>> from sympy.stats import DiscreteMarkovChain
+        >>> from sympy import Matrix
+        >>> T = Matrix([[0, 1, 0],
+        ...             [1, 0, 0],
+        ...             [1, 0, 0]])
+        >>> X = DiscreteMarkovChain('X', [1, 2, 3], T)
+        >>> classes = X.communication_classes()
+        >>> for states, is_recurrent, period in classes:
+        ...     states, is_recurrent, period
+        ([1, 2], True, 2)
+        ([3], False, 1)
+
+        From this we can see that states ``1`` and ``2``
+        communicate, are recurrent and have a period
+        of 2. We can also see state ``3`` is transient
+        with a period of 1.
+
+        Notes
+        =====
+
+        The algorithm used is of order ``O(n**2)`` where
+        ``n`` is the number of states in the markov chain.
+        It uses Tarjan's algorithm to find the classes
+        themselves and then it uses a breadth-first search
+        algorithm to find each class's periodicity.
+        Most of the algorithm's components approach ``O(n)``
+        as the matrix becomes more and more sparse.
+
+        References
+        ==========
+
+        .. [1] http://www.columbia.edu/~ww2040/4701Sum07/4701-06-Notes-MCII.pdf
+        .. [2] http://cecas.clemson.edu/~shierd/Shier/markov.pdf
+        .. [3] https://ujcontent.uj.ac.za/vital/access/services/Download/uj:7506/CONTENT1
+        .. [4] https://www.mathworks.com/help/econ/dtmc.classify.html
+        """
+        n = self.number_of_states
+        T = self.transition_probabilities
+
+        # begin Tarjan's algorithm
+        V = Range(n)
+        # don't use state names. Rather use state
+        # indexes since we use them for matrix
+        # indexing here and later onward
+        E = [(i, j) for i in V for j in V if T[i, j] != 0]
+        classes = strongly_connected_components((V, E))
+        # end Tarjan's algorithm
+
+        recurrence = []
+        periods = []
+        for class_ in classes:
+            # begin recurrent check (similar to self._check_trans_probs())
+            submatrix = T[class_, class_]  # get the submatrix with those states
+            is_recurrent = S.true
+            rows = submatrix.tolist()
+            for row in rows:
+                if (sum(row) - 1) != 0:
+                    is_recurrent = S.false
+                    break
+            recurrence.append(is_recurrent)
+            # end recurrent check
+
+            # begin breadth-first search
+            non_tree_edge_values = set()
+            visited = {class_[0]}
+            newly_visited = {class_[0]}
+            level = {class_[0]: 0}
+            current_level = 0
+            done = False  # imitate a do-while loop
+            while not done:  # runs at most len(class_) times
+                done = len(visited) == len(class_)
+                current_level += 1
+
+                # this loop and the while loop above run a combined len(class_) number of times.
+                # so this triple nested loop runs through each of the n states once.
+                for i in newly_visited:
+
+                    # the loop below runs len(class_) number of times
+                    # complexity is around about O(n * avg(len(class_)))
+                    newly_visited = {j for j in class_ if T[i, j] != 0}
+
+                    new_tree_edges = newly_visited.difference(visited)
+                    for j in new_tree_edges:
+                        level[j] = current_level
+
+                    new_non_tree_edges = newly_visited.intersection(visited)
+                    new_non_tree_edge_values = {level[i]-level[j]+1 for j in new_non_tree_edges}
+
+                    non_tree_edge_values = non_tree_edge_values.union(new_non_tree_edge_values)
+                    visited = visited.union(new_tree_edges)
+
+            # igcd needs at least 2 arguments
+            g = igcd(len(class_), len(class_), *{val_e for val_e in non_tree_edge_values if val_e > 0})
+            periods.append(g)
+            # end breadth-first search
+
+        # convert back to the user's state names
+        classes = [[self._state_index[i] for i in class_] for class_ in classes]
+
+        return sympify(list(zip(classes, recurrence, periods)))
+
     def fundamental_matrix(self):
         Q = self._transient2transient()
         if Q == None:
@@ -883,20 +1062,97 @@ class DiscreteMarkovChain(DiscreteTimeStochasticProcess, MarkovProcess):
         return any(self.is_absorbing_state(state) == True
                     for state in range(trans_probs.shape[0]))
 
-    def fixed_row_vector(self):
+    def stationary_distribution(self, condition_set=False) -> tUnion[ImmutableMatrix, ConditionSet, Lambda]:
+        """
+        The stationary distribution is any row vector, p, that solves p = pP,
+        is row stochastic and each element in p must be nonnegative.
+        That means in matrix form: :math:`(P-I)^T p^T = 0` and
+        :math:`(1, ..., 1) p = 1`
+        where ``P`` is the one-step transition matrix.
+
+        All time-homogeneous Markov Chains with a finite state space
+        have at least one stationary distribution. In addition, if
+        a finite time-homogeneous Markov Chain is irreducible, the
+        stationary distribution is unique.
+
+        Parameters
+        ==========
+
+        condition_set : bool
+            If the chain has a symbolic size or transition matrix,
+            it will return a ``Lambda`` if ``False`` and return a
+            ``ConditionSet`` if ``True``.
+
+        Examples
+        ========
+
+        >>> from sympy.stats import DiscreteMarkovChain
+        >>> from sympy import Matrix, S
+
+        An irreducible Markov Chain
+
+        >>> T = Matrix([[S(1)/2, S(1)/2, 0],
+        ...             [S(4)/5, S(1)/5, 0],
+        ...             [1, 0, 0]])
+        >>> X = DiscreteMarkovChain('X', trans_probs=T)
+        >>> X.stationary_distribution()
+        Matrix([[8/13, 5/13, 0]])
+
+        A reducible Markov Chain
+
+        >>> T = Matrix([[S(1)/2, S(1)/2, 0],
+        ...             [S(4)/5, S(1)/5, 0],
+        ...             [0, 0, 1]])
+        >>> X = DiscreteMarkovChain('X', trans_probs=T)
+        >>> X.stationary_distribution()
+        Matrix([[8/13 - 8*tau0/13, 5/13 - 5*tau0/13, tau0]])
+
+        >>> Y = DiscreteMarkovChain('Y')
+        >>> Y.stationary_distribution()
+        Lambda((wm, _T), Eq(wm*_T, wm))
+
+        >>> Y.stationary_distribution(condition_set=True)
+        ConditionSet(wm, Eq(wm*_T, wm))
+
+        References
+        ==========
+
+        .. [1] https://www.probabilitycourse.com/chapter11/11_2_6_stationary_and_limiting_distributions.php
+        .. [2] https://galton.uchicago.edu/~yibi/teaching/stat317/2014/Lectures/Lecture4_6up.pdf
+
+        See Also
+        ========
+
+        sympy.stats.stochastic_process_types.DiscreteMarkovChain.limiting_distribution
+        """
         trans_probs = self.transition_probabilities
-        if trans_probs == None:
-            return None
+        n = self.number_of_states
+
+        if n == 0:
+            return ImmutableMatrix(Matrix([[]]))
+
+        # symbolic matrix version
         if isinstance(trans_probs, MatrixSymbol):
-            wm = MatrixSymbol('wm', 1, trans_probs.shape[0])
-            return Lambda((wm, trans_probs), Eq(wm*trans_probs, wm))
-        w = IndexedBase('w')
-        wi = [w[i] for i in range(trans_probs.shape[0])]
-        wm = Matrix([wi])
-        eqs = (wm*trans_probs - wm).tolist()[0]
-        eqs.append(sum(wi) - 1)
-        soln = list(linsolve(eqs, wi))[0]
+            wm = MatrixSymbol('wm', 1, n)
+            if condition_set:
+                return ConditionSet(wm, Eq(wm * trans_probs, wm))
+            else:
+                return Lambda((wm, trans_probs), Eq(wm * trans_probs, wm))
+
+        # numeric matrix version
+        a = Matrix(trans_probs - Identity(n)).T
+        a[0, 0:n] = ones(1, n)
+        b = zeros(n, 1)
+        b[0, 0] = 1
+
+        soln = list(linsolve((a, b)))[0]
         return ImmutableMatrix([[sol for sol in soln]])
+
+    def fixed_row_vector(self):
+        """
+        A wrapper for ``stationary_distribution()``.
+        """
+        return self.stationary_distribution()
 
     @property
     def limiting_distribution(self):
