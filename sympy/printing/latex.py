@@ -77,6 +77,8 @@ tex_greek_dictionary = {
     'varrho': r'\varrho',
     'varsigma': r'\varsigma',
     'vartheta': r'\vartheta',
+    'downarrow': r'\downarrow',
+    'uparrow':r'\uparrow',
 }
 
 other_symbols = set(['aleph', 'beth', 'daleth', 'gimel', 'ell', 'eth', 'hbar',
