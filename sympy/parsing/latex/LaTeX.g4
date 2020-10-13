@@ -105,6 +105,7 @@ FUNC_PROD: ('\\prod' | PI);
 FUNC_EXP: '\\exp';
 FUNC_LOG: '\\log';
 FUNC_LN: '\\ln';
+
 FUNC_SIN: '\\sin';
 FUNC_COS: '\\cos';
 FUNC_TAN: '\\tan';
@@ -241,11 +242,6 @@ RE: '\\Re';
 
 MULTI_COL: '\\multicolumn';
 MULTI_ROW: '\\multirow';
-
-L_FLOOR: '\\lfloor';
-R_FLOOR: '\\rfloor';
-L_CEIL: '\\lceil';
-R_CEIL: '\\rceil';
 
 FUNC_SQRT: '\\sqrt';
 LONG_DIV: '\\longdiv';
@@ -538,21 +534,21 @@ func:
 
 func_multi:
 	(
-		FUNC_IINT (subexpr supexpr | supexpr subexpr)? (
+		FUNC_IINT ('\\limits')?  (subexpr supexpr | supexpr subexpr)? (
 			(additive? DIFFERENTIAL DIFFERENTIAL)
 			| frac
 			| additive
 		)
 	)
 	| (
-		FUNC_IIINT (subexpr supexpr | supexpr subexpr)? (
+		FUNC_IIINT ('\\limits')?  (subexpr supexpr | supexpr subexpr)? (
 			(additive? DIFFERENTIAL DIFFERENTIAL DIFFERENTIAL)
 			| frac
 			| additive
 		)
 	)
 	| (
-		FUNC_IIIINT (subexpr supexpr | supexpr subexpr)? (
+		FUNC_IIIINT ('\\limits')? (subexpr supexpr | supexpr subexpr)? (
 			(
 				additive? DIFFERENTIAL DIFFERENTIAL DIFFERENTIAL DIFFERENTIAL
 			)
