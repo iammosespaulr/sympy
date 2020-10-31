@@ -81,8 +81,8 @@ tex_greek_dictionary = {
     'uparrow':r'\uparrow',
 }
 
-other_symbols = set(['aleph', 'beth', 'daleth', 'gimel', 'ell', 'eth', 'hbar',
-                     'hslash', 'mho', 'wp', ])
+other_symbols = {'aleph', 'beth', 'daleth', 'gimel', 'ell', 'eth', 'hbar',
+                     'hslash', 'mho', 'wp'}
 
 # Variable name modifiers
 modifier_dict = {
